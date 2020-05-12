@@ -77,9 +77,9 @@ def runs_calculator(balls,batsman,bowler):
                     weights[i]+=0.5*(1/len(possible_cases_batsman))
             if results[i] in possible_cases_bowler:
                 if balls<=36 and balls>=90:
-                    weights[i]+=0.1*(1/len(possible_cases_batsman))
+                    weights[i]+=0.1*(1/len(possible_cases_bowler))
                 else:
-                    weights[i]+=0.5*(1/len(possible_cases_batsman))
+                    weights[i]+=0.5*(1/len(possible_cases_bowler))
         elif results[i]==4:
             if results[i] in possible_cases_batsman:
                 weights[3]+=0.5*(1/len(possible_cases_batsman))

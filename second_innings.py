@@ -19,8 +19,6 @@ def chase(target,attributes):
     current_batsmen.append(choser)
     for i in range(len(attributes['bowlers'])):
         print(str(i)+' '+attributes['bowlers'][i]['name'])
-    for i in range(len(attributes['bowlers'])):
-        print(str(i)+' '+attributes['bowlers'][i]['name'])
     choser=int(input("Choose the id of bowler from above:"))
     current_bowler_id=choser
     print('\n')
@@ -43,7 +41,7 @@ def chase(target,attributes):
                 attributes['batsmen'][current_batsmen_id]['sixes']+=1
             if runs==1:
                 current_batsmen_id=change_batsman(current_batsmen,current_batsmen_id)
-            if team_score>target:
+            if team_score>=target:
                 break
         else:
             print("Ball "+str(i)+": "+attributes['batsmen'][current_batsmen_id]['name']+' '+result+' at '+ str(attributes['batsmen'][current_batsmen_id]['runs_scored']))
@@ -92,7 +90,7 @@ def chase(target,attributes):
     if int(attributes['bowlers'][current_bowler_id]['balls_bowled']%6)==0:
         print('Summary :'+str(team_score)+'/'+str(team_wickets)+' after '+str(int(i/6))+' overs '+'\n')
     else:
-        print('Summary :'+str(team_score)+'/'+str(team_wickets)+' after '+str(int(i/6))+str((attributes['bowlers'][current_bowler_id]['balls_bowled'])%6)+' overs '+'\n')
+        print('Summary :'+str(team_score)+'/'+str(team_wickets)+' after '+str(int(i/6))+'.'+str((attributes['bowlers'][current_bowler_id]['balls_bowled'])%6)+' overs '+'\n')
     for i in range(len(attributes['batsmen'])):
         if attributes['batsmen'][i]['balls_faced']>0:
             if str(attributes['batsmen'][i]['out_to'])!='Not Out':

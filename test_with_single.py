@@ -3,9 +3,9 @@ from out_sim1 import out_calculator, runs_calculator, change_batsman, toss
 from second_innings import chase
 
 #Batting Team
-csvFile='C:\\Users\\rahul\\Desktop\\FourvsFour\\Simulator\\Teams\\Data_for_simulation - CSK2019f.csv'
+csvFile='C:\\Users\\rahul\\Desktop\\FourvsFour\\Simulator\\Teams\\Data_for_simulation - Adityad1.csv'
 #Bowling Team
-csvFile2='C:\\Users\\rahul\\Desktop\\FourvsFour\\Simulator\\Teams\\Data_for_simulation - MI2019F.csv'
+csvFile2='C:\\Users\\rahul\\Desktop\\FourvsFour\\Simulator\\Teams\\Data_for_simulation - SBKd1.csv'
 call=input("Heads or Tails:")
 toss_result=toss()
 if call==toss_result:
@@ -173,7 +173,7 @@ for i in range(1,121):
 if int(attributes['bowlers'][current_bowler_id]['balls_bowled']%6)==0:
     print('Summary :'+str(team_score)+'/'+str(team_wickets)+' after '+str(int(i/6))+' overs '+'\n')
 else:
-    print('Summary :'+str(team_score)+'/'+str(team_wickets)+' after '+str(int(i/6))+str((attributes['bowlers'][current_bowler_id]['balls_bowled'])%6)+' overs '+'\n')
+    print('Summary :'+str(team_score)+'/'+str(team_wickets)+' after '+str(int(i/6))+'.'+str((attributes['bowlers'][current_bowler_id]['balls_bowled'])%6)+' overs '+'\n')
 print('Batting Scorecard')
 for i in range(len(attributes['batsmen'])):
     if attributes['batsmen'][i]['balls_faced']>0:
