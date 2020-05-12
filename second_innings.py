@@ -60,8 +60,9 @@ def chase(target,attributes):
             current_batsmen.remove(current_batsmen_id)
             current_batsmen.append(next_batsman_id)
             current_batsmen_id=next_batsman_id
-        time.sleep(3)
+
         if i%6==0 and i!=120:
+            time.sleep(5)
             os.system('cls')
             overs=int(i/6)
             print('Summary :'+str(team_score)+'/'+str(team_wickets)+' after '+str(overs)+' overs Required run rate:'+str(round(((target-team_score)/(20-overs)),2))
@@ -93,6 +94,9 @@ def chase(target,attributes):
         print('Summary :'+str(team_score)+'/'+str(team_wickets)+' after '+str(int(i/6))+'.'+str((attributes['bowlers'][current_bowler_id]['balls_bowled'])%6)+' overs '+'\n')
     for i in range(len(attributes['batsmen'])):
         if attributes['batsmen'][i]['balls_faced']>0:
+            attributes['batsmen'][i].pop('average', None)
+            attributes['batsmen'][i].pop('ratio', None)
+            attributes['batsmen'][i].pop('strikerate', None)
             if str(attributes['batsmen'][i]['out_to'])!='Not Out':
                 print(attributes['batsmen'][i]['name']+' '+str(attributes['batsmen'][i]['runs_scored'])
                 +"("+str(attributes['batsmen'][i]['balls_faced'])+") "+" Out To:"
@@ -108,15 +112,12 @@ def chase(target,attributes):
     print('\nBowling Scorecard\n')
     for i in range(len(attributes['bowlers'])):
         if attributes['bowlers'][i]['balls_bowled']>0:
+            attributes['bowlers'][i].pop('economy',None)
+            attributes['bowlers'][i].pop('average',None)
             overs=str(int(attributes['bowlers'][i]['balls_bowled']/6))
             spare_balls=str(int(attributes['bowlers'][i]['balls_bowled']%6))
             overs=overs+'.'+spare_balls
             print(attributes['bowlers'][i]['name']+" "+overs+'-'+str(attributes['bowlers'][i]['dots'])
             +'-'+str(attributes['bowlers'][i]['runs_conceded'])+'-'+str(attributes['bowlers'][i]['wickets_taken']))
 
-    if team_score>=target:
-        print('\nChasing Team Won by '+str(10-team_wickets)+" wickets")
-    elif target>=team_score:
-        print('\nTeam batting first won by '+str(target-1-team_score)+" runs ")
-    else:
-        print("It's a tie")
+    return [attributes,team_score,team_wickets]

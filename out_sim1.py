@@ -1,5 +1,4 @@
 from random import choices
-
 def toss():
     results=['Heads','Tails']
     weights=[0.5,0.5]
