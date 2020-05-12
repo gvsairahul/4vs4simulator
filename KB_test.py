@@ -11,11 +11,13 @@ user_name = input("If Rahul press 1, If Kb press 2:")
 
 if user_name == '2':
     path = 'C:\\Users\\KB131141191\\Desktop\\4vs4simulator\\Teams\\Master_data_sheet.csv'
+    path1 = 'C:\\Users\\KB131141191\\Desktop\\4vs4simulator\\Teams\\Player_Mapping.csv'
     Player1 = 'C:\\Users\\KB131141191\\Desktop\\4vs4simulator\\Teams\\Data_for_simulation - Player1.csv'
     Player2 = 'C:\\Users\\KB131141191\\Desktop\\4vs4simulator\\Teams\\Data_for_simulation - Player2.csv'
 
 elif user_name == '1':
     path = 'C:\\Users\\rahul\\Desktop\\4vs4simulator\\Teams\\Master_data_sheet.csv'
+    path1 = 'C:\\Users\\rahul\\Desktop\\4vs4simulator\\Teams\\Player_Mapping.csv'
     Player1 = 'C:\\Users\\rahul\\Desktop\\4vs4simulator\\Teams\\Data_for_simulation - Player1.csv'
     Player2 = 'C:\\Users\\rahul\\Desktop\\4vs4simulator\\Teams\\Data_for_simulation - Player2.csv'
 
@@ -25,7 +27,7 @@ elif user_name == '1':
 
 
 rrr=pd.read_csv(path,dtype = str)
-rrr1=rrr
+# rrr1=rrr
 
 
 #rrr = rrr.rename(columns={'S.NO': 'Batting_Order'})
@@ -34,6 +36,18 @@ id_1 = input("Player1 id:")
 idd_1 = input("Player 1 - Auction or draft with number:")
 id_2 = input("Player2 id:")
 idd_2 = input("Player 2 - Auction or draft with number:")
+
+bb = pd.read_csv(path1,dtype=str)
+p1 = bb[bb['Player_id']==id_1]['Name']
+p2 = bb[bb['Player_id']==id_2]['Name']
+for row in p2:
+    Player2_Name = row
+
+for row in p1:
+    Player1_Name = row
+
+print('Player 1: ' + Player1_Name)
+print('Player 2: ' + Player2_Name)
 
 if idd_1 == 'D1' or idd_1 == 'd1' :
     result1 = rrr[rrr['Draft1_Player_id'] == id_1]
@@ -58,8 +72,8 @@ elif idd_2 == 'A3' or idd_2 == 'a3':
     
 
 
-print(result1)
-print(result2)
+# print(result1)
+# print(result2)
 
 result1 = result1[col_list]
 result2 = result2[col_list]
@@ -72,13 +86,13 @@ result2.to_csv(Player2)
 # result1 = result1(result1['Draft_Player_id'] == 5)
 # result2 = result2(result2['Draft_Player_id'] == 3)
 
-print('result1 = ')
-print(result1)
-print('result2 = ')  
-print(result2)
+# print('result1 = ')
+# print(result1)
+# print('result2 = ')  
+# print(result2)
 
-for row in result1:
-    print(row)
+# for row in result1:
+#     print(row)
 
 
 
@@ -256,7 +270,7 @@ for i in range(1,121):
         current_batsmen.remove(current_batsmen_id)
         current_batsmen.append(next_batsman_id)
         current_batsmen_id=next_batsman_id
-    time.sleep(3)
+    time.sleep(1)
     if i%6==0 and i!=120:
         os.system('cls')
         print('Summary :'+str(team_score)+'/'+str(team_wickets)+' after '+str(int(i/6))+' overs '+'\n\n'+'Current Batsmen :')
