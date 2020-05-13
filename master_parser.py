@@ -53,6 +53,7 @@ for row in master_data:
     if non_header:
         if row[9]==first_innings_id:
             attributes['batsmen'].append({})
+            attributes['batsmen'][batsman_number]['batting_order']=0
             attributes['batsmen'][batsman_number]['name']=row[1].strip(' ')
             attributes['batsmen'][batsman_number]['out_to']='Not Out'
             attributes['batsmen'][batsman_number]['runs_scored']=0
@@ -75,6 +76,7 @@ for row in master_data:
                 bowler_number2+=1
         elif row[9]==second_innings_id:
             attributes2['batsmen'].append({})
+            attributes2['batsmen'][batsman_number2]['batting_order']=0
             attributes2['batsmen'][batsman_number2]['name']=row[1].strip(' ')
             attributes2['batsmen'][batsman_number2]['out_to']='Not Out'
             attributes2['batsmen'][batsman_number2]['runs_scored']=0
@@ -100,16 +102,19 @@ current_batsmen=[]
 current_bowler_id=0
 team_score=0
 team_wickets=0
+fall_of_wickets=[]
 for j in range(len(attributes['batsmen'])):
     if attributes['batsmen'][j]['balls_faced']==0 and (j not in current_batsmen):
         print(str(j)+'  '+attributes['batsmen'][j]['name'])
 choser=int(input("Choose the  batsman on strike:"))
 current_batsmen.append(choser)
 current_batsmen_id=choser
+attributes['batsmen'][current_batsmen_id]['batting_order']=1
 for j in range(len(attributes['batsmen'])):
     if attributes['batsmen'][j]['balls_faced']==0 and (j not in current_batsmen):
         print(str(j)+'  '+attributes['batsmen'][j]['name'])
 choser=int(input("Choose the  batsman on non strike:"))
+attributes['batsmen'][choser]['batting_order']=2
 current_batsmen.append(choser)
 for i in range(len(attributes['bowlers'])):
     print(str(i)+' '+attributes['bowlers'][i]['name'])
@@ -140,6 +145,7 @@ for i in range(1,121):
         attributes['batsmen'][current_batsmen_id]['out_to']=attributes['bowlers'][current_bowler_id]['name']
         team_wickets+=1
         attributes['bowlers'][current_bowler_id]['wickets_taken']+=1
+        fall_of_wickets.append(team_score)
         if team_wickets==10:
             print("Team is all out at "+str(team_score))
             break
@@ -148,12 +154,13 @@ for i in range(1,121):
                 print(str(j)+'  '+attributes['batsmen'][j]['name'])
         choser=int(input("Choose the next batsman :"))
         next_batsman_id=choser
+        attributes['batsmen'][next_batsman_id]['batting_order']=team_wickets+2
         current_batsmen.remove(current_batsmen_id)
         current_batsmen.append(next_batsman_id)
         current_batsmen_id=next_batsman_id
 
     if i%6==0 and i!=120:
-        time.sleep(5)
+        time.sleep(4)
         os.system('cls')
         print('Summary :'+str(team_score)+'/'+str(team_wickets)+' after '+str(int(i/6))+' overs '+'\n\n'+'Current Batsmen :')
         for j in (current_batsmen):
@@ -173,7 +180,11 @@ for i in range(1,121):
         current_batsmen_id=change_batsman(current_batsmen,current_batsmen_id)
         for j in range(len(attributes['bowlers'])):
             if attributes['bowlers'][j]['balls_bowled']<=18 and j!=current_bowler_id:
-                print(str(j)+' '+attributes['bowlers'][j]['name']+' overs_left:'+str(int((24-attributes['bowlers'][j]['balls_bowled'])/6)))
+                overs=str(int(attributes['bowlers'][j]['balls_bowled']/6))
+                spare_balls=str(int(attributes['bowlers'][j]['balls_bowled']%6))
+                overs=overs+'.'+spare_balls
+                print(str(j)+' '+attributes['bowlers'][j]['name']+" "+overs+'-'+str(attributes['bowlers'][j]['dots'])
+                +'-'+str(attributes['bowlers'][j]['runs_conceded'])+'-'+str(attributes['bowlers'][j]['wickets_taken']))
         choser=int(input("Choose the id of bowler from above:"))
         current_bowler_id=choser
         print('\n')
@@ -199,6 +210,9 @@ for i in range(len(attributes['batsmen'])):
             +str(attributes['batsmen'][i]['out_to'])+" 4s:"
             +str(attributes['batsmen'][i]['fours'])+" 6s:"
             +str(attributes['batsmen'][i]['sixes']))
+print('\nFall Of Wickets\n')
+for i in range(len(fall_of_wickets)):
+    print(str(fall_of_wickets[i])+'-'+str(i))
 print('\nBowling Scorecard\n')
 for i in range(len(attributes['bowlers'])):
     if attributes['bowlers'][i]['balls_bowled']>0:
@@ -225,33 +239,36 @@ bowler_first_innings=workbook.add_worksheet('bowler_first_innings')
 bowler_second_innings=workbook.add_worksheet('bowler_second_innings')
 
 for i in range(len(attributes['batsmen'])):
-    k=0
-    for j in attributes['batsmen'][i]:
-        if attributes['batsmen'][i]['balls_faced']>0:
+    if attributes['batsmen'][i]['balls_faced']>0:
+        k=0
+        for j in attributes['batsmen'][i]:
             batsman_first_innings.write(0,k,j)
-            batsman_first_innings.write(i+1,k,attributes['batsmen'][i][j])
-            k+=1
-            
-for i in range(len(second_innings_results[0]['batsmen'])):
-    k=0
-    for j in second_innings_results[0]['batsmen'][i]:
-        if second_innings_results[0]['batsmen'][i]['balls_faced']>0:
-            batsman_second_innings.write(0,k,j)
-            batsman_second_innings.write(i+1,k,second_innings_results[0]['batsmen'][i][j])
+            batsman_first_innings.write(attributes['batsmen'][i]['batting_order'],k,attributes['batsmen'][i][j])
             k+=1
 
+for i in range(len(second_innings_results[0]['batsmen'])):
+    if second_innings_results[0]['batsmen'][i]['balls_faced']>0:
+        k=0
+        for j in second_innings_results[0]['batsmen'][i]:
+            batsman_second_innings.write(0,k,j)
+            batsman_second_innings.write(second_innings_results[0]['batsmen'][i]['batting_order'],k,second_innings_results[0]['batsmen'][i][j])
+            k+=1
+k2=0
 for i in range(len(attributes['bowlers'])):
-    k=0
-    for j in attributes['bowlers'][i]:
-        if attributes['bowlers'][i]['balls_bowled']>0:
+    if attributes['bowlers'][i]['balls_bowled']>0:
+        k=0
+        for j in attributes['bowlers'][i]:
             bowler_first_innings.write(0,k,j)
-            bowler_first_innings.write(i+1,k,attributes['bowlers'][i][j])
+            bowler_first_innings.write(k2+1,k,attributes['bowlers'][i][j])
             k+=1
+        k2+=1
+k3=0
 for i in range(len(attributes2['bowlers'])):
-    k=0
-    for j in second_innings_results[0]['bowlers'][i]:
-        if attributes2['bowlers'][i]['balls_bowled']>0:
+    if attributes2['bowlers'][i]['balls_bowled']>0:
+        k=0
+        for j in second_innings_results[0]['bowlers'][i]:
             bowler_second_innings.write(0,k,j)
-            bowler_second_innings.write(i+1,k,second_innings_results[0]['bowlers'][i][j])
+            bowler_second_innings.write(k3+1,k,second_innings_results[0]['bowlers'][i][j])
             k+=1
+        k3+=1
 workbook.close()
