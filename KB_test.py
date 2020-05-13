@@ -270,8 +270,9 @@ for i in range(1,121):
         current_batsmen.remove(current_batsmen_id)
         current_batsmen.append(next_batsman_id)
         current_batsmen_id=next_batsman_id
-    time.sleep(1)
+    
     if i%6==0 and i!=120:
+        time.sleep(3)
         os.system('cls')
         print('Summary :'+str(team_score)+'/'+str(team_wickets)+' after '+str(int(i/6))+' overs '+'\n\n'+'Current Batsmen :')
         for j in (current_batsmen):
