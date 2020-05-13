@@ -5,7 +5,7 @@ from out_sim1 import out_calculator,boundary_calculator, runs_calculator, change
 from second_innings import chase
 
 #Batting Team
-col_list = ["PLAYERS","Batsman_avg","Batsman_strikerate","Bowler_economy","Bowler_average","4s","6s","Ratio"]
+col_list = ["PLAYERS","Batsman_avg","Batsman_strikerate","Bowler_economy","Bowler_average","4s","6s","Ratio","4s ratio","6s ratio"]
 
 user_name = input("If Rahul press 1, If Kb press 2:")
 
@@ -177,6 +177,8 @@ for row in csvData:
         attributes['batsmen'][batsman_number]['fours']=0
         attributes['batsmen'][batsman_number]['sixes']=0
         attributes['batsmen'][batsman_number]['ratio']=float(row[8])
+        attributes['batsmen'][batsman_number]['4s ratio']=float(row[9])
+        attributes['batsmen'][batsman_number]['6s ratio']=float(row[10])
         attributes['batsmen'][batsman_number]['out_to']='Not Out'
         batsman_number+=1
         if float(row[4])>0 and float(row[5])>0:
