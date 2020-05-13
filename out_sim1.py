@@ -31,6 +31,8 @@ def out_calculator(batsman,bowler):
 def boundary_calculator(balls,batsman,bowler):
     runs_scored=batsman['runs_scored']
     fours_ratio = batsman['4s ratio']
+    balls_bowled=bowler['balls_bowled']
+    balls_faced=batsman['balls_faced']
     sixes_ratio = batsman['6s ratio']
     strikerate=batsman['strikerate']/100
     runs_conceded=bowler['runs_conceded']
@@ -106,7 +108,7 @@ def boundary_calculator(balls,batsman,bowler):
         SS = 0.99*(S/F+S)
         NN = 0.01
     else:
-        FF=FF
+        FF=F
         SS=S
         NN=1-(F+S)     
 

@@ -46,29 +46,38 @@ for row in p2:
 for row in p1:
     Player1_Name = row
 
-print('Player 1: ' + Player1_Name)
-print('Player 2: ' + Player2_Name)
 
-if idd_1 == 'D1' or idd_1 == 'd1' :
-    result1 = rrr[rrr['Draft1_Player_id'] == id_1]
-elif idd_1 == 'A1' or idd_1 == 'a1':
-    result1 = rrr[rrr['Auction1_Player_id'] == id_1]
-elif idd_1 == 'A2' or idd_1 == 'a2':
-    result1 = rrr[rrr['Auction2_Player_id'] == id_1]
-elif idd_1 == 'A3' or idd_1 == 'a3':
-    result1 = rrr[rrr['Auction3_Player_id'] == id_1]
+testing = input('Hey Rahul If you just wanna Test press 1:'))
+if(testing == 1):
+    result1 = rrr[rrr['TEST'] ==1]
+    result2 = rrr[rrr['TEST'] ==2]
 
-if idd_2 == 'D1' or idd_2 == 'd1' :
-    result2 = rrr[rrr['Draft1_Player_id'] == id_2]
-elif idd_2 == 'A1' or idd_2 == 'a1':
-    result2 = rrr[rrr['Auction1_Player_id'] == id_2]
-elif idd_2 == 'A2' or idd_2 == 'a2':
-    result2 = rrr[rrr['Auction2_Player_id'] == id_2]
-elif idd_2 == 'A3' or idd_2 == 'a3':
-    result2 = rrr[rrr['Auction3_Player_id'] == id_2]
+
+else :
+    print('Player 1: ' + Player1_Name)
+    print('Player 2: ' + Player2_Name)
+
+    if idd_1 == 'D1' or idd_1 == 'd1' :
+        result1 = rrr[rrr['Draft1_Player_id'] == id_1]
+    elif idd_1 == 'A1' or idd_1 == 'a1':
+        result1 = rrr[rrr['Auction1_Player_id'] == id_1]
+    elif idd_1 == 'A2' or idd_1 == 'a2':
+        result1 = rrr[rrr['Auction2_Player_id'] == id_1]
+    elif idd_1 == 'A3' or idd_1 == 'a3':
+        result1 = rrr[rrr['Auction3_Player_id'] == id_1]
+
+    
+    if idd_2 == 'D1' or idd_2 == 'd1' :
+        result2 = rrr[rrr['Draft1_Player_id'] == id_2]
+    elif idd_2 == 'A1' or idd_2 == 'a1':
+        result2 = rrr[rrr['Auction1_Player_id'] == id_2]
+    elif idd_2 == 'A2' or idd_2 == 'a2':
+        result2 = rrr[rrr['Auction2_Player_id'] == id_2]
+    elif idd_2 == 'A3' or idd_2 == 'a3':
+        result2 = rrr[rrr['Auction3_Player_id'] == id_2]
            
 
-
+    
     
 
 
@@ -246,10 +255,13 @@ for i in range(1,121):
 
         bound = boundary_calculator(i,attributes['batsmen'][current_batsmen_id],attributes['bowlers'][current_bowler_id])
         if bound == 'N':
-            runs=runs_calculator(i,attributes['batsmen'][current_batsmen_id],attributes['bowlers'][current_bowler_id])
+            runs1=runs_calculator(i,attributes['batsmen'][current_batsmen_id],attributes['bowlers'][current_bowler_id])
             
-            print("Ball "+str(i)+' - '+attributes['bowlers'][current_bowler_id]['name']+" to "+attributes['batsmen'][current_batsmen_id]['name']+' : '+str(runs))
+            print("Ball "+str(i)+' - '+attributes['bowlers'][current_bowler_id]['name']+" to "+attributes['batsmen'][current_batsmen_id]['name']+' : '+ runs1)
+            
+            runs = int(runs1)
             team_score+=runs
+
             attributes['batsmen'][current_batsmen_id]['runs_scored']+=runs
             attributes['bowlers'][current_bowler_id]['runs_conceded']+=runs
             if runs==0:
