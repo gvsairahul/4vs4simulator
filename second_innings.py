@@ -4,6 +4,7 @@ def chase(target,attributes):
     print("The target is "+str(target))
     current_batsmen=[]
     current_bowler_id=0
+    kb=""
     team_score=0
     team_wickets=0
     fall_of_wickets=[]
@@ -27,7 +28,7 @@ def chase(target,attributes):
     print('\n')
 
     for i in range(1,121):
-        result=out_calculator(attributes['batsmen'][current_batsmen_id],attributes['bowlers'][current_bowler_id])
+        result=out_calculator(i,attributes['batsmen'][current_batsmen_id],attributes['bowlers'][current_bowler_id])
         attributes['batsmen'][current_batsmen_id]['balls_faced']+=1
         attributes['bowlers'][current_bowler_id]['balls_bowled']+=1
         if result=='notout':
@@ -37,7 +38,7 @@ def chase(target,attributes):
                 runs1=runs_calculator(i,attributes['batsmen'][current_batsmen_id],attributes['bowlers'][current_bowler_id])
             
                 print("Ball "+str(i)+' - '+attributes['bowlers'][current_bowler_id]['name']+" to "+attributes['batsmen'][current_batsmen_id]['name']+' : '+ runs1)
-            
+                kb = kb + "Ball "+str(i)+' - '+attributes['bowlers'][current_bowler_id]['name']+" to "+attributes['batsmen'][current_batsmen_id]['name']+' : '+ runs1 + '\n'
                 runs = int(runs1)
                 team_score+=runs
 
@@ -50,26 +51,32 @@ def chase(target,attributes):
             else :
                 if bound == '4':
                     print("Ball "+str(i)+' - '+attributes['bowlers'][current_bowler_id]['name']+" to "+attributes['batsmen'][current_batsmen_id]['name']+' : '+'4')
+                    kb=kb+"Ball "+str(i)+' - '+attributes['bowlers'][current_bowler_id]['name']+" to "+attributes['batsmen'][current_batsmen_id]['name']+' : '+'4' + '\n'
+                   
                     team_score+=4
                     attributes['batsmen'][current_batsmen_id]['runs_scored']+=4
                     attributes['bowlers'][current_bowler_id]['runs_conceded']+=4
                     attributes['batsmen'][current_batsmen_id]['fours']+=1
                 elif bound == '6':
                     print("Ball "+str(i)+' - '+attributes['bowlers'][current_bowler_id]['name']+" to "+attributes['batsmen'][current_batsmen_id]['name']+' : '+'6')
+                    kb= kb + "Ball "+str(i)+' - '+attributes['bowlers'][current_bowler_id]['name']+" to "+attributes['batsmen'][current_batsmen_id]['name']+' : '+'6' + '\n'  
                     team_score+=6
                     attributes['batsmen'][current_batsmen_id]['runs_scored']+=6
                     attributes['bowlers'][current_bowler_id]['runs_conceded']+=6
                     attributes['batsmen'][current_batsmen_id]['sixes']+=1
-            
+            if team_score>=target:
+                break
 
         else:
             print("Ball "+str(i)+": "+attributes['batsmen'][current_batsmen_id]['name']+' '+result+' at '+ str(attributes['batsmen'][current_batsmen_id]['runs_scored']))
+            kb = kb + "Ball "+str(i)+": "+attributes['batsmen'][current_batsmen_id]['name']+' '+result+' at '+ str(attributes['batsmen'][current_batsmen_id]['runs_scored']) + '\n'
             attributes['batsmen'][current_batsmen_id]['out_to']=attributes['bowlers'][current_bowler_id]['name']
             fall_of_wickets.append(team_score)
             team_wickets+=1
             attributes['bowlers'][current_bowler_id]['wickets_taken']+=1
             if team_wickets==10:
                 print("Team is all out at "+str(team_score))
+                kb = kb + "Team is all out at "+str(team_score) + '\n'
                 break
             for j in range(len(attributes['batsmen'])):
                 if attributes['batsmen'][j]['balls_faced']==0 and (j not in current_batsmen):
@@ -82,11 +89,13 @@ def chase(target,attributes):
             current_batsmen_id=next_batsman_id
 
         if i%6==0 and i!=120:
-            #time.sleep(4)
+            time.sleep(4)
             os.system('cls')
             overs=int(i/6)
             print('Summary :'+str(team_score)+'/'+str(team_wickets)+' after '+str(overs)+' overs Required run rate:'+str(round(((target-team_score)/(20-overs)),2))
                     +' Required runs:'+str(target-team_score)+'\n\n'+'Current Batsmen :')
+            kb = kb + 'Summary :'+str(team_score)+'/'+str(team_wickets)+' after '+str(overs)+' overs Required run rate:'+str(round(((target-team_score)/(20-overs)),2))+' Required runs:'+str(target-team_score)+'\n\n'
+            
             for j in (current_batsmen):
                 if j!=current_batsmen_id:
                     print(attributes['batsmen'][j]['name']+"* runs:"
@@ -114,8 +123,12 @@ def chase(target,attributes):
             print('\n')
     if int(attributes['bowlers'][current_bowler_id]['balls_bowled']%6)==0:
         print('Summary :'+str(team_score)+'/'+str(team_wickets)+' after '+str(int(i/6))+' overs '+'\n')
+        kb = kb + 'Summary :'+str(team_score)+'/'+str(team_wickets)+' after '+str(int(i/6))+' overs '+'\n'
+    
     else:
         print('Summary :'+str(team_score)+'/'+str(team_wickets)+' after '+str(int(i/6))+'.'+str((attributes['bowlers'][current_bowler_id]['balls_bowled'])%6)+' overs '+'\n')
+        kb = kb + 'Summary :'+str(team_score)+'/'+str(team_wickets)+' after '+str(int(i/6))+'.'+str((attributes['bowlers'][current_bowler_id]['balls_bowled'])%6)+' overs '+'\n'
+   
     for i in range(len(attributes['batsmen'])):
         if attributes['batsmen'][i]['balls_faced']>0:
             attributes['batsmen'][i].pop('average', None)
@@ -135,7 +148,7 @@ def chase(target,attributes):
                 +str(attributes['batsmen'][i]['sixes']))
     print('\nFall Of Wickets\n')
     for i in range(len(fall_of_wickets)):
-        print(str(fall_of_wickets[i])+'- '+str(i))
+        print(str(fall_of_wickets[i])+'- '+str(i+1))
     print('\nBowling Scorecard\n')
     for i in range(len(attributes['bowlers'])):
         if attributes['bowlers'][i]['balls_bowled']>0:
@@ -146,5 +159,23 @@ def chase(target,attributes):
             overs=overs+'.'+spare_balls
             print(attributes['bowlers'][i]['name']+" "+overs+'-'+str(attributes['bowlers'][i]['dots'])
             +'-'+str(attributes['bowlers'][i]['runs_conceded'])+'-'+str(attributes['bowlers'][i]['wickets_taken']))
+    print('\n')
+    Report_file1 = 'C:\\Users\\KB131141191\\Desktop\\4vs4simulator\\Teams\\Ball2Ball_2nd_innings.txt'
+
+    if team_score>=target:
+        print('\nChasing Team Won by '+str(10-team_wickets)+" wickets")
+        kb = kb + '\nChasing Team Won by '+str(10-team_wickets)+" wickets"
+    elif target>=team_score:
+        print('\nTeam batting first won by '+str(target-1-team_score)+" runs ")
+        kb = kb + '\nTeam batting first won by '+str(target-1-team_score)+" runs "
+    else:
+        print("It's a tie")
+        kb = kb + "It's a tie"
+
+    
+
+    f_1 = open(Report_file1,'w')
+    n = f_1.write(kb)
+    f_1.close()
 
     return [attributes,team_score,team_wickets]

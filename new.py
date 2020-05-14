@@ -14,6 +14,7 @@ if user_name == '2':
     path1 = 'C:\\Users\\KB131141191\\Desktop\\4vs4simulator\\Teams\\Player_Mapping.csv'
     Player1 = 'C:\\Users\\KB131141191\\Desktop\\4vs4simulator\\Teams\\Data_for_simulation - Player1.csv'
     Player2 = 'C:\\Users\\KB131141191\\Desktop\\4vs4simulator\\Teams\\Data_for_simulation - Player2.csv'
+    Report_file = 'C:\\Users\\KB131141191\\Desktop\\4vs4simulator\\Teams\\Ball2Ball_1st_innings.txt'
 
 elif user_name == '1':
     path = 'C:\\Users\\rahul\\Desktop\\4vs4simulator\\Teams\\Master_data_sheet.csv'
@@ -47,39 +48,32 @@ for row in p1:
     Player1_Name = row
 
 
-testing = input('Hey Rahul If you just wanna Test press 1:')
-if(testing == '1'):
-    result1 = rrr[rrr['TEST'] =='1']
-    result2 = rrr[rrr['TEST'] =='2']
 
-
-else :
-    print('Player 1: ' + Player1_Name)
-    print('Player 2: ' + Player2_Name)
-
-    if idd_1 == 'D1' or idd_1 == 'd1' :
-        result1 = rrr[rrr['Draft1_Player_id'] == id_1]
-    elif idd_1 == 'A1' or idd_1 == 'a1':
-        result1 = rrr[rrr['Auction1_Player_id'] == id_1]
-    elif idd_1 == 'A2' or idd_1 == 'a2':
-        result1 = rrr[rrr['Auction2_Player_id'] == id_1]
-    elif idd_1 == 'A3' or idd_1 == 'a3':
-        result1 = rrr[rrr['Auction3_Player_id'] == id_1]
+print('Player 1: ' + Player1_Name)
+print('Player 2: ' + Player2_Name)
+if idd_1 == 'D1' or idd_1 == 'd1' :
+    result1 = rrr[rrr['Draft1_Player_id'] == id_1]
+elif idd_1 == 'A1' or idd_1 == 'a1':
+    result1 = rrr[rrr['Auction1_Player_id'] == id_1]
+elif idd_1 == 'A2' or idd_1 == 'a2':
+    result1 = rrr[rrr['Auction2_Player_id'] == id_1]
+elif idd_1 == 'A3' or idd_1 == 'a3':
+    result1 = rrr[rrr['Auction3_Player_id'] == id_1]
 
     
-    if idd_2 == 'D1' or idd_2 == 'd1' :
-        result2 = rrr[rrr['Draft1_Player_id'] == id_2]
-    elif idd_2 == 'A1' or idd_2 == 'a1':
-        result2 = rrr[rrr['Auction1_Player_id'] == id_2]
-    elif idd_2 == 'A2' or idd_2 == 'a2':
-        result2 = rrr[rrr['Auction2_Player_id'] == id_2]
-    elif idd_2 == 'A3' or idd_2 == 'a3':
-        result2 = rrr[rrr['Auction3_Player_id'] == id_2]
+if idd_2 == 'D1' or idd_2 == 'd1' :
+    result2 = rrr[rrr['Draft1_Player_id'] == id_2]
+elif idd_2 == 'A1' or idd_2 == 'a1':
+    result2 = rrr[rrr['Auction1_Player_id'] == id_2]
+elif idd_2 == 'A2' or idd_2 == 'a2':
+    result2 = rrr[rrr['Auction2_Player_id'] == id_2]
+elif idd_2 == 'A3' or idd_2 == 'a3':
+    result2 = rrr[rrr['Auction3_Player_id'] == id_2]
            
 
     
     
-
+    
 
 # print(result1)
 # print(result2)
@@ -174,7 +168,8 @@ attributes2['batsmen']=[]
 attributes2['bowlers']=[]
 batsman_number2=0
 bowler_number2=0
-
+ 
+kb = ""
 
 for row in csvData:
     if non_header:
@@ -257,7 +252,7 @@ current_bowler_id=choser
 print('\n')
 
 for i in range(1,121):
-    result=out_calculator(attributes['batsmen'][current_batsmen_id],attributes['bowlers'][current_bowler_id])
+    result=out_calculator(i,attributes['batsmen'][current_batsmen_id],attributes['bowlers'][current_bowler_id])
     attributes['batsmen'][current_batsmen_id]['balls_faced']+=1
     attributes['bowlers'][current_bowler_id]['balls_bowled']+=1
     if result=='notout':
@@ -267,6 +262,7 @@ for i in range(1,121):
             runs1=runs_calculator(i,attributes['batsmen'][current_batsmen_id],attributes['bowlers'][current_bowler_id])
             
             print("Ball "+str(i)+' - '+attributes['bowlers'][current_bowler_id]['name']+" to "+attributes['batsmen'][current_batsmen_id]['name']+' : '+ runs1)
+            kb = kb + "Ball "+str(i)+' - '+attributes['bowlers'][current_bowler_id]['name']+" to "+attributes['batsmen'][current_batsmen_id]['name']+' : '+ runs1 + '\n'
             
             runs = int(runs1)
             team_score+=runs
@@ -280,12 +276,14 @@ for i in range(1,121):
         else :
             if bound == '4':
                 print("Ball "+str(i)+' - '+attributes['bowlers'][current_bowler_id]['name']+" to "+attributes['batsmen'][current_batsmen_id]['name']+' : '+'4')
+                kb = kb + "Ball "+str(i)+' - '+attributes['bowlers'][current_bowler_id]['name']+" to "+attributes['batsmen'][current_batsmen_id]['name']+' : '+'4' + '\n'
                 team_score+=4
                 attributes['batsmen'][current_batsmen_id]['runs_scored']+=4
                 attributes['bowlers'][current_bowler_id]['runs_conceded']+=4
                 attributes['batsmen'][current_batsmen_id]['fours']+=1
             elif bound == '6':
                 print("Ball "+str(i)+' - '+attributes['bowlers'][current_bowler_id]['name']+" to "+attributes['batsmen'][current_batsmen_id]['name']+' : '+'6')
+                kb = kb + "Ball "+str(i)+' - '+attributes['bowlers'][current_bowler_id]['name']+" to "+attributes['batsmen'][current_batsmen_id]['name']+' : '+'6' + '\n'
                 team_score+=6
                 attributes['batsmen'][current_batsmen_id]['runs_scored']+=6
                 attributes['bowlers'][current_bowler_id]['runs_conceded']+=6
@@ -294,12 +292,15 @@ for i in range(1,121):
 
     else:
         print("Ball "+str(i)+": "+attributes['batsmen'][current_batsmen_id]['name']+' '+result+' at '+ str(attributes['batsmen'][current_batsmen_id]['runs_scored']))
+        kb = kb + "Ball "+str(i)+": "+attributes['batsmen'][current_batsmen_id]['name']+' '+result+' at '+ str(attributes['batsmen'][current_batsmen_id]['runs_scored']) + '\n'
+      
         attributes['batsmen'][current_batsmen_id]['out_to']=attributes['bowlers'][current_bowler_id]['name']
         fall_of_wickets.append(team_score)
         team_wickets+=1
         attributes['bowlers'][current_bowler_id]['wickets_taken']+=1
         if team_wickets==10:
             print("Team is all out at "+str(team_score))
+            kb = kb + "Team is all out at "+str(team_score) + '\n'
             break
         for j in range(len(attributes['batsmen'])):
             if attributes['batsmen'][j]['balls_faced']==0 and (j not in current_batsmen):
@@ -312,10 +313,11 @@ for i in range(1,121):
         current_batsmen_id=next_batsman_id
 
     if i%6==0 and i!=120:
-        #time.sleep(4)
+        time.sleep(4)
         os.system('cls')
         overs=int(i/6)
         print('Summary :'+str(team_score)+'/'+str(team_wickets)+' after '+str(int(i/6))+' overs '+'\n\n'+'Current Batsmen :')
+        kb = kb + 'Summary :'+str(team_score)+'/'+str(team_wickets)+' after '+str(int(i/6))+' overs '+'\n\n'+'Current Batsmen :' + '\n'
         for j in (current_batsmen):
             if j!=current_batsmen_id:
                 print(attributes['batsmen'][j]['name']+"* runs:"
@@ -343,8 +345,10 @@ for i in range(1,121):
         print('\n')
     if int(attributes['bowlers'][current_bowler_id]['balls_bowled']%6)==0:
         print('Summary :'+str(team_score)+'/'+str(team_wickets)+' after '+str(int(i/6))+' overs '+'\n')
+        kb = kb + 'Summary :'+str(team_score)+'/'+str(team_wickets)+' after '+str(int(i/6))+' overs '+'\n'
     else:
         print('Summary :'+str(team_score)+'/'+str(team_wickets)+' after '+str(int(i/6))+'.'+str((attributes['bowlers'][current_bowler_id]['balls_bowled'])%6)+' overs '+'\n')
+        kb = kb+ 'Summary :'+str(team_score)+'/'+str(team_wickets)+' after '+str(int(i/6))+'.'+str((attributes['bowlers'][current_bowler_id]['balls_bowled'])%6)+' overs '+'\n'
 for i in range(len(attributes['batsmen'])):
     if attributes['batsmen'][i]['balls_faced']>0:
         attributes['batsmen'][i].pop('average', None)
@@ -364,7 +368,7 @@ for i in range(len(attributes['batsmen'])):
                 +str(attributes['batsmen'][i]['sixes']))
 print('\nFall Of Wickets\n')
 for i in range(len(fall_of_wickets)):
-    print(str(fall_of_wickets[i])+'- '+str(i))
+    print(str(fall_of_wickets[i])+'- '+str(i+1))
 print('\nBowling Scorecard\n')
 for i in range(len(attributes['bowlers'])):
     if attributes['bowlers'][i]['balls_bowled']>0:
@@ -377,7 +381,14 @@ for i in range(len(attributes['bowlers'])):
             +'-'+str(attributes['bowlers'][i]['runs_conceded'])+'-'+str(attributes['bowlers'][i]['wickets_taken']))
     
     
+
+f_1 = open(Report_file,'w')
+n = f_1.write(kb)
+f_1.close()
+
 chase(team_score+1,attributes2)
+
+
 f = open(Player1, "w+")
 f.close()
 f=open(Player2,"w+")
