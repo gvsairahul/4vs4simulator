@@ -5,19 +5,26 @@ def toss():
     return choices(results,weights=weights)[0]
 
 def out_calculator(batsman,bowler):
+
+    # print(batsman)
+           
+    
     runs_scored=batsman['runs_scored']
-    average=batsman['average']
-    strikerate = batsman['strikerate']
+    average1=batsman['average']
+    strikerate1 = batsman['strikerate']
     bowlers_average=bowler['average']
     runs_conceded=bowler['runs_conceded']
     wickets_taken=bowler['wickets_taken']
-    economy = bowler['economy']
+    economy1 = bowler['economy']
     results=["out","notout"]
+    
 
-    wbat = strikerate/(100*average)
-    wbowl = economy/(6*bowlers_average)
-    if (runs_scored/average)<1.0:
-        out_batsmen=wbat*(runs_scored/average)
+
+    wbat = 2*strikerate1/(100*average1)
+    wbowl = 2*economy1/(6*bowlers_average)
+    
+    if (runs_scored/average1)<1.0:
+        out_batsmen=wbat*(runs_scored/average1)
     else:
         out_batsmen=wbat
     if (runs_conceded/(bowlers_average*(wickets_taken+1)))<1.0:
@@ -123,7 +130,7 @@ def runs_calculator(balls,batsman,bowler):
     strikerate=batsman['strikerate']/100
     runs_conceded=bowler['runs_conceded']
     balls_bowled=bowler['balls_bowled']
-    ratio=batsman['ratio']
+    #ratio=batsman['ratio']
     economy=bowler['economy']/6
     results=["0","1","2","3"]
     weights=[]

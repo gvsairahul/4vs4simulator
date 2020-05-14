@@ -168,7 +168,7 @@ attributes['batsmen']=[]
 attributes['bowlers']=[]
 batsman_number=0
 bowler_number=0
-
+fall_of_wickets = []
 attributes2={}
 attributes2['batsmen']=[]
 attributes2['bowlers']=[]
@@ -186,7 +186,7 @@ for row in csvData:
         attributes['batsmen'][batsman_number]['balls_faced']=0
         attributes['batsmen'][batsman_number]['fours']=0
         attributes['batsmen'][batsman_number]['sixes']=0
-        attributes['batsmen'][batsman_number]['ratio']=float(row[8])
+        #attributes['batsmen'][batsman_number]['ratio']=float(row[8])
         attributes['batsmen'][batsman_number]['average']=float(row[2])
         attributes['batsmen'][batsman_number]['strikerate']=float(row[3])
         attributes['batsmen'][batsman_number]['4s ratio']=float(row[9])
@@ -216,7 +216,7 @@ for row in csvData2:
         attributes2['batsmen'][batsman_number2]['balls_faced']=0
         attributes2['batsmen'][batsman_number2]['fours']=0
         attributes2['batsmen'][batsman_number2]['sixes']=0
-        attributes2['batsmen'][batsman_number2]['ratio']=float(row[8])
+        #attributes2['batsmen'][batsman_number2]['ratio']=float(row[8])
         attributes2['batsmen'][batsman_number2]['average']=float(row[2])
         attributes2['batsmen'][batsman_number2]['strikerate']=float(row[3])
         attributes2['batsmen'][batsman_number2]['4s ratio']=float(row[9])
@@ -312,11 +312,10 @@ for i in range(1,121):
         current_batsmen_id=next_batsman_id
 
     if i%6==0 and i!=120:
-        time.sleep(4)
+        #time.sleep(4)
         os.system('cls')
         overs=int(i/6)
-        print('Summary :'+str(team_score)+'/'+str(team_wickets)+' after '+str(overs)+' run rate:'+str(round(((target-team_score)/(20-overs)),2))
-                    +' Required runs:'+str(target-team_score)+'\n\n'+'Current Batsmen :')
+        print('Summary :'+str(team_score)+'/'+str(team_wickets)+' after '+str(int(i/6))+' overs '+'\n\n'+'Current Batsmen :')
         for j in (current_batsmen):
             if j!=current_batsmen_id:
                 print(attributes['batsmen'][j]['name']+"* runs:"

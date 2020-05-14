@@ -1,5 +1,5 @@
 import csv, os, time
-from out_sim1 import out_calculator, runs_calculator, change_batsman, toss
+from out_sim1 import out_calculator, runs_calculator, change_batsman, toss,boundary_calculator
 def chase(target,attributes):
     print("The target is "+str(target))
     current_batsmen=[]
@@ -31,21 +31,37 @@ def chase(target,attributes):
         attributes['batsmen'][current_batsmen_id]['balls_faced']+=1
         attributes['bowlers'][current_bowler_id]['balls_bowled']+=1
         if result=='notout':
-            runs=runs_calculator(i,attributes['batsmen'][current_batsmen_id],attributes['bowlers'][current_bowler_id])
-            print("Ball "+str(i)+' - '+attributes['bowlers'][current_bowler_id]['name']+" to "+attributes['batsmen'][current_batsmen_id]['name']+' : '+str(runs))
-            team_score+=runs
-            attributes['batsmen'][current_batsmen_id]['runs_scored']+=runs
-            attributes['bowlers'][current_bowler_id]['runs_conceded']+=runs
-            if runs==0:
-                attributes['bowlers'][current_bowler_id]['dots']+=1
-            if runs==4:
-                attributes['batsmen'][current_batsmen_id]['fours']+=1
-            elif runs==6:
-                attributes['batsmen'][current_batsmen_id]['sixes']+=1
-            if runs==1:
-                current_batsmen_id=change_batsman(current_batsmen,current_batsmen_id)
-            if team_score>=target:
-                break
+
+            bound = boundary_calculator(i,attributes['batsmen'][current_batsmen_id],attributes['bowlers'][current_bowler_id])
+            if bound == 'N':
+                runs1=runs_calculator(i,attributes['batsmen'][current_batsmen_id],attributes['bowlers'][current_bowler_id])
+            
+                print("Ball "+str(i)+' - '+attributes['bowlers'][current_bowler_id]['name']+" to "+attributes['batsmen'][current_batsmen_id]['name']+' : '+ runs1)
+            
+                runs = int(runs1)
+                team_score+=runs
+
+                attributes['batsmen'][current_batsmen_id]['runs_scored']+=runs
+                attributes['bowlers'][current_bowler_id]['runs_conceded']+=runs
+                if runs==0:
+                    attributes['bowlers'][current_bowler_id]['dots']+=1
+                if runs==1 or runs==3:
+                    current_batsmen_id=change_batsman(current_batsmen,current_batsmen_id)
+            else :
+                if bound == '4':
+                    print("Ball "+str(i)+' - '+attributes['bowlers'][current_bowler_id]['name']+" to "+attributes['batsmen'][current_batsmen_id]['name']+' : '+'4')
+                    team_score+=4
+                    attributes['batsmen'][current_batsmen_id]['runs_scored']+=4
+                    attributes['bowlers'][current_bowler_id]['runs_conceded']+=4
+                    attributes['batsmen'][current_batsmen_id]['fours']+=1
+                elif bound == '6':
+                    print("Ball "+str(i)+' - '+attributes['bowlers'][current_bowler_id]['name']+" to "+attributes['batsmen'][current_batsmen_id]['name']+' : '+'6')
+                    team_score+=6
+                    attributes['batsmen'][current_batsmen_id]['runs_scored']+=6
+                    attributes['bowlers'][current_bowler_id]['runs_conceded']+=6
+                    attributes['batsmen'][current_batsmen_id]['sixes']+=1
+            
+
         else:
             print("Ball "+str(i)+": "+attributes['batsmen'][current_batsmen_id]['name']+' '+result+' at '+ str(attributes['batsmen'][current_batsmen_id]['runs_scored']))
             attributes['batsmen'][current_batsmen_id]['out_to']=attributes['bowlers'][current_bowler_id]['name']
@@ -66,7 +82,7 @@ def chase(target,attributes):
             current_batsmen_id=next_batsman_id
 
         if i%6==0 and i!=120:
-            time.sleep(4)
+            #time.sleep(4)
             os.system('cls')
             overs=int(i/6)
             print('Summary :'+str(team_score)+'/'+str(team_wickets)+' after '+str(overs)+' overs Required run rate:'+str(round(((target-team_score)/(20-overs)),2))
