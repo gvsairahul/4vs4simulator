@@ -1,6 +1,7 @@
 import csv, os, time
+import xlsxwriter
 from out_sim1 import out_calculator, runs_calculator, change_batsman, toss,boundary_calculator
-def chase(target,attributes):
+def chase(target,attributes,Report_file2):
     print("The target is "+str(target))
     current_batsmen=[]
     current_bowler_id=0
@@ -11,23 +12,45 @@ def chase(target,attributes):
     for j in range(len(attributes['batsmen'])):
         if attributes['batsmen'][j]['balls_faced']==0 and (j not in current_batsmen):
             print(str(j)+'  '+attributes['batsmen'][j]['name'])
-    choser=int(input("Choose the  batsman on strike:"))
-    current_batsmen.append(choser)
-    current_batsmen_id=choser
+    answer = '0' 
+
+    while answer != '1':
+    
+        choser=int(input("Choose the batsman on strike:"))
+        next_batsman_id=choser
+        current_batsmen.append(next_batsman_id)
+        current_batsmen_id=next_batsman_id
+        answer = input("If the batsman on strike is " + attributes['batsmen'][current_batsmen_id]['name'] + " Press 1:  ")    
+        if answer != '1':
+            current_batsmen.remove(current_batsmen_id)
+
     attributes['batsmen'][current_batsmen_id]['batting_order']=1
     for j in range(len(attributes['batsmen'])):
         if attributes['batsmen'][j]['balls_faced']==0 and (j not in current_batsmen):
             print(str(j)+'  '+attributes['batsmen'][j]['name'])
-    choser=int(input("Choose the  batsman on non strike:"))
-    attributes['batsmen'][choser]['batting_order']=2
-    current_batsmen.append(choser)
+    
+    answer = '0' 
+    while answer != '1':
+        choser=int(input("Choose the batsman on non strike:"))
+        next_batsman_id=choser
+        current_batsmen.append(next_batsman_id)
+        current_batsmen_id=next_batsman_id
+        answer = input("If the batsman on non strike is " + attributes['batsmen'][current_batsmen_id]['name'] + " Press 1:  ")    
+        if answer != '1':
+            current_batsmen.remove(current_batsmen_id)
+    attributes['batsmen'][current_batsmen_id]['batting_order']=2
+    
     for i in range(len(attributes['bowlers'])):
         print(str(i)+' '+attributes['bowlers'][i]['name'])
-    choser=int(input("Choose the id of bowler from above:"))
-    current_bowler_id=choser
+    answer = '0' 
+    while answer != '1':              
+        choser=int(input("Choose the id of bowler from above:"))
+        current_bowler_id=choser
+        answer = input("If the bowler chosen is " + attributes['bowlers'][current_bowler_id]['name'] + " Press 1:  ")    
+        
     print('\n')
 
-    for i in range(1,121):
+    for i in range(1,7):
         result=out_calculator(i,attributes['batsmen'][current_batsmen_id],attributes['bowlers'][current_bowler_id])
         attributes['batsmen'][current_batsmen_id]['balls_faced']+=1
         attributes['bowlers'][current_bowler_id]['balls_bowled']+=1
@@ -81,15 +104,19 @@ def chase(target,attributes):
             for j in range(len(attributes['batsmen'])):
                 if attributes['batsmen'][j]['balls_faced']==0 and (j not in current_batsmen):
                     print(str(j)+'  '+attributes['batsmen'][j]['name'])
-            choser=int(input("Choose the next batsman :"))
-            next_batsman_id=choser
-            attributes['batsmen'][next_batsman_id]['batting_order']=team_wickets+2
-            current_batsmen.remove(current_batsmen_id)
-            current_batsmen.append(next_batsman_id)
-            current_batsmen_id=next_batsman_id
+            answer = '0' 
+            while answer != '1':
+                current_batsmen.remove(current_batsmen_id)
+                choser=int(input("Choose the next batsman :"))
+                next_batsman_id=choser
+                current_batsmen.append(next_batsman_id)
+                current_batsmen_id=next_batsman_id
+                answer = input("If the batsman is " + attributes['batsmen'][current_batsmen_id]['name'] + " Press 1: ")    
 
+            attributes['batsmen'][next_batsman_id]['batting_order']=team_wickets+2
+            
         if i%6==0 and i!=120:
-            time.sleep(4)
+            # time.sleep(4)
             os.system('cls')
             overs=int(i/6)
             print('Summary :'+str(team_score)+'/'+str(team_wickets)+' after '+str(overs)+' overs Required run rate:'+str(round(((target-team_score)/(20-overs)),2))
@@ -118,16 +145,20 @@ def chase(target,attributes):
                     overs=overs+'.'+spare_balls
                     print(str(j)+' '+attributes['bowlers'][j]['name']+" "+overs+'-'+str(attributes['bowlers'][j]['dots'])
                     +'-'+str(attributes['bowlers'][j]['runs_conceded'])+'-'+str(attributes['bowlers'][j]['wickets_taken']))
-            choser=int(input("Choose the id of bowler from above:"))
-            current_bowler_id=choser
+            answer = '0' 
+            while answer != '1':
+                choser=int(input("Choose the id of bowler from above:"))
+                current_bowler_id=choser
+                answer = input("If the bowler chosen is " + attributes['bowlers'][current_bowler_id]['name'] + " Press 1: ")    
+        
             print('\n')
-    if int(attributes['bowlers'][current_bowler_id]['balls_bowled']%6)==0:
-        print('Summary :'+str(team_score)+'/'+str(team_wickets)+' after '+str(int(i/6))+' overs '+'\n')
-        kb = kb + 'Summary :'+str(team_score)+'/'+str(team_wickets)+' after '+str(int(i/6))+' overs '+'\n'
+        if int(attributes['bowlers'][current_bowler_id]['balls_bowled']%6)==0:
+            print('Summary :'+str(team_score)+'/'+str(team_wickets)+' after '+str(int(i/6))+' overs '+'\n')
+            kb = kb + 'Summary :'+str(team_score)+'/'+str(team_wickets)+' after '+str(int(i/6))+' overs '+'\n'
     
-    else:
-        print('Summary :'+str(team_score)+'/'+str(team_wickets)+' after '+str(int(i/6))+'.'+str((attributes['bowlers'][current_bowler_id]['balls_bowled'])%6)+' overs '+'\n')
-        kb = kb + 'Summary :'+str(team_score)+'/'+str(team_wickets)+' after '+str(int(i/6))+'.'+str((attributes['bowlers'][current_bowler_id]['balls_bowled'])%6)+' overs '+'\n'
+        else:
+            print('Summary :'+str(team_score)+'/'+str(team_wickets)+' after '+str(int(i/6))+'.'+str((attributes['bowlers'][current_bowler_id]['balls_bowled'])%6)+' overs '+'\n')
+            kb = kb + 'Summary :'+str(team_score)+'/'+str(team_wickets)+' after '+str(int(i/6))+'.'+str((attributes['bowlers'][current_bowler_id]['balls_bowled'])%6)+' overs '+'\n'
    
     for i in range(len(attributes['batsmen'])):
         if attributes['batsmen'][i]['balls_faced']>0:
@@ -160,8 +191,7 @@ def chase(target,attributes):
             print(attributes['bowlers'][i]['name']+" "+overs+'-'+str(attributes['bowlers'][i]['dots'])
             +'-'+str(attributes['bowlers'][i]['runs_conceded'])+'-'+str(attributes['bowlers'][i]['wickets_taken']))
     print('\n')
-    Report_file1 = 'C:\\Users\\KB131141191\\Desktop\\4vs4simulator\\Teams\\Ball2Ball_2nd_innings.txt'
-
+    
     if team_score>=target:
         print('\nChasing Team Won by '+str(10-team_wickets)+" wickets")
         kb = kb + '\nChasing Team Won by '+str(10-team_wickets)+" wickets"
@@ -174,8 +204,11 @@ def chase(target,attributes):
 
     
 
-    f_1 = open(Report_file1,'w')
+    f_1 = open(Report_file2,'w')
     n = f_1.write(kb)
     f_1.close()
+    #second_innings_results = [attributes]
+
+    
 
     return [attributes,team_score,team_wickets]

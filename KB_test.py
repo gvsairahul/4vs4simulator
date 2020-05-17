@@ -7,7 +7,7 @@ from second_innings import chase
 #Batting Team
 col_list = ["PLAYERS","Batsman_avg","Batsman_strikerate","Bowler_economy","Bowler_average","4s","6s","Ratio","4s ratio","6s ratio"]
 
-user_name = input("If Rahul press 1, If Kb press 2:")
+user_name = input("If Rahul press 1, If Kb press 2,If Ganesh press 3,If Kaushik press 4:")
 
 if user_name == '2':
     path = 'C:\\Users\\KB131141191\\Desktop\\4vs4simulator\\Teams\\Master_data_sheet.csv'
@@ -20,8 +20,20 @@ elif user_name == '1':
     path1 = 'C:\\Users\\rahul\\Desktop\\4vs4simulator\\Teams\\Player_Mapping.csv'
     Player1 = 'C:\\Users\\rahul\\Desktop\\4vs4simulator\\Teams\\Data_for_simulation - Player1.csv'
     Player2 = 'C:\\Users\\rahul\\Desktop\\4vs4simulator\\Teams\\Data_for_simulation - Player2.csv'
-    Report_file = 'C:\\Users\\rahul\\Desktop\\4vs4simulator\\Teams\\Ball2Ball.txt'
+    Report_file = 'C:\\Users\\rahul\\Desktop\\4vs4simulator\\Teams\\Ball2Ball_1st_innings.txt'
+elif user_name == '3' :
+    path = 'C:\\Users\\Ganesh\\Desktop\\4vs4simulator\\Teams\\Master_data_sheet.csv'
+    path1 = 'C:\\Users\\Ganesh\\Desktop\\4vs4simulator\\Teams\\Player_Mapping.csv'
+    Player1 = 'C:\\Users\\Ganesh\\Desktop\\4vs4simulator\\Teams\\Data_for_simulation - Player1.csv'
+    Player2 = 'C:\\Users\\Ganesh\\Desktop\\4vs4simulator\\Teams\\Data_for_simulation - Player2.csv'
+    Report_file = 'C:\\Users\\Ganesh\\Desktop\\4vs4simulator\\Teams\\Ball2Ball_1st_innings.txt'
 
+elif user_name == '4':
+    path = 'C:\\Users\\biddu\\Desktop\\4vs4simulator\\Teams\\Master_data_sheet.csv'
+    path1 = 'C:\\Users\\biddu\\Desktop\\4vs4simulator\\Teams\\Player_Mapping.csv'
+    Player1 = 'C:\\Users\\biddu\\Desktop\\4vs4simulator\\Teams\\Data_for_simulation - Player1.csv'
+    Player2 = 'C:\\Users\\biddu\\Desktop\\4vs4simulator\\Teams\\Data_for_simulation - Player2.csv'
+    Report_file = 'C:\\Users\\biddu\\Desktop\\4vs4simulator\\Teams\\Ball2Ball_1st_innings.txt'
 
     # handle header line, save it for writing to output file
     # header = next(Player).strip("\n").split(",")    
@@ -66,6 +78,9 @@ else :
         result1 = rrr[rrr['Auction2_Player_id'] == id_1]
     elif idd_1 == 'A3' or idd_1 == 'a3':
         result1 = rrr[rrr['Auction3_Player_id'] == id_1]
+    elif idd_1 == 'D2' or idd_1 == 'd2':
+        result1 = rrr[rrr['Draft2_Player_id'] == id_1]
+
 
     
     if idd_2 == 'D1' or idd_2 == 'd1' :
@@ -76,7 +91,9 @@ else :
         result2 = rrr[rrr['Auction2_Player_id'] == id_2]
     elif idd_2 == 'A3' or idd_2 == 'a3':
         result2 = rrr[rrr['Auction3_Player_id'] == id_2]
-           
+    elif idd_2 == 'D2' or idd_2 == 'd2':
+        result2 = rrr[rrr['Draft2_Player_id'] == id_2]
+       
 
     
     
@@ -381,7 +398,7 @@ for i in range(len(attributes['bowlers'])):
             +'-'+str(attributes['bowlers'][i]['runs_conceded'])+'-'+str(attributes['bowlers'][i]['wickets_taken']))
     
     
-chase(team_score+1,attributes2)
+chase(team_score+1,attributes2,user_name)
 f = open(Player1, "w+")
 f.close()
 f=open(Player2,"w+")

@@ -17,9 +17,6 @@ if user_name == '2':
     Player2 = 'C:\\Users\\KB131141191\\Desktop\\4vs4simulator\\Teams\\Data_for_simulation - Player2.csv'
     Report_file = 'C:\\Users\\KB131141191\\Desktop\\4vs4simulator\\Teams\\Ball2Ball_1st_innings.txt'
     Report_file2 = 'C:\\Users\\KB131141191\\Desktop\\4vs4simulator\\Teams\\Ball2Ball_2nd_innings.txt'
-    Batting_stats = 'C:\\Users\\KB131141191\\Desktop\\4vs4simulator\\Stats\\Bat_in_code.csv'
-    Bowling_stats = 'C:\\Users\\KB131141191\\Desktop\\4vs4simulator\\Stats\\Bowl_in_code.csv'
-
 elif user_name == '1':
     path = 'C:\\Users\\rahul\\Desktop\\4vs4simulator\\Teams\\Master_data_sheet.csv'
     path1 = 'C:\\Users\\rahul\\Desktop\\4vs4simulator\\Teams\\Player_Mapping.csv'
@@ -27,9 +24,6 @@ elif user_name == '1':
     Player2 = 'C:\\Users\\rahul\\Desktop\\4vs4simulator\\Teams\\Data_for_simulation - Player2.csv'
     Report_file = 'C:\\Users\\rahul\\Desktop\\4vs4simulator\\Teams\\Ball2Ball_1st_innings.txt'
     Report_file2 = 'C:\\Users\\rahul\\Desktop\\4vs4simulator\\Teams\\Ball2Ball_2nd_innings.txt'
-    Batting_stats = 'C:\\Users\\rahul\\Desktop\\4vs4simulator\\Stats\\Bat_in_code.csv'
-    Bowling_stats = 'C:\\Users\\rahul\\Desktop\\4vs4simulator\\Stats\\Bowl_in_code.csv'
-
 elif user_name == '3' :
     path = 'C:\\Users\\Ganesh\\Desktop\\4vs4simulator\\Teams\\Master_data_sheet.csv'
     path1 = 'C:\\Users\\Ganesh\\Desktop\\4vs4simulator\\Teams\\Player_Mapping.csv'
@@ -37,9 +31,6 @@ elif user_name == '3' :
     Player2 = 'C:\\Users\\Ganesh\\Desktop\\4vs4simulator\\Teams\\Data_for_simulation - Player2.csv'
     Report_file = 'C:\\Users\\Ganesh\\Desktop\\4vs4simulator\\Teams\\Ball2Ball_1st_innings.txt'
     Report_file2 = 'C:\\Users\\Ganesh\\Desktop\\4vs4simulator\\Teams\\Ball2Ball_2nd_innings.txt'
-    Batting_stats = 'C:\\Users\\Ganesh\\Desktop\\4vs4simulator\\Stats\\Bat_in_code.csv'
-    Bowling_stats = 'C:\\Users\\Ganesh\\Desktop\\4vs4simulator\\Stats\\Bowl_in_code.csv'
-
 
 elif user_name == '4':
     path = 'C:\\Users\\biddu\\Desktop\\4vs4simulator\\Teams\\Master_data_sheet.csv'
@@ -48,9 +39,6 @@ elif user_name == '4':
     Player2 = 'C:\\Users\\biddu\\Desktop\\4vs4simulator\\Teams\\Data_for_simulation - Player2.csv'
     Report_file = 'C:\\Users\\biddu\\Desktop\\4vs4simulator\\Teams\\Ball2Ball_1st_innings.txt'
     Report_file2 = 'C:\\Users\\biddu\\Desktop\\4vs4simulator\\Teams\\Ball2Ball_2nd_innings.txt'
-    Batting_stats = 'C:\\Users\\biddu\\Desktop\\4vs4simulator\\Stats\\Bat_in_code.csv'
-    Bowling_stats = 'C:\\Users\\biddu\\Desktop\\4vs4simulator\\Stats\\Bowl_in_code.csv'
-
     # handle header line, save it for writing to output file
     # header = next(Player).strip("\n").split(",")    
 
@@ -58,8 +46,6 @@ elif user_name == '4':
 rrr=pd.read_csv(path,dtype = str)
 # rrr1=rrr
 
-bat_stat = pd.read_csv(Batting_stats)
-bowl_stat = pd.read_csv(Bowling_stats)
 
 #rrr = rrr.rename(columns={'S.NO': 'Batting_Order'})
 
@@ -85,15 +71,6 @@ print('Player 2: ' + Player2_Name)
 
 result1 = rrr[rrr['Draft2_Player_id'] == id_1]
 result2 = rrr[rrr['Draft2_Player_id'] == id_2]
-
-
-bowl_stat_rem = bowl_stat[(bowl_stat['Owner'] != Player2_Name) & (bowl_stat['Owner'] != Player1_Name)]
-
-bat_stat_rem = bat_stat[(bat_stat['Owner'] != Player2_Name) & (bat_stat['Owner'] != Player1_Name)]
-
-
-
-
      
     
     
@@ -164,45 +141,20 @@ if call==toss_result:
     if choosing=='Bat':
         csvData=csv.reader(open(Player1))
         csvData2=csv.reader(open(Player2))
-        bat_stat1 = bat_stat[bat_stat['Owner'] == Player1_Name]
-        bat_stat2 = bat_stat[bat_stat['Owner'] == Player2_Name]
-        bowl_stat1 = bowl_stat[bowl_stat['Owner'] == Player1_Name]
-        bowl_stat2 = bowl_stat[bowl_stat['Owner'] == Player2_Name]
-
     else:
         csvData2=csv.reader(open(Player1))
         csvData=csv.reader(open(Player2))
-        bat_stat1 = bat_stat[bat_stat['Owner'] == Player2_Name]
-        bat_stat2 = bat_stat[bat_stat['Owner'] == Player1_Name]
-        bowl_stat1 = bowl_stat[bowl_stat['Owner'] == Player2_Name]
-        bowl_stat2 = bowl_stat[bowl_stat['Owner'] == Player1_Name]
-
 else:
     choosing=input(Player2_Name + '!! You won the toss, Will u Bat or Bowl:')
     if choosing=='Bat':
         csvData2=csv.reader(open(Player1))
         csvData=csv.reader(open(Player2))
-        bat_stat1 = bat_stat[bat_stat['Owner'] == Player2_Name]
-        bat_stat2 = bat_stat[bat_stat['Owner'] == Player1_Name]
-        bowl_stat1 = bowl_stat[bowl_stat['Owner'] == Player2_Name]
-        bowl_stat2 = bowl_stat[bowl_stat['Owner'] == Player1_Name]
-
     else:
         csvData=csv.reader(open(Player1))
         csvData2=csv.reader(open(Player2))
-        bat_stat1 = bat_stat[bat_stat['Owner'] == Player1_Name]
-        bat_stat2 = bat_stat[bat_stat['Owner'] == Player2_Name]
-        bowl_stat1 = bowl_stat[bowl_stat['Owner'] == Player1_Name]  
-        bowl_stat2 = bowl_stat[bowl_stat['Owner'] == Player2_Name]
-
     
 non_header=False
 non_header2=False
-
-bts1 = bat_stat1
-bts2 = bat_stat2
-bos1 = bowl_stat1
-bos2 = bowl_stat2
 
 
 #print(csvData2)
@@ -394,7 +346,7 @@ for i in range(1,7):
         
 
     if i%6==0 and i!=120:
-        time.sleep(4)
+        #time.sleep(4)
         os.system('cls')
         overs=int(i/6)
         print('Summary :'+str(team_score)+'/'+str(team_wickets)+' after '+str(int(i/6))+' overs '+'\n\n'+'Current Batsmen :')
@@ -481,160 +433,15 @@ for i in range(len(attributes['bowlers'])):
     
     
 
-
-
-
 f_1 = open(Report_file,'w')
 n = f_1.write(kb)
 f_1.close()
 
-bat_use_cols = ["name","out_to","runs_scored","balls_faced","fours","sixes"]
-bowl_use_cols = ["name","balls_bowled","dots","runs_conceded","wickets_taken"]
 
-bts11 = pd.DataFrame(attributes['batsmen'])
-bos22 = pd.DataFrame(attributes['bowlers'])
 
 
 
-bts11 = bts11[bat_use_cols]
-bos22 = bos22[bowl_use_cols]
-
-#
-
-
-
-BAT1 = pd.merge(bts1,bts11,how = 'left',left_on = 'Player',right_on = 'name' )
-
-BOWL2 = pd.merge(bos2,bos22,how = 'left' , left_on = 'Player',right_on = 'name')
-
-# BAT1.to_frame()
-# BOWL2.to_frame()
-
-BATTING_COLS = ["Player","Owner","Orange Cap","Balls Faced","Innings", "Not Outs" , "6s" , "4s" ,"100","50","Highest"]
-BOWLING_COLS = ["Player","Owner","Innings","Balls","Dots","Runs conceeded","Purple Cap","Best Figures","4fer","5fer","Hat-tricks"]
-
-
-BAT1['Orange Cap'] = BAT1['Orange Cap'] + BAT1['runs_scored']
-
-BAT1['Balls Faced'] = BAT1['Balls Faced'] + BAT1['balls_faced']
-
-BAT1['6s'] = BAT1['6s']+ BAT1['sixes']
-
-BAT1['4s'] = BAT1['4s'] + BAT1['fours']
-
-BAT1.loc[BAT1['balls_faced'] !=0, 'Innings' ] = BAT1['Innings'] + 1
-
-BAT1[(BAT1.balls_faced !=0) & (BAT1.out_to == 'Not Out') ]['Not Outs'] = BAT1['Not Outs'] + 1
-
-BAT1.loc[BAT1['runs_scored'] >=100 , '100'] = BAT1['100']+1
-
-BAT1[(BAT1.runs_scored<100) & (BAT1.runs_scored>=50 )] ['50'] = BAT1['50']+1
-
-BAT1.loc[BAT1['Highest'] < BAT1['runs_scored'] , 'Highest'] = BAT1['runs_scored']
-
-
-BAT1=BAT1[BATTING_COLS]
-# print('BAT1')
-# print(BAT1)
-
-BOWL2['Runs conceeded'] = BOWL2['Runs conceeded'] + BOWL2['runs_conceded']
-
-BOWL2['Dots'] = BOWL2['Dots'] + BOWL2['dots']
-
-BOWL2['Purple Cap'] = BOWL2['Purple Cap'] + BOWL2['wickets_taken']
-
-BOWL2['Balls'] = BOWL2['Balls'] + BOWL2['balls_bowled']
-
-BOWL2.loc[BOWL2['balls_bowled'] !=0, 'Innings' ] = BOWL2['Innings'] + 1
-
-BOWL2.loc[BOWL2['wickets_taken'] == 4 , '4fer'] = BOWL2['4fer']+1
-
-BOWL2.loc[BOWL2['wickets_taken'] >4  , '5fer'] = BOWL2['5fer']+1
-
-
-
-
-BOWL2 = BOWL2[BOWLING_COLS]
-# print(BOWL2)
-
-chasing = chase(team_score+1,attributes2,Report_file2)
-
-bts22 = pd.DataFrame(chasing[0]['batsmen'])
-bos11 = pd.DataFrame(chasing[0]['bowlers'])
-
-bts22 = bts22[bat_use_cols]
-bos11 = bos11[bowl_use_cols]
-
-
-BAT2 = pd.merge(bts2,bts22,how = 'left',left_on = 'Player',right_on = 'name' )
-
-BOWL1 = pd.merge(bos1,bos11,how = 'left' , left_on = 'Player',right_on = 'name')
-
-# BAT22=pd.DataFrame(columns = BATTING_COLS)
-# BOWL11= pd.DataFrame(columns = BOWLING_COLS)
-
-
-BAT2['Orange Cap'] = BAT2['Orange Cap'] + BAT2['runs_scored']
-
-BAT2['Balls Faced'] = BAT2['Balls Faced'] + BAT2['balls_faced']
-
-BAT2['6s'] = BAT2['6s']+ BAT2['sixes']
-
-BAT2['4s'] = BAT2['4s'] + BAT2['fours']
-
-BAT2.loc[BAT2['balls_faced'] !=0, 'Innings' ] = BAT2['Innings'] + 1
-
-BAT2[(BAT2.balls_faced !=0) & (BAT2.out_to == 'Not Out') ]['Not Outs'] = BAT2['Not Outs'] + 1
-
-BAT2.loc[BAT2['runs_scored'] >=100 , '100'] = BAT2['100']+1
-
-BAT2[(BAT2.runs_scored<100) & (BAT2.runs_scored>=50 )] ['50'] = BAT2['50']+1
-
-BAT2.loc[BAT2['Highest'] < BAT2['runs_scored'] , 'Highest'] = BAT2['runs_scored']
-
-
-BAT2=BAT2[BATTING_COLS]
-# print('BAT2')
-# print(BAT2)
-
-BOWL1['Runs conceeded'] = BOWL1['Runs conceeded'] + BOWL1['runs_conceded']
-
-BOWL1['Dots'] = BOWL1['Dots'] + BOWL1['dots']
-
-BOWL1['Purple Cap'] = BOWL1['Purple Cap'] + BOWL1['wickets_taken']
-
-BOWL1['Balls'] = BOWL1['Balls'] + BOWL1['balls_bowled']
-
-BOWL1.loc[BOWL1['balls_bowled'] !=0, 'Innings' ] = BOWL1['Innings'] + 1
-
-BOWL1.loc[BOWL1['wickets_taken'] == 4 , '4fer'] = BOWL1['4fer']+1
-
-BOWL1.loc[BOWL1['wickets_taken'] >4  , '5fer'] = BOWL1['5fer']+1
-
-
-
-
-BOWL1 = BOWL1[BOWLING_COLS]
-# print(BOWL1)
-
-pdList1 = [BAT1,BAT2,bat_stat_rem]
-pdList2 = [BOWL1,BOWL2,bowl_stat_rem]
-
-
-
-Bat_final = pd.concat(pdList1)
-Bowl_final = pd.concat(pdList2)
-
-# print(Bat_final)
-# print(Bowl_final)
-
-Bat_final.to_csv(Batting_stats)
-Bowl_final.to_csv(Bowling_stats)
-
-
-
-
-#
+#chase(10,attributes2,Report_file2,attributes)
 
 
 f = open(Player1, "w+")
@@ -642,4 +449,30 @@ f.close()
 f=open(Player2,"w+")
 f.close()
 
-#workbook.close()
+
+
+workbook=xlsxwriter.Workbook('C:\\Users\\KB131141191\\Desktop\\FourvsFour\\Simulator\\reports\\'+Player1_Name+'_vs_'+Player2_Name+'.xlsx')
+batsman_first_innings=workbook.add_worksheet('batsman_first_innings')
+
+bowler_first_innings=workbook.add_worksheet('bowler_first_innings')
+
+for i in range(len(attributes['batsmen'])):
+    if attributes['batsmen'][i]['balls_faced']>0:
+        k=0
+        for j in attributes['batsmen'][i]:
+            batsman_first_innings.write(0,k,j)
+            batsman_first_innings.write(attributes['batsmen'][i]['batting_order'],k,attributes['batsmen'][i][j])
+            k+=1
+
+
+k2=0
+for i in range(len(attributes['bowlers'])):
+    if attributes['bowlers'][i]['balls_bowled']>0:
+        k=0
+        for j in attributes['bowlers'][i]:
+            bowler_first_innings.write(0,k,j)
+            bowler_first_innings.write(k2+1,k,attributes['bowlers'][i][j])
+            k+=1
+        k2+=1
+
+workbook.close()

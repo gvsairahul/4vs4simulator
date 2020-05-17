@@ -39,8 +39,17 @@ def out_calculator(balls,batsman,bowler):
         out_bowler=wbowl
     rr = (2*out_batsmen + 3* out_bowler)/5
 
+    if balls <=36:
+        rr = rr * 1.1
+    elif balls>36 and balls <=66:
+        rr = rr * 0.75
+    elif balls>66 and balls<=108:
+        rr = rr * 0.85
+    else:
+        rr = rr * 1.1
     if(rr>=1):
         rr=0.99
+    
     distribution=[rr,1-rr]
     return choices(results,weights=distribution)[0]
 
