@@ -1,7 +1,7 @@
 import csv, os, time
 import pandas as pd
 import numpy as np
-from out_sim1 import out_calculator,boundary_calculator, runs_calculator, change_batsman, toss
+from out_sim1 import out_calculator,boundary_calculator, runs_calculator, change_batsman, toss, best_bowling
 from second_innings import chase
 import xlsxwriter
 
@@ -570,7 +570,7 @@ BOWL2.loc[BOWL2['wickets_taken'] == 4 , '4fer'] = BOWL2['4fer']+1
 
 BOWL2.loc[BOWL2['wickets_taken'] >4  , '5fer'] = BOWL2['5fer']+1
 
-
+BOWL2['Best Figures'] = BOWL2.apply(lambda row: best_bowling(row['Best Figures'], row['wickets_taken'] , row['runs_conceded']),axis=1)
 
 
 BOWL2 = BOWL2[BOWLING_COLS]
@@ -652,6 +652,9 @@ BOWL1.loc[BOWL1['balls_bowled'] !=0, 'Innings' ] = BOWL1['Innings'] + 1
 BOWL1.loc[BOWL1['wickets_taken'] == 4 , '4fer'] = BOWL1['4fer']+1
 
 BOWL1.loc[BOWL1['wickets_taken'] >4  , '5fer'] = BOWL1['5fer']+1
+
+BOWL1['Best Figures'] = BOWL1.apply(lambda row: best_bowling(row['Best Figures'], row['wickets_taken'] , row['runs_conceded']),axis=1)
+
 
 
 

@@ -49,7 +49,7 @@ def out_calculator(balls,batsman,bowler):
         rr = rr * 1.1
     if(rr>=1):
         rr=0.99
-    
+
     distribution=[rr,1-rr]
     return choices(results,weights=distribution)[0]
 
@@ -237,3 +237,22 @@ def change_batsman(current_batsmen,current_batsmen_id):
     else:
         current_batsmen_id=min(current_batsmen)
     return current_batsmen_id
+
+
+def best_bowling(a,b,c):
+    if int(a[0]) > b :
+        return a
+    elif int(a[0]) < b:
+        return str(b) + '/' + str(c)
+    else:
+        if len(a) == 3:
+            if c >= int(a[2]):
+                return a
+            else:
+                return str(b) + '/' + str(c)
+        elif len(a) == 4:
+            if c >= int(a[2]+a[3]):
+                return a
+            else:
+                 return str(b) + '/' + str(c)
+
