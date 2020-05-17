@@ -1,7 +1,7 @@
 import csv, os, time
 import pandas as pd
 import numpy as np
-from out_sim1 import out_calculator,boundary_calculator, runs_calculator, change_batsman, toss, best_bowling
+from out_sim1 import out_calculator,boundary_calculator, runs_calculator, change_batsman, toss, best_bowling,notout_cal,fifty_cal
 from second_innings import chase
 import xlsxwriter
 
@@ -528,27 +528,11 @@ BAT1.loc[BAT1['runs_scored'] >=100 , '100'] = BAT1['100']+1
 
 BAT1.loc[BAT1['Highest'] < BAT1['runs_scored'] , 'Highest'] = BAT1['runs_scored']
 
-SUB =BAT1[(BAT1['balls_faced'] == 0) | (BAT1['out_to'] != 'Not Out')]
-SUB1 = BAT1[(BAT1['balls_faced'] !=0) & (BAT1['out_to'] == 'Not Out')]
-print('SUB')
-print(SUB)
-print('SUB1')
-print(SUB1)
+BAT1['Not Out'] = BAT1.apply(lambda row: notout_cal(row['Not Out'],row['balls_faced'],row['out_to']),axis=1)
 
-SUB1['Not Outs'] = SUB1['Not Outs']+1
-
-ll = [SUB,SUB1]
-
-BAT1 = pd.concat(ll)
+BAT1['50'] = BAT1.apply(lambda row: fifty_cal(row['50'],row['runs_scored']),axis=1)
 
 
-SUB =BAT1[(BAT1['runs_scored'] < 50) | (BAT1['runs_scored'] >=100)]
-SUB1 = BAT1[(BAT1['runs_scored'] >=50) & (BAT1['runs_scored']<100)]
-SUB1['50'] = SUB1['50'] + 1
-
-ll = [SUB,SUB1]
-
-BAT1 = pd.concat(ll)
 
 
 
@@ -611,27 +595,14 @@ BAT2.loc[BAT2['runs_scored'] >=100 , '100'] = BAT2['100']+1
 
 BAT2.loc[BAT2['Highest'] < BAT2['runs_scored'] , 'Highest'] = BAT2['runs_scored']
 
-SUB =BAT2[(BAT2['balls_faced'] == 0) | (BAT2['out_to'] != 'Not Out')]
-SUB1 = BAT2[(BAT2['balls_faced'] !=0) & (BAT2['out_to'] == 'Not Out')]
-print('SUB')
-print(SUB)
-print('SUB1')
-print(SUB1)
+BAT2['Not Out'] = BAT2.apply(lambda row: notout_cal(row['Not Out'],row['balls_faced'],row['out_to']),axis=1)
 
-SUB1['Not Outs'] = SUB1['Not Outs']+1
-
-ll = [SUB,SUB1]
-
-BAT2 = pd.concat(ll)
+BAT2['50'] = BAT2.apply(lambda row: fifty_cal(row['50'],row['runs_scored']),axis=1)
 
 
-SUB =BAT2[(BAT2['runs_scored'] < 50) | (BAT2['runs_scored'] >=100)]
-SUB1 = BAT2[(BAT2['runs_scored'] >=50) & (BAT2['runs_scored']<100)]
-SUB1['50'] = SUB1['50'] + 1
 
-ll = [SUB,SUB1]
 
-BAT2 = pd.concat(ll)
+
 
 
 

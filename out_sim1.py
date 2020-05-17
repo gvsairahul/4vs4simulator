@@ -256,3 +256,14 @@ def best_bowling(a,b,c):
             else:
                  return str(b) + '/' + str(c)
 
+def notout_cal(a,b,c):
+    if b>0 and c == 'Not Out':
+        return a+1
+    else:
+        return a
+
+def fifty_cal(a,b):
+    if b>=50 and b<100:
+        return a+1
+    else:
+        return a
