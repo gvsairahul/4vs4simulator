@@ -10,7 +10,7 @@ col_list = ["PLAYERS","Batsman_avg","Batsman_strikerate","Bowler_economy","Bowle
 BATTING_COLS = ["Player","Owner","Innings", "Not Outs","Orange Cap","Balls Faced","Highest","50","100", "6s" , "4s"]
 BOWLING_COLS = ["Player","Owner","Innings","Balls","Dots","Runs conceeded","Purple Cap","Best Figures","4fer","5fer"]
 
-user_name = input("If Rahul press 1, If Kb press 2,If Ganesh press 3,If Kaushik press 4:")
+user_name = input("If Rahul press 1, If Kb press 2,If Ganesh press 3,If Kaushik press 4:,If Dinesh press5:")
 
 if user_name == '2':
     path = 'C:\\Users\\KB131141191\\Desktop\\4vs4simulator\\Teams\\Master_data_sheet.csv'
@@ -52,6 +52,15 @@ elif user_name == '4':
     Report_file2 = 'C:\\Users\\biddu\\Desktop\\4vs4simulator\\Teams\\Ball2Ball_2nd_innings.txt'
     Batting_stats = 'C:\\Users\\biddu\\Desktop\\4vs4simulator\\Stats\\Bat_in_code.csv'
     Bowling_stats = 'C:\\Users\\biddu\\Desktop\\4vs4simulator\\Stats\\Bowl_in_code.csv'
+elif user_name == '5':
+    path = '/Users/dineshkotnani/Downloads/4vs4simulator-master/Teams/Master_data_sheet.csv'
+    path1 = '/Users/dineshkotnani/Downloads/4vs4simulator-master/Teams/Player_Mapping.csv'
+    Player1 = '/Users/dineshkotnani/Downloads/4vs4simulator-master/Teams/Data_for_simulation - Player1.csv'
+    Player2 = '/Users/dineshkotnani/Downloads/4vs4simulator-master/Teams/Data_for_simulation - Player2.csv'
+    Report_file = '/Users/dineshkotnani/Downloads/4vs4simulator-master/Teams/Ball2Ball_1st_innings.txt'
+    Report_file2 = '/Users/dineshkotnani/Downloads/4vs4simulator-master/Teams/Ball2Ball_2nd_innings.txt'
+    Batting_stats = '/Users/dineshkotnani/Downloads/4vs4simulator-master/Stats/Bat_in_code.csv'
+    Bowling_stats = '/Users/dineshkotnani/Downloads/4vs4simulator-master/Stats/Bowl_in_code.csv'
 
     # handle header line, save it for writing to output file
     # header = next(Player).strip("\n").split(",")    
