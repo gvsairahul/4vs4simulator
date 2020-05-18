@@ -240,26 +240,26 @@ def change_batsman(current_batsmen,current_batsmen_id):
 
 
 def best_bowling(a,b,c):
-    if len(a) == 3:
-        if int(a[2]) > b:
+    if len(a) == 7:
+        if int(a[6]) > b:
             return a
-        elif b > int(a[2]):
-            return str(c) + '/' + str(b)
+        elif b > int(a[6]):
+            return str(c) + ' for ' + str(b)
         else:
             if int(a[0]) <= c:
                 return a
             else:
-                return str(c) + '/' + str(b)
-    elif len(a) == 4:
-        if int(a[3]) > b:
+                return str(c) + ' for ' + str(b)
+    elif len(a) == 8:
+        if int(a[7]) > b:
             return a
-        elif b > int(a[3]):
-            return str(c) + '/' + str(b)
+        elif b > int(a[7]):
+            return str(c) + ' for ' + str(b)
         else:
             if int(a[0]+a[1]) <= c:
                 return a
             else:
-                return str(c) + '/' + str(b)
+                return str(c) + ' for ' + str(b)
 
 
 def notout_cal(a,b,c):
