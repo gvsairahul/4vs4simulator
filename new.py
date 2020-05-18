@@ -7,6 +7,8 @@ import xlsxwriter
 
 #Batting Team
 col_list = ["PLAYERS","Batsman_avg","Batsman_strikerate","Bowler_economy","Bowler_average","4s","6s","Ratio","4s ratio","6s ratio"]
+BATTING_COLS = ["Player","Owner","Innings", "Not Outs","Orange Cap","Balls Faced","Highest","50","100", "6s" , "4s"]
+BOWLING_COLS = ["Player","Owner","Innings","Balls","Dots","Runs conceeded","Purple Cap","Best Figures","4fer","5fer"]
 
 user_name = input("If Rahul press 1, If Kb press 2,If Ganesh press 3,If Kaushik press 4:")
 
@@ -60,6 +62,9 @@ rrr=pd.read_csv(path,dtype = str)
 
 bat_stat = pd.read_csv(Batting_stats)
 bowl_stat = pd.read_csv(Bowling_stats)
+
+bat_stat = bat_stat[BATTING_COLS]
+bowl_stat = bowl_stat[BOWLING_COLS]
 
 #rrr = rrr.rename(columns={'S.NO': 'Batting_Order'})
 
@@ -510,8 +515,6 @@ BOWL2 = pd.merge(bos2,bos22,how = 'left' , left_on = 'Player',right_on = 'name')
 # BAT1.to_frame()
 # BOWL2.to_frame()
 
-BATTING_COLS = ["Player","Owner","Innings", "Not Outs","Orange Cap","Balls Faced","Highest","50","100", "6s" , "4s"]
-BOWLING_COLS = ["Player","Owner","Innings","Balls","Dots","Runs conceeded","Purple Cap","Best Figures","4fer","5fer"]
 
 
 BAT1['Orange Cap'] = BAT1['Orange Cap'] + BAT1['runs_scored']
@@ -640,6 +643,13 @@ pdList2 = [BOWL1,BOWL2,bowl_stat_rem]
 
 Bat_final = pd.concat(pdList1)
 Bowl_final = pd.concat(pdList2)
+
+Bat_final = Bat_final[BATTING_COLS]
+Bowl_final = Bowl_final[BOWLING_COLS]
+
+Bat_final.sort_values("Orange Cap",axis=0,ascending = False,inplace = True ,kind = 'quicksort',na_position = 'last' )
+Bowl_final.sort_values("Purple Cap",axis=0,ascending = False,inplace = True ,kind = 'quicksort',na_position = 'last' )
+
 
 # print(Bat_final)
 # print(Bowl_final)

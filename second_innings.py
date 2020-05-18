@@ -116,7 +116,7 @@ def chase(target,attributes,Report_file2):
             attributes['batsmen'][next_batsman_id]['batting_order']=team_wickets+2
             
         if i%6==0 and i!=120:
-            # time.sleep(4)
+            time.sleep(4)
             os.system('cls')
             overs=int(i/6)
             print('Summary :'+str(team_score)+'/'+str(team_wickets)+' after '+str(overs)+' overs Required run rate:'+str(round(((target-team_score)/(20-overs)),2))
