@@ -528,7 +528,7 @@ BAT1.loc[BAT1['runs_scored'] >=100 , '100'] = BAT1['100']+1
 
 BAT1.loc[BAT1['Highest'] < BAT1['runs_scored'] , 'Highest'] = BAT1['runs_scored']
 
-BAT1['Not Out'] = BAT1.apply(lambda row: notout_cal(row['Not Out'],row['balls_faced'],row['out_to']),axis=1)
+BAT1['Not Outs'] = BAT1.apply(lambda row: notout_cal(row['Not Outs'],row['balls_faced'],row['out_to']),axis=1)
 
 BAT1['50'] = BAT1.apply(lambda row: fifty_cal(row['50'],row['runs_scored']),axis=1)
 
@@ -595,7 +595,7 @@ BAT2.loc[BAT2['runs_scored'] >=100 , '100'] = BAT2['100']+1
 
 BAT2.loc[BAT2['Highest'] < BAT2['runs_scored'] , 'Highest'] = BAT2['runs_scored']
 
-BAT2['Not Out'] = BAT2.apply(lambda row: notout_cal(row['Not Out'],row['balls_faced'],row['out_to']),axis=1)
+BAT2['Not Outs'] = BAT2.apply(lambda row: notout_cal(row['Not Outs'],row['balls_faced'],row['out_to']),axis=1)
 
 BAT2['50'] = BAT2.apply(lambda row: fifty_cal(row['50'],row['runs_scored']),axis=1)
 
