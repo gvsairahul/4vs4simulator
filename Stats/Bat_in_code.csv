@@ -1,11 +1,11 @@
 Player,Owner,Innings,Not Outs,Orange Cap,Balls Faced,Highest,50,100,4s,6s
 Chris Lynn,Ravi,3,0,139,90,75,1,0,9,7
-Yusuf Pathan,Dinesh,2,1,130,79,94*,1,0,7,7
+Yusuf Pathan,Dinesh,2,1,130,79,94,1,0,7,7
 Shubman Gill,SBK,3,0,128,95,77,1,0,5,4
 Virat Kohli,Girish,3,0,126,83,53,1,0,8,2
-Chris Gayle,SBK,3,1,117,78,82*,1,0,6,5
+Chris Gayle,SBK,3,1,117,78,82,1,0,6,5
 Washington Sundar,Aditya,3,0,116,77,52,1,0,8,6
-Shreyas Iyer,Girish,3,1,112,72,73*,1,0,6,2
+Shreyas Iyer,Girish,3,1,112,72,73,1,0,6,2
 Ross Taylor,Murali,2,0,109,78,67,1,0,6,3
 Manish Pandey,Chaitu,3,0,105,72,53,1,0,5,3
 Mahendra Singh Dhoni,Rahul,3,0,103,73,64,1,0,5,7
@@ -14,7 +14,7 @@ Shimron Hetmyer,Chaitu,3,0,97,79,54,1,0,5,2
 Alex Hales,Ganesh,2,0,92,53,62,1,0,10,2
 D'arcy Short,Sumanth,2,0,87,63,58,1,0,7,1
 Tom Banton,Kaushik,2,0,82,44,55,1,0,7,6
-Suresh Raina,Aditya,3,1,74,52,45*,0,0,4,2
+Suresh Raina,Aditya,3,1,74,52,45,0,0,4,2
 David Warner,Sumanth,2,0,74,62,50,1,0,9,0
 Shaun Marsh,Aditya,3,0,73,45,28,0,0,2,6
 Jason Roy,Chaitu,3,0,69,53,39,0,0,6,1
@@ -45,7 +45,7 @@ Kedar Jadhav,Rahul,3,0,44,22,20,0,0,4,2
 Dinesh Karthik,Sumanth,2,0,44,27,30,0,0,2,2
 Faf du Plessis,Rahul,3,0,43,27,37,0,0,5,0
 Moeen Ali,Aditya,3,1,39,27,19,0,0,1,2
-James Neesham,Ganesh,2,1,38,22,29*,0,0,3,1
+James Neesham,Ganesh,2,1,38,22,29,0,0,3,1
 Keemo Paul,Girish,2,0,38,33,27,0,0,4,0
 Kusal Perera,KB,2,0,38,30,22,0,0,1,1
 Rishab Pant,Ravi,3,0,37,28,17,0,0,1,1
@@ -60,7 +60,7 @@ Sarfaraz Khan,SBK,3,0,32,24,21,0,0,3,0
 Mitchell Starc,Girish,2,1,31,24,21,0,0,0,1
 JP Duminy,Murali,2,1,31,18,26,0,0,3,
 Ab de Villiers,Murali,2,0,30,23,27,0,0,1,1
-Steve Smith,SBK,3,1,30,27,15*,0,0,2,1
+Steve Smith,SBK,3,1,30,27,15,0,0,2,1
 Andre Russell,Kaushik,2,0,29,21,22,0,0,0,1
 Suryakumar Yadav,KB,2,0,29,21,29,0,0,1,2
 Ben Stokes,Ganesh,2,0,28,29,26,0,0,2,1
@@ -69,12 +69,12 @@ Krishnappa Gowtham,Sumanth,2,0,28,17,15,0,0,3,0
 Isuru Udana,Rahul,3,0,27,29,12,0,0,3,0
 Dwayne Bravo,Sumanth,2,1,27,13,17,0,0,1,2
 Krunal Pandya,KB,2,0,26,19,24,0,0,1,1
-Jofra Archer,Murali,1,1,26,13,26*,0,0,0,0
+Jofra Archer,Murali,1,1,26,13,26,0,0,0,0
 Joshua Phillippe,Ganesh,2,0,25,21,20,0,0,3,1
 Aaron Finch,KB,2,0,25,3,22,0,0,2,2
 Mitchell Marsh,SBK,2,1,25,16,14,0,0,2,0
 Dhawal Kulkarni,Ravi,3,0,24,16,14,0,0,0,1
-Parthiv Patel,Ganesh,2,1,23,10,17*,0,0,4,0
+Parthiv Patel,Ganesh,2,1,23,10,17,0,0,4,0
 Chris Morris,Kaushik,2,0,23,12,21,0,0,0,2
 Ajinkya Rahane,Murali,2,0,23,18,19,0,0,2,0
 Rahul Chahar,Ravi,3,0,23,15,14,0,0,2,1
@@ -85,7 +85,7 @@ Navdeep Saini,Girish,2,1,20,9,17,0,0,1,1
 Pat Cummins,Chaitu,3,2,19,17,12,0,0,1,0
 Colin De Grandhomme,Dinesh,2,0,19,14,12,0,0,1,0
 Hardik Pandya,Dinesh,2,0,18,12,10,0,0,0,1
-Ishant Sharma,Ravi,3,2,17,10,12*,0,0,2,0
+Ishant Sharma,Ravi,3,2,17,10,12,0,0,2,0
 Shardul Thakur,Kaushik,2,0,16,8,8,0,0,3,0
 Ravindra Jadeja,Murali,2,2,16,9,9,0,0,2,0
 Mitchell Santner,Rahul,3,1,16,10,10,0,0,1,1
@@ -99,7 +99,7 @@ Josh Hazlewood,SBK,2,2,13,6,10,0,0,0,1
 Sunil Narine,Sumanth,2,0,13,9,9,0,0,0,1
 Kuldeep Yadav,Chaitu,1,0,12,4,12,0,0,1,1
 Shahbaz Nadeem,SBK,1,0,12,7,12,0,0,2,0
-Rashid Khan,Dinesh,2,1,11,11,2*,0,0,0,0
+Rashid Khan,Dinesh,2,1,11,11,2,0,0,0,0
 Ravichandran Ashwin,KB,2,0,11,12,10,0,0,1,0
 Nathan Coulter-Nile,KB,2,1,11,6,11,0,0,0,1
 Sandeep Sharma,Rahul,2,1,11,9,10,0,0,0,0
@@ -111,9 +111,9 @@ Adam Zampa,SBK,1,0,8,3,8,0,0,0,1
 Murali Vijay,Sumanth,1,0,8,5,8,0,0,1,0
 Lockie Ferguson,Girish,1,0,6,4,6,0,0,1,0
 Imran Tahir,Kaushik,2,0,6,8,3,0,0,0,0
-Fabian Allen,Ravi,3,2,6,6,1*,0,0,0,0
+Fabian Allen,Ravi,3,2,6,6,1,0,0,0,0
 Nitish Rana,Ganesh,2,0,5,6,4,0,0,0,0
-Andrew Tye,Dinesh,1,1,4,1,4*,0,0,1,0
+Andrew Tye,Dinesh,1,1,4,1,4,0,0,1,0
 Sandeep Lamichhane,Girish,1,1,4,1,4,0,0,1,0
 Siddarth Kaul,KB,2,0,4,5,4,0,0,0,0
 Amit Mishra,Dinesh,1,0,3,4,3,0,0,0,0
