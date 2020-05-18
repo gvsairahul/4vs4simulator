@@ -510,8 +510,8 @@ BOWL2 = pd.merge(bos2,bos22,how = 'left' , left_on = 'Player',right_on = 'name')
 # BAT1.to_frame()
 # BOWL2.to_frame()
 
-BATTING_COLS = ["Player","Owner","Orange Cap","Balls Faced","Innings", "Not Outs" , "6s" , "4s" ,"100","50","Highest"]
-BOWLING_COLS = ["Player","Owner","Innings","Balls","Dots","Runs conceeded","Purple Cap","Best Figures","4fer","5fer","Hat-tricks"]
+BATTING_COLS = ["Player","Owner","Innings", "Not Outs","Orange Cap","Balls Faced","Highest","50","100", "6s" , "4s"]
+BOWLING_COLS = ["Player","Owner","Innings","Balls","Dots","Runs conceeded","Purple Cap","Best Figures","4fer","5fer"]
 
 
 BAT1['Orange Cap'] = BAT1['Orange Cap'] + BAT1['runs_scored']
