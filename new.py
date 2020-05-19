@@ -502,6 +502,8 @@ f_1 = open(Report_file,'w')
 n = f_1.write(kb)
 f_1.close()
 
+chasing = chase(team_score+1,attributes2,Report_file2)
+
 bat_use_cols = ["name","out_to","runs_scored","balls_faced","fours","sixes"]
 bowl_use_cols = ["name","balls_bowled","dots","runs_conceded","wickets_taken"]
 
@@ -572,7 +574,7 @@ BOWL2['Best Figures'] = BOWL2.apply(lambda row: best_bowling(row['Best Figures']
 BOWL2 = BOWL2[BOWLING_COLS]
 # print(BOWL2)
 
-chasing = chase(team_score+1,attributes2,Report_file2)
+
 
 bts22 = pd.DataFrame(chasing[0]['batsmen'])
 bos11 = pd.DataFrame(chasing[0]['bowlers'])
