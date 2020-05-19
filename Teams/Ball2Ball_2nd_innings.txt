@@ -1,273 +1,280 @@
-Ball 1 - Shardul Thakur to Chris Lynn : 0
-Summary :0/0 after 0.1 overs 
-Ball 2 - Shardul Thakur to Chris Lynn : 6
-Summary :6/0 after 0.2 overs 
-Ball 3 - Shardul Thakur to Chris Lynn : 0
-Summary :6/0 after 0.3 overs 
-Ball 4 - Shardul Thakur to Chris Lynn : 1
-Summary :7/0 after 0.4 overs 
-Ball 5 - Shardul Thakur to Shakib Al Hasan : 0
-Summary :7/0 after 0.5 overs 
-Ball 6 - Shardul Thakur to Shakib Al Hasan : 0
-Summary :7/0 after 1 overs Required run rate:10.11 Required runs:192
+Ball 1 - Lungisani Ngidi to Shimron Hetmyer : 2
+Summary :2/0 after 0.1 overs 
+Ball 2 - Lungisani Ngidi to Shimron Hetmyer : 2
+Summary :4/0 after 0.2 overs 
+Ball 3 - Lungisani Ngidi to Shimron Hetmyer : 0
+Summary :4/0 after 0.3 overs 
+Ball 4 - Lungisani Ngidi to Shimron Hetmyer : 6
+Summary :10/0 after 0.4 overs 
+Ball 5 - Lungisani Ngidi to Shimron Hetmyer : 2
+Summary :12/0 after 0.5 overs 
+Ball 6 - Lungisani Ngidi to Shimron Hetmyer : 0
+Summary :12/0 after 1 overs Required run rate:7.63 Required runs:145
 
-Summary :7/0 after 1 overs 
-Ball 7 - Mujeeb Ur Rahman to Chris Lynn : 6
-Summary :13/0 after 1.1 overs 
-Ball 8 - Mujeeb Ur Rahman to Chris Lynn : 4
-Summary :17/0 after 1.2 overs 
-Ball 9 - Mujeeb Ur Rahman to Chris Lynn : 0
-Summary :17/0 after 1.3 overs 
-Ball 10 - Mujeeb Ur Rahman to Chris Lynn : 6
-Summary :23/0 after 1.4 overs 
-Ball 11 - Mujeeb Ur Rahman to Chris Lynn : 0
-Summary :23/0 after 1.5 overs 
-Ball 12 - Mujeeb Ur Rahman to Chris Lynn : 1
-Summary :24/0 after 2 overs Required run rate:9.72 Required runs:175
+Summary :12/0 after 1 overs 
+Ball 7 - Ben Stokes to Rohit Sharma : 0
+Summary :12/0 after 1.1 overs 
+Ball 8 - Ben Stokes to Rohit Sharma : 1
+Summary :13/0 after 1.2 overs 
+Ball 9 - Ben Stokes to Shimron Hetmyer : 1
+Summary :14/0 after 1.3 overs 
+Ball 10 - Ben Stokes to Rohit Sharma : 0
+Summary :14/0 after 1.4 overs 
+Ball 11 - Ben Stokes to Rohit Sharma : 0
+Summary :14/0 after 1.5 overs 
+Ball 12 - Ben Stokes to Rohit Sharma : 2
+Summary :16/0 after 2 overs Required run rate:7.83 Required runs:141
 
-Summary :24/0 after 2 overs 
-Ball 13 - Andre Russell to Chris Lynn : 0
-Summary :24/0 after 2.1 overs 
-Ball 14 - Andre Russell to Chris Lynn : 0
-Summary :24/0 after 2.2 overs 
-Ball 15 - Andre Russell to Chris Lynn : 4
-Summary :28/0 after 2.3 overs 
-Ball 16 - Andre Russell to Chris Lynn : 1
-Summary :29/0 after 2.4 overs 
-Ball 17 - Andre Russell to Shakib Al Hasan : 0
-Summary :29/0 after 2.5 overs 
-Ball 18 - Andre Russell to Shakib Al Hasan : 0
-Summary :29/0 after 3 overs Required run rate:10.0 Required runs:170
+Summary :16/0 after 2 overs 
+Ball 13 - Lungisani Ngidi to Shimron Hetmyer : 0
+Summary :16/0 after 2.1 overs 
+Ball 14 - Lungisani Ngidi to Shimron Hetmyer : 2
+Summary :18/0 after 2.2 overs 
+Ball 15 - Lungisani Ngidi to Shimron Hetmyer : 1
+Summary :19/0 after 2.3 overs 
+Ball 16 - Lungisani Ngidi to Rohit Sharma : 2
+Summary :21/0 after 2.4 overs 
+Ball 17 - Lungisani Ngidi to Rohit Sharma : 1
+Summary :22/0 after 2.5 overs 
+Ball 18 - Lungisani Ngidi to Shimron Hetmyer : 2
+Summary :24/0 after 3 overs Required run rate:7.82 Required runs:133
 
-Summary :29/0 after 3 overs 
-Ball 19 - Shardul Thakur to Chris Lynn : 2
-Summary :31/0 after 3.1 overs 
-Ball 20 - Shardul Thakur to Chris Lynn : 1
-Summary :32/0 after 3.2 overs 
-Ball 21 - Shardul Thakur to Shakib Al Hasan : 6
-Summary :38/0 after 3.3 overs 
-Ball 22 - Shardul Thakur to Shakib Al Hasan : 6
-Summary :44/0 after 3.4 overs 
-Ball 23 - Shardul Thakur to Shakib Al Hasan : 2
-Summary :46/0 after 3.5 overs 
-Ball 24 - Shardul Thakur to Shakib Al Hasan : 0
-Summary :46/0 after 4 overs Required run rate:9.56 Required runs:153
+Summary :24/0 after 3 overs 
+Ball 19 - Ben Stokes to Rohit Sharma : 0
+Summary :24/0 after 3.1 overs 
+Ball 20 - Ben Stokes to Rohit Sharma : 0
+Summary :24/0 after 3.2 overs 
+Ball 21 - Ben Stokes to Rohit Sharma : 0
+Summary :24/0 after 3.3 overs 
+Ball 22 - Ben Stokes to Rohit Sharma : 1
+Summary :25/0 after 3.4 overs 
+Ball 23 - Ben Stokes to Shimron Hetmyer : 0
+Summary :25/0 after 3.5 overs 
+Ball 24 - Ben Stokes to Shimron Hetmyer : 0
+Summary :25/0 after 4 overs Required run rate:8.25 Required runs:132
 
-Summary :46/0 after 4 overs 
-Ball 25 - Harbhajan Singh to Chris Lynn : 0
-Summary :46/0 after 4.1 overs 
-Ball 26 - Harbhajan Singh to Chris Lynn : 0
-Summary :46/0 after 4.2 overs 
-Ball 27 - Harbhajan Singh to Chris Lynn : 1
-Summary :47/0 after 4.3 overs 
-Ball 28 - Harbhajan Singh to Shakib Al Hasan : 0
-Summary :47/0 after 4.4 overs 
-Ball 29 - Harbhajan Singh to Shakib Al Hasan : 1
-Summary :48/0 after 4.5 overs 
-Ball 30 - Harbhajan Singh to Chris Lynn : 2
-Summary :50/0 after 5 overs Required run rate:9.93 Required runs:149
+Summary :25/0 after 4 overs 
+Ball 25 - Khaleel Ahmed to Rohit Sharma : 0
+Summary :25/0 after 4.1 overs 
+Ball 26 - Khaleel Ahmed to Rohit Sharma : 0
+Summary :25/0 after 4.2 overs 
+Ball 27 - Khaleel Ahmed to Rohit Sharma : 0
+Summary :25/0 after 4.3 overs 
+Ball 28 - Khaleel Ahmed to Rohit Sharma : 0
+Summary :25/0 after 4.4 overs 
+Ball 29 - Khaleel Ahmed to Rohit Sharma : 1
+Summary :26/0 after 4.5 overs 
+Ball 30 - Khaleel Ahmed to Shimron Hetmyer : 0
+Summary :26/0 after 5 overs Required run rate:8.73 Required runs:131
 
-Summary :50/0 after 5 overs 
-Ball 31 - Chris Morris to Shakib Al Hasan : 1
-Summary :51/0 after 5.1 overs 
-Ball 32 - Chris Morris to Chris Lynn : 4
-Summary :55/0 after 5.2 overs 
-Ball 33 - Chris Morris to Chris Lynn : 1
-Summary :56/0 after 5.3 overs 
-Ball 34 - Chris Morris to Shakib Al Hasan : 1
-Summary :57/0 after 5.4 overs 
-Ball 35 - Chris Morris to Chris Lynn : 0
-Summary :57/0 after 5.5 overs 
-Ball 36 - Chris Morris to Chris Lynn : 6
-Summary :63/0 after 6 overs Required run rate:9.71 Required runs:136
+Summary :26/0 after 5 overs 
+Ball 31 - Nitish Rana to Rohit Sharma : 0
+Summary :26/0 after 5.1 overs 
+Ball 32 - Nitish Rana to Rohit Sharma : 0
+Summary :26/0 after 5.2 overs 
+Ball 33 - Nitish Rana to Rohit Sharma : 0
+Summary :26/0 after 5.3 overs 
+Ball 34 - Nitish Rana to Rohit Sharma : 4
+Summary :30/0 after 5.4 overs 
+Ball 35 - Nitish Rana to Rohit Sharma : 0
+Summary :30/0 after 5.5 overs 
+Ball 36 - Nitish Rana to Rohit Sharma : 0
+Summary :30/0 after 6 overs Required run rate:9.07 Required runs:127
 
-Summary :63/0 after 6 overs 
-Ball 37 - Imran Tahir to Shakib Al Hasan : 1
-Summary :64/0 after 6.1 overs 
-Ball 38 - Imran Tahir to Chris Lynn : 0
-Summary :64/0 after 6.2 overs 
-Ball 39 - Imran Tahir to Chris Lynn : 2
-Summary :66/0 after 6.3 overs 
-Ball 40 - Imran Tahir to Chris Lynn : 2
-Summary :68/0 after 6.4 overs 
-Ball 41 - Imran Tahir to Chris Lynn : 1
-Summary :69/0 after 6.5 overs 
-Ball 42 - Imran Tahir to Shakib Al Hasan : 0
-Summary :69/0 after 7 overs Required run rate:10.0 Required runs:130
+Summary :30/0 after 6 overs 
+Ball 37 - James Neesham to Shimron Hetmyer : 0
+Summary :30/0 after 6.1 overs 
+Ball 38 - James Neesham to Shimron Hetmyer : 2
+Summary :32/0 after 6.2 overs 
+Ball 39: Shimron Hetmyer out at 20
+Summary :32/1 after 6.3 overs 
+Ball 40 - James Neesham to Manish Pandey : 0
+Summary :32/1 after 6.4 overs 
+Ball 41 - James Neesham to Manish Pandey : 4
+Summary :36/1 after 6.5 overs 
+Ball 42 - James Neesham to Manish Pandey : 1
+Summary :37/1 after 7 overs Required run rate:9.23 Required runs:120
 
-Summary :69/0 after 7 overs 
-Ball 43: Chris Lynn out at 51
-Summary :69/1 after 7.1 overs 
-Ball 44 - Mujeeb Ur Rahman to Kane Williamson : 1
-Summary :70/1 after 7.2 overs 
-Ball 45 - Mujeeb Ur Rahman to Shakib Al Hasan : 2
-Summary :72/1 after 7.3 overs 
-Ball 46 - Mujeeb Ur Rahman to Shakib Al Hasan : 1
-Summary :73/1 after 7.4 overs 
-Ball 47 - Mujeeb Ur Rahman to Kane Williamson : 1
-Summary :74/1 after 7.5 overs 
-Ball 48 - Mujeeb Ur Rahman to Shakib Al Hasan : 4
-Summary :78/1 after 8 overs Required run rate:10.08 Required runs:121
+Summary :37/1 after 7 overs 
+Ball 43 - Karn Sharma to Manish Pandey : 1
+Summary :38/1 after 7.1 overs 
+Ball 44 - Karn Sharma to Rohit Sharma : 2
+Summary :40/1 after 7.2 overs 
+Ball 45 - Karn Sharma to Rohit Sharma : 2
+Summary :42/1 after 7.3 overs 
+Ball 46 - Karn Sharma to Rohit Sharma : 3
+Summary :45/1 after 7.4 overs 
+Ball 47 - Karn Sharma to Manish Pandey : 4
+Summary :49/1 after 7.5 overs 
+Ball 48 - Karn Sharma to Manish Pandey : 1
+Summary :50/1 after 8 overs Required run rate:8.92 Required runs:107
 
-Summary :78/1 after 8 overs 
-Ball 49 - Andre Russell to Kane Williamson : 2
-Summary :80/1 after 8.1 overs 
-Ball 50 - Andre Russell to Kane Williamson : 6
-Summary :86/1 after 8.2 overs 
-Ball 51 - Andre Russell to Kane Williamson : 1
-Summary :87/1 after 8.3 overs 
-Ball 52 - Andre Russell to Shakib Al Hasan : 1
-Summary :88/1 after 8.4 overs 
-Ball 53 - Andre Russell to Kane Williamson : 1
-Summary :89/1 after 8.5 overs 
-Ball 54 - Andre Russell to Shakib Al Hasan : 0
-Summary :89/1 after 9 overs Required run rate:10.0 Required runs:110
+Summary :50/1 after 8 overs 
+Ball 49 - Ben Stokes to Manish Pandey : 3
+Summary :53/1 after 8.1 overs 
+Ball 50 - Ben Stokes to Rohit Sharma : 2
+Summary :55/1 after 8.2 overs 
+Ball 51: Rohit Sharma out at 21
+Summary :55/2 after 8.3 overs 
+Ball 52 - Ben Stokes to Jason Roy : 2
+Summary :57/2 after 8.4 overs 
+Ball 53 - Ben Stokes to Jason Roy : 1
+Summary :58/2 after 8.5 overs 
+Ball 54 - Ben Stokes to Manish Pandey : 2
+Summary :60/2 after 9 overs Required run rate:8.82 Required runs:97
 
-Summary :89/1 after 9 overs 
-Ball 55 - Harbhajan Singh to Kane Williamson : 2
-Summary :91/1 after 9.1 overs 
-Ball 56 - Harbhajan Singh to Kane Williamson : 1
-Summary :92/1 after 9.2 overs 
-Ball 57 - Harbhajan Singh to Shakib Al Hasan : 4
-Summary :96/1 after 9.3 overs 
-Ball 58 - Harbhajan Singh to Shakib Al Hasan : 1
-Summary :97/1 after 9.4 overs 
-Ball 59 - Harbhajan Singh to Kane Williamson : 1
-Summary :98/1 after 9.5 overs 
-Ball 60 - Harbhajan Singh to Shakib Al Hasan : 1
-Summary :99/1 after 10 overs Required run rate:10.0 Required runs:100
+Summary :60/2 after 9 overs 
+Ball 55 - James Neesham to Jason Roy : 0
+Summary :60/2 after 9.1 overs 
+Ball 56 - James Neesham to Jason Roy : 1
+Summary :61/2 after 9.2 overs 
+Ball 57 - James Neesham to Manish Pandey : 0
+Summary :61/2 after 9.3 overs 
+Ball 58 - James Neesham to Manish Pandey : 1
+Summary :62/2 after 9.4 overs 
+Ball 59 - James Neesham to Jason Roy : 0
+Summary :62/2 after 9.5 overs 
+Ball 60 - James Neesham to Jason Roy : 4
+Summary :66/2 after 10 overs Required run rate:9.1 Required runs:91
 
-Summary :99/1 after 10 overs 
-Ball 61 - Imran Tahir to Shakib Al Hasan : 1
-Summary :100/1 after 10.1 overs 
-Ball 62 - Imran Tahir to Kane Williamson : 2
-Summary :102/1 after 10.2 overs 
-Ball 63 - Imran Tahir to Kane Williamson : 2
-Summary :104/1 after 10.3 overs 
-Ball 64 - Imran Tahir to Kane Williamson : 2
-Summary :106/1 after 10.4 overs 
-Ball 65 - Imran Tahir to Kane Williamson : 1
-Summary :107/1 after 10.5 overs 
-Ball 66: Shakib Al Hasan out at 33
-Summary :107/2 after 11 overs Required run rate:10.22 Required runs:92
+Summary :66/2 after 10 overs 
+Ball 61 - Khaleel Ahmed to Manish Pandey : 1
+Summary :67/2 after 10.1 overs 
+Ball 62 - Khaleel Ahmed to Jason Roy : 1
+Summary :68/2 after 10.2 overs 
+Ball 63 - Khaleel Ahmed to Manish Pandey : 1
+Summary :69/2 after 10.3 overs 
+Ball 64 - Khaleel Ahmed to Jason Roy : 4
+Summary :73/2 after 10.4 overs 
+Ball 65 - Khaleel Ahmed to Jason Roy : 0
+Summary :73/2 after 10.5 overs 
+Ball 66 - Khaleel Ahmed to Jason Roy : 0
+Summary :73/2 after 11 overs Required run rate:9.33 Required runs:84
 
-Summary :107/2 after 11 overs 
-Ball 67 - Chris Morris to Kane Williamson : 4
-Summary :111/2 after 11.1 overs 
-Ball 68 - Chris Morris to Kane Williamson : 1
-Summary :112/2 after 11.2 overs 
-Ball 69 - Chris Morris to Rishab Pant : 4
-Summary :116/2 after 11.3 overs 
-Ball 70 - Chris Morris to Rishab Pant : 1
-Summary :117/2 after 11.4 overs 
-Ball 71 - Chris Morris to Kane Williamson : 4
-Summary :121/2 after 11.5 overs 
-Ball 72 - Chris Morris to Kane Williamson : 0
-Summary :121/2 after 12 overs Required run rate:9.75 Required runs:78
+Summary :73/2 after 11 overs 
+Ball 67 - Karn Sharma to Manish Pandey : 0
+Summary :73/2 after 11.1 overs 
+Ball 68 - Karn Sharma to Manish Pandey : 0
+Summary :73/2 after 11.2 overs 
+Ball 69 - Karn Sharma to Manish Pandey : 2
+Summary :75/2 after 11.3 overs 
+Ball 70 - Karn Sharma to Manish Pandey : 1
+Summary :76/2 after 11.4 overs 
+Ball 71 - Karn Sharma to Jason Roy : 1
+Summary :77/2 after 11.5 overs 
+Ball 72 - Karn Sharma to Manish Pandey : 0
+Summary :77/2 after 12 overs Required run rate:10.0 Required runs:80
 
-Summary :121/2 after 12 overs 
-Ball 73 - Harbhajan Singh to Rishab Pant : 1
-Summary :122/2 after 12.1 overs 
-Ball 74 - Harbhajan Singh to Kane Williamson : 2
-Summary :124/2 after 12.2 overs 
-Ball 75 - Harbhajan Singh to Kane Williamson : 1
-Summary :125/2 after 12.3 overs 
-Ball 76 - Harbhajan Singh to Rishab Pant : 2
-Summary :127/2 after 12.4 overs 
-Ball 77 - Harbhajan Singh to Rishab Pant : 1
-Summary :128/2 after 12.5 overs 
-Ball 78 - Harbhajan Singh to Kane Williamson : 2
-Summary :130/2 after 13 overs Required run rate:9.86 Required runs:69
+Summary :77/2 after 12 overs 
+Ball 73 - Nitish Rana to Jason Roy : 1
+Summary :78/2 after 12.1 overs 
+Ball 74 - Nitish Rana to Manish Pandey : 0
+Summary :78/2 after 12.2 overs 
+Ball 75 - Nitish Rana to Manish Pandey : 1
+Summary :79/2 after 12.3 overs 
+Ball 76 - Nitish Rana to Jason Roy : 1
+Summary :80/2 after 12.4 overs 
+Ball 77 - Nitish Rana to Manish Pandey : 1
+Summary :81/2 after 12.5 overs 
+Ball 78 - Nitish Rana to Jason Roy : 0
+Summary :81/2 after 13 overs Required run rate:10.86 Required runs:76
 
-Summary :130/2 after 13 overs 
-Ball 79 - Mujeeb Ur Rahman to Rishab Pant : 2
-Summary :132/2 after 13.1 overs 
-Ball 80 - Mujeeb Ur Rahman to Rishab Pant : 2
-Summary :134/2 after 13.2 overs 
-Ball 81 - Mujeeb Ur Rahman to Rishab Pant : 6
-Summary :140/2 after 13.3 overs 
-Ball 82 - Mujeeb Ur Rahman to Rishab Pant : 1
-Summary :141/2 after 13.4 overs 
-Ball 83 - Mujeeb Ur Rahman to Kane Williamson : 4
-Summary :145/2 after 13.5 overs 
-Ball 84: Kane Williamson out at 41
-Summary :145/3 after 14 overs Required run rate:9.0 Required runs:54
+Summary :81/2 after 13 overs 
+Ball 79 - Khaleel Ahmed to Manish Pandey : 2
+Summary :83/2 after 13.1 overs 
+Ball 80 - Khaleel Ahmed to Manish Pandey : 6
+Summary :89/2 after 13.2 overs 
+Ball 81 - Khaleel Ahmed to Manish Pandey : 2
+Summary :91/2 after 13.3 overs 
+Ball 82 - Khaleel Ahmed to Manish Pandey : 1
+Summary :92/2 after 13.4 overs 
+Ball 83 - Khaleel Ahmed to Jason Roy : 1
+Summary :93/2 after 13.5 overs 
+Ball 84 - Khaleel Ahmed to Manish Pandey : 2
+Summary :95/2 after 14 overs Required run rate:10.33 Required runs:62
 
-Summary :145/3 after 14 overs 
-Ball 85 - Imran Tahir to Rishab Pant : 1
-Summary :146/3 after 14.1 overs 
-Ball 86 - Imran Tahir to Evin Lewis : 0
-Summary :146/3 after 14.2 overs 
-Ball 87 - Imran Tahir to Evin Lewis : 1
-Summary :147/3 after 14.3 overs 
-Ball 88 - Imran Tahir to Rishab Pant : 1
-Summary :148/3 after 14.4 overs 
-Ball 89 - Imran Tahir to Evin Lewis : 0
-Summary :148/3 after 14.5 overs 
-Ball 90 - Imran Tahir to Evin Lewis : 1
-Summary :149/3 after 15 overs Required run rate:10.0 Required runs:50
+Summary :95/2 after 14 overs 
+Ball 85 - Karn Sharma to Jason Roy : 0
+Summary :95/2 after 14.1 overs 
+Ball 86 - Karn Sharma to Jason Roy : 1
+Summary :96/2 after 14.2 overs 
+Ball 87 - Karn Sharma to Manish Pandey : 2
+Summary :98/2 after 14.3 overs 
+Ball 88 - Karn Sharma to Manish Pandey : 2
+Summary :100/2 after 14.4 overs 
+Ball 89: Manish Pandey out at 41
+Summary :100/3 after 14.5 overs 
+Ball 90 - Karn Sharma to Ben Cutting : 2
+Summary :102/3 after 15 overs Required run rate:11.0 Required runs:55
 
-Summary :149/3 after 15 overs 
-Ball 91 - Chris Morris to Evin Lewis : 0
-Summary :149/3 after 15.1 overs 
-Ball 92 - Chris Morris to Evin Lewis : 2
-Summary :151/3 after 15.2 overs 
-Ball 93 - Chris Morris to Evin Lewis : 2
-Summary :153/3 after 15.3 overs 
-Ball 94 - Chris Morris to Evin Lewis : 0
-Summary :153/3 after 15.4 overs 
-Ball 95 - Chris Morris to Evin Lewis : 0
-Summary :153/3 after 15.5 overs 
-Ball 96 - Chris Morris to Evin Lewis : 2
-Summary :155/3 after 16 overs Required run rate:11.0 Required runs:44
+Summary :102/3 after 15 overs 
+Ball 91 - Lungisani Ngidi to Jason Roy : 0
+Summary :102/3 after 15.1 overs 
+Ball 92 - Lungisani Ngidi to Jason Roy : 1
+Summary :103/3 after 15.2 overs 
+Ball 93 - Lungisani Ngidi to Ben Cutting : 1
+Summary :104/3 after 15.3 overs 
+Ball 94 - Lungisani Ngidi to Jason Roy : 1
+Summary :105/3 after 15.4 overs 
+Ball 95 - Lungisani Ngidi to Ben Cutting : 0
+Summary :105/3 after 15.5 overs 
+Ball 96 - Lungisani Ngidi to Ben Cutting : 0
+Summary :105/3 after 16 overs Required run rate:13.0 Required runs:52
 
-Summary :155/3 after 16 overs 
-Ball 97 - Harbhajan Singh to Rishab Pant : 6
-Summary :161/3 after 16.1 overs 
-Ball 98 - Harbhajan Singh to Rishab Pant : 4
-Summary :165/3 after 16.2 overs 
-Ball 99 - Harbhajan Singh to Rishab Pant : 1
-Summary :166/3 after 16.3 overs 
-Ball 100 - Harbhajan Singh to Evin Lewis : 1
-Summary :167/3 after 16.4 overs 
-Ball 101: Rishab Pant out at 33
-Summary :167/4 after 16.5 overs 
-Ball 102: Manan Vohra out at 0
-Summary :167/5 after 17 overs Required run rate:10.67 Required runs:32
+Summary :105/3 after 16 overs 
+Ball 97 - Nitish Rana to Jason Roy : 1
+Summary :106/3 after 16.1 overs 
+Ball 98 - Nitish Rana to Ben Cutting : 4
+Summary :110/3 after 16.2 overs 
+Ball 99 - Nitish Rana to Ben Cutting : 1
+Summary :111/3 after 16.3 overs 
+Ball 100 - Nitish Rana to Jason Roy : 4
+Summary :115/3 after 16.4 overs 
+Ball 101 - Nitish Rana to Jason Roy : 0
+Summary :115/3 after 16.5 overs 
+Ball 102 - Nitish Rana to Jason Roy : 1
+Summary :116/3 after 17 overs Required run rate:13.67 Required runs:41
 
-Summary :167/5 after 17 overs 
-Ball 103 - Imran Tahir to Evin Lewis : 4
-Summary :171/5 after 17.1 overs 
-Ball 104 - Imran Tahir to Evin Lewis : 1
-Summary :172/5 after 17.2 overs 
-Ball 105 - Imran Tahir to Rahul Chahar : 2
-Summary :174/5 after 17.3 overs 
-Ball 106 - Imran Tahir to Rahul Chahar : 4
-Summary :178/5 after 17.4 overs 
-Ball 107 - Imran Tahir to Rahul Chahar : 4
-Summary :182/5 after 17.5 overs 
-Ball 108: Rahul Chahar out at 10
-Summary :182/6 after 18 overs Required run rate:8.5 Required runs:17
+Summary :116/3 after 17 overs 
+Ball 103: Jason Roy out at 26
+Summary :116/4 after 17.1 overs 
+Ball 104 - Lungisani Ngidi to Pat Cummins : 1
+Summary :117/4 after 17.2 overs 
+Ball 105 - Lungisani Ngidi to Ben Cutting : 2
+Summary :119/4 after 17.3 overs 
+Ball 106: Ben Cutting out at 10
+Summary :119/5 after 17.4 overs 
+Ball 107 - Lungisani Ngidi to Alex Carey : 2
+Summary :121/5 after 17.5 overs 
+Ball 108 - Lungisani Ngidi to Alex Carey : 1
+Summary :122/5 after 18 overs Required run rate:17.5 Required runs:35
 
-Summary :182/6 after 18 overs 
-Ball 109 - Chris Morris to Evin Lewis : 4
-Summary :186/6 after 18.1 overs 
-Ball 110 - Chris Morris to Evin Lewis : 1
-Summary :187/6 after 18.2 overs 
-Ball 111 - Chris Morris to Dhawal Kulkarni : 4
-Summary :191/6 after 18.3 overs 
-Ball 112 - Chris Morris to Dhawal Kulkarni : 4
-Summary :195/6 after 18.4 overs 
-Ball 113 - Chris Morris to Dhawal Kulkarni : 0
-Summary :195/6 after 18.5 overs 
-Ball 114 - Chris Morris to Dhawal Kulkarni : 2
-Summary :197/6 after 19 overs Required run rate:2.0 Required runs:2
+Summary :122/5 after 18 overs 
+Ball 109 - Nitish Rana to Alex Carey : 1
+Summary :123/5 after 18.1 overs 
+Ball 110 - Nitish Rana to Pat Cummins : 2
+Summary :125/5 after 18.2 overs 
+Ball 111 - Nitish Rana to Pat Cummins : 2
+Summary :127/5 after 18.3 overs 
+Ball 112 - Nitish Rana to Pat Cummins : 1
+Summary :128/5 after 18.4 overs 
+Ball 113 - Nitish Rana to Alex Carey : 1
+Summary :129/5 after 18.5 overs 
+Ball 114 - Nitish Rana to Pat Cummins : 0
+Summary :129/5 after 19 overs Required run rate:28.0 Required runs:28
 
-Summary :197/6 after 19 overs 
-Ball 115 - Andre Russell to Evin Lewis : 1
-Summary :198/6 after 19.1 overs 
-Ball 116 - Andre Russell to Dhawal Kulkarni : 0
-Summary :198/6 after 19.2 overs 
-Ball 117 - Andre Russell to Dhawal Kulkarni : 2
+Summary :129/5 after 19 overs 
+Ball 115 - James Neesham to Alex Carey : 2
+Summary :131/5 after 19.1 overs 
+Ball 116 - James Neesham to Alex Carey : 4
+Summary :135/5 after 19.2 overs 
+Ball 117 - James Neesham to Alex Carey : 4
+Summary :139/5 after 19.3 overs 
+Ball 118: Alex Carey out at 15
+Summary :139/6 after 19.4 overs 
+Ball 119 - James Neesham to Bhuvneshwar Kumar : 4
+Summary :143/6 after 19.5 overs 
+Ball 120 - James Neesham to Bhuvneshwar Kumar : 0
+Summary :143/6 after 20 overs 
 
-Chasing Team Won by 4 wickets
+Team batting first won by 13 runs 
