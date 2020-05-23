@@ -17,35 +17,48 @@ def out_calculator(balls,batsman,bowler):
     wickets_taken=bowler['wickets_taken']
     economy1 = bowler['economy']
     results=["out","notout"]
+
+    if balls>120:
+        wbat  = (5.5*strikerate1)/(100*average1)
+        wbowl = (5.5*economy1)/(6*bowlers_average)
     
 
-    if balls<=36:
+    elif balls<=36:
         wbat  = (2*strikerate1)/(100*average1)
         wbowl = (2*economy1)/(6*bowlers_average)
     elif balls>36 and balls<97:
         wbat  = (2.66666*strikerate1)/(100*average1)
         wbowl = (2.66666*economy1)/(6*bowlers_average)
-    else:
+    elif balls>96 and balls<121:
         wbat  = (4.66666*strikerate1)/(100*average1)
         wbowl = (4.66666*economy1)/(6*bowlers_average)
 
-    if (runs_scored/average1)<1.0:
-        out_batsmen=wbat*(runs_scored/average1)
+    if balls<121:
+        if (runs_scored/average1)<1.0:
+            out_batsmen=wbat*(runs_scored/average1)
+        else:
+            out_batsmen=wbat
+        if (runs_conceded/(bowlers_average*(wickets_taken+1)))<1.0:
+            out_bowler=wbowl*(runs_conceded/(bowlers_average*(wickets_taken+1)))
+        else:
+            out_bowler=wbowl
+    
     else:
-        out_batsmen=wbat
-    if (runs_conceded/(bowlers_average*(wickets_taken+1)))<1.0:
-        out_bowler=wbowl*(runs_conceded/(bowlers_average*(wickets_taken+1)))
-    else:
-        out_bowler=wbowl
-    rr = (2*out_batsmen + 3* out_bowler)/5
+        out_batsman = wbat*(i%6)*(0.222222)
+        out_bowler = wbowl*(i%6)*(0.25)*7.75/(economy1)
 
+
+    if balls<121:
+        rr = (2*out_batsmen + 3* out_bowler)/5
+    else :
+        rr = 1.25* min(out_batsman,out_bowler)
     if balls <=36:
         rr = rr * 1.1
     elif balls>36 and balls <=66:
         rr = rr * 0.75
     elif balls>66 and balls<=108:
         rr = rr * 0.85
-    else:
+    elif balls>108 and balls<121:
         rr = rr * 1.1
     if(rr>=1):
         rr=0.99
@@ -103,6 +116,10 @@ def boundary_calculator(balls,batsman,bowler):
         else:
             four = fours_ratio*1.3*strikerate/present_strike_rate
             six = sixes_ratio*1.3*strikerate/present_strike_rate
+    
+    elif balls>120:
+        four = fours_ratio * 1.5  * (strikerate/1.35)*(strikerate/1.35)
+        six = sixes_ratio * 1.5 * (strikerate/1.35)*(strikerate/1.35)
 
     if balls<=36:
         if(present_economy<economy):
@@ -129,9 +146,16 @@ def boundary_calculator(balls,batsman,bowler):
             four1 =  (economy/7.5)*(economy/present_economy)*(0.1875)
             six1  =  (economy/7.5)*(economy/present_economy)*(0.1)
 
-    F = (four*2 + four1*3)/5
-    S = (six*2 + six1*3)/5
+    elif balls>120:
+        four1 = (economy/7.75)*(economy/7.75) * (0.3)
+        six1  = (economy/7.75)*(economy/7.75) * (0.2)
 
+    if balls<121:
+        F = (four*2 + four1*3)/5
+        S = (six*2 + six1*3)/5
+    elif balls>120:
+        F = 0.8*max(four,four1)
+        S = 0.8*max(six,six1)
     if F+S>=1:
         FF = 0.99*(F/(F+S))
         SS = 0.99*(S/F+S)
@@ -219,14 +243,29 @@ def runs_calculator(balls,batsman,bowler):
             dot1  = 0.16
             sing1 = 0.42
             doub1 = 0.42
+    
+    elif balls > 120:
+        dot = 0.07*(1.35/strikerate)*(1.35/strikerate)
+        dot1 = 0.1*(7.75/economy)*(7.75/economy)
+
+        sing = 0.51*(strikerate/1.35)*(strikerate/1.35)
+        sing1 = 0.5*(1/((7.75/economy)*(7.75/economy)))
+
+        doub = 0.42 *(strikerate/1.35)*(strikerate/1.35)
+        doub1 = 0.4*(1/((7.75/economy)*(7.75/economy)))
 
     T = (2*dot+dot1)/3
     S = (2*sing+sing1)/3
     D = (2*doub+doub1)/3
+    if balls<121:
+        TT = 0.9916666*(T/(T+S+D))
+        SS = 0.9916666*(S/(T+S+D))
+        DD = 0.9916666*(D/(T+S+D))
+    else:
+        TT = 0.95*(T/(T+S+D))
+        SS = 0.95*(S/(T+S+D))
+        DD = 0.95*(D/(T+S+D))
 
-    TT = 0.9916666*(T/(T+S+D))
-    SS = 0.9916666*(S/(T+S+D))
-    DD = 0.9916666*(D/(T+S+D))
     distribution = [TT,SS,DD,1-(TT+SS+DD)]
 
     return choices(results,weights=distribution)[0]

@@ -4,6 +4,7 @@ import numpy as np
 from out_sim1 import out_calculator,boundary_calculator, runs_calculator, change_batsman, toss, best_bowling,notout_cal,fifty_cal
 from second_innings import chase
 import xlsxwriter
+from Super_over import superover
 
 #Batting Team
 col_list = ["PLAYERS","Batsman_avg","Batsman_strikerate","Bowler_economy","Bowler_average","4s","6s","Ratio","4s ratio","6s ratio"]
@@ -223,12 +224,20 @@ bos2 = bowl_stat2
 attributes={}
 attributes['batsmen']=[]
 attributes['bowlers']=[]
+
+attributes11={}
+attributes11['batsmen']=[]
+attributes11['bowlers']=[]
 batsman_number=0
 bowler_number=0
 fall_of_wickets = []
 attributes2={}
 attributes2['batsmen']=[]
 attributes2['bowlers']=[]
+
+attributes22={}
+attributes22['batsmen']=[]
+attributes22['bowlers']=[]
 batsman_number2=0
 bowler_number2=0
  
@@ -249,6 +258,19 @@ for row in csvData:
         attributes['batsmen'][batsman_number]['strikerate']=float(row[3])
         attributes['batsmen'][batsman_number]['4s ratio']=float(row[9])
         attributes['batsmen'][batsman_number]['6s ratio']=float(row[10])
+        attributes11['batsmen'].append({})
+        attributes11['batsmen'][batsman_number]['batting_order']=batsman_number
+        attributes11['batsmen'][batsman_number]['name']=row[1].strip(' ')
+        attributes11['batsmen'][batsman_number]['out_to']='Not Out'
+        attributes11['batsmen'][batsman_number]['runs_scored']=0
+        attributes11['batsmen'][batsman_number]['balls_faced']=0
+        attributes11['batsmen'][batsman_number]['fours']=0
+        attributes11['batsmen'][batsman_number]['sixes']=0
+        #attributes11['batsmen'][batsman_number]['ratio']=float(row[8])
+        attributes11['batsmen'][batsman_number]['average']=float(row[2])
+        attributes11['batsmen'][batsman_number]['strikerate']=float(row[3])
+        attributes11['batsmen'][batsman_number]['4s ratio']=float(row[9])
+        attributes11['batsmen'][batsman_number]['6s ratio']=float(row[10])
         #print(row[1])
         batsman_number+=1
         if float(row[4])>0 and float(row[5])>0:
@@ -260,6 +282,14 @@ for row in csvData:
             attributes2['bowlers'][bowler_number2]['wickets_taken']=0
             attributes2['bowlers'][bowler_number2]['economy']=float(row[4])
             attributes2['bowlers'][bowler_number2]['average']=float(row[5])
+            attributes22['bowlers'].append({})
+            attributes22['bowlers'][bowler_number2]['name']=row[1].strip(' ')
+            attributes22['bowlers'][bowler_number2]['balls_bowled']=0
+            attributes22['bowlers'][bowler_number2]['dots']=0
+            attributes22['bowlers'][bowler_number2]['runs_conceded']=0
+            attributes22['bowlers'][bowler_number2]['wickets_taken']=0
+            attributes22['bowlers'][bowler_number2]['economy']=float(row[4])
+            attributes22['bowlers'][bowler_number2]['average']=float(row[5])
             bowler_number2+=1
     non_header = True
 
@@ -279,6 +309,20 @@ for row in csvData2:
         attributes2['batsmen'][batsman_number2]['strikerate']=float(row[3])
         attributes2['batsmen'][batsman_number2]['4s ratio']=float(row[9])
         attributes2['batsmen'][batsman_number2]['6s ratio']=float(row[10])
+        attributes22['batsmen'].append({})
+        attributes22['batsmen'][batsman_number2]['batting_order']=batsman_number2
+        attributes22['batsmen'][batsman_number2]['name']=row[1].strip(' ')
+        attributes22['batsmen'][batsman_number2]['out_to']='Not Out'
+        attributes22['batsmen'][batsman_number2]['runs_scored']=0
+        attributes22['batsmen'][batsman_number2]['balls_faced']=0
+        attributes22['batsmen'][batsman_number2]['fours']=0
+        attributes22['batsmen'][batsman_number2]['sixes']=0
+        #attributes22['batsmen'][batsman_number2]['ratio']=float(row[8])
+        attributes22['batsmen'][batsman_number2]['average']=float(row[2])
+        attributes22['batsmen'][batsman_number2]['strikerate']=float(row[3])
+        attributes22['batsmen'][batsman_number2]['4s ratio']=float(row[9])
+        attributes22['batsmen'][batsman_number2]['6s ratio']=float(row[10])
+        
         
         #print(row[1])
         batsman_number2+=1
@@ -291,6 +335,15 @@ for row in csvData2:
             attributes['bowlers'][bowler_number]['wickets_taken']=0
             attributes['bowlers'][bowler_number]['economy']=float(row[4])
             attributes['bowlers'][bowler_number]['average']=float(row[5])
+            attributes11['bowlers'].append({})
+            attributes11['bowlers'][bowler_number]['name']=row[1].strip(' ')
+            attributes11['bowlers'][bowler_number]['balls_bowled']=0
+            attributes11['bowlers'][bowler_number]['dots']=0
+            attributes11['bowlers'][bowler_number]['runs_conceded']=0
+            attributes11['bowlers'][bowler_number]['wickets_taken']=0
+            attributes11['bowlers'][bowler_number]['economy']=float(row[4])
+            attributes11['bowlers'][bowler_number]['average']=float(row[5])
+
             bowler_number+=1
     non_header2=True
 current_batsmen=[]
@@ -338,7 +391,7 @@ while answer != '1':
         
 print('\n')
 
-for i in range(1,121):
+for i in range(1,7):
     result=out_calculator(i,attributes['batsmen'][current_batsmen_id],attributes['bowlers'][current_bowler_id])
     attributes['batsmen'][current_batsmen_id]['balls_faced']+=1
     attributes['bowlers'][current_bowler_id]['balls_bowled']+=1
@@ -502,7 +555,7 @@ f_1 = open(Report_file,'w')
 n = f_1.write(kb)
 f_1.close()
 
-chasing = chase(team_score+1,attributes2,Report_file2)
+chasing = chase(team_score+1,attributes2,Report_file2,attributes11,attributes22)
 
 bat_use_cols = ["name","out_to","runs_scored","balls_faced","fours","sixes"]
 bowl_use_cols = ["name","balls_bowled","dots","runs_conceded","wickets_taken"]
