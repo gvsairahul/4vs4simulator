@@ -51,7 +51,7 @@ def chase(target,attributes,Report_file2,A1,A2):
         
     print('\n')
 
-    for i in range(1,7):
+    for i in range(1,121):
         result=out_calculator(i,attributes['batsmen'][current_batsmen_id],attributes['bowlers'][current_bowler_id])
         attributes['batsmen'][current_batsmen_id]['balls_faced']+=1
         attributes['bowlers'][current_bowler_id]['balls_bowled']+=1
@@ -118,7 +118,7 @@ def chase(target,attributes,Report_file2,A1,A2):
             
         if i%6==0 and i!=120:
             time.sleep(4)
-            os.system('cls')
+            #os.system('cls')
             overs=int(i/6)
             print('Summary :'+str(team_score)+'/'+str(team_wickets)+' after '+str(overs)+' overs Required run rate:'+str(round(((target-team_score)/(20-overs)),2))
                     +' Required runs:'+str(target-team_score)+'\n\n'+'Current Batsmen :')

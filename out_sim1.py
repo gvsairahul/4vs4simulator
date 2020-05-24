@@ -19,7 +19,7 @@ def out_calculator(balls,batsman,bowler):
     results=["out","notout"]
 
     if balls>120:
-        wbat  = (5.5*strikerate1)/(100*average1)
+        wbat  = ((5.5*strikerate1)/(100*average1))
         wbowl = (5.5*economy1)/(6*bowlers_average)
     
 
@@ -44,14 +44,19 @@ def out_calculator(balls,batsman,bowler):
             out_bowler=wbowl
     
     else:
-        out_batsman = wbat*(i%6)*(0.222222)
-        out_bowler = wbowl*(i%6)*(0.25)*7.75/(economy1)
+        out_batsman = wbat*(6- (132-balls)%6)*(0.222222)*135/(strikerate1)
+        out_bowler = wbowl*(6- (132-balls)%6)*(0.25)*(7.75/(economy1))*(7.75/(economy1))
+    
+    # print(out_batsman)
+    # print(out_bowler)
 
 
     if balls<121:
         rr = (2*out_batsmen + 3* out_bowler)/5
-    else :
-        rr = 1.25* min(out_batsman,out_bowler)
+    elif balls>120 and balls<123 :
+        rr = 2* min(out_batsman,out_bowler)
+    else:
+        rr = min(out_batsman,out_bowler)
     if balls <=36:
         rr = rr * 1.1
     elif balls>36 and balls <=66:
@@ -63,7 +68,11 @@ def out_calculator(balls,batsman,bowler):
     if(rr>=1):
         rr=0.99
 
+    # if balls<121:
+    #     rr = 1
     distribution=[rr,1-rr]
+
+    #print(str(round(rr,2)) + ' - wicket probability\n')
     return choices(results,weights=distribution)[0]
 
 def boundary_calculator(balls,batsman,bowler):
@@ -118,8 +127,8 @@ def boundary_calculator(balls,batsman,bowler):
             six = sixes_ratio*1.3*strikerate/present_strike_rate
     
     elif balls>120:
-        four = fours_ratio * 1.5  * (strikerate/1.35)*(strikerate/1.35)
-        six = sixes_ratio * 1.5 * (strikerate/1.35)*(strikerate/1.35)
+        four = fours_ratio * 1.5  * (strikerate/1.35)*(strikerate/1.35)*(strikerate/1.35)
+        six = sixes_ratio * 1.5 * (strikerate/1.35)*(strikerate/1.35)*(strikerate/1.35)
 
     if balls<=36:
         if(present_economy<economy):
@@ -147,15 +156,15 @@ def boundary_calculator(balls,batsman,bowler):
             six1  =  (economy/7.5)*(economy/present_economy)*(0.1)
 
     elif balls>120:
-        four1 = (economy/7.75)*(economy/7.75) * (0.3)
-        six1  = (economy/7.75)*(economy/7.75) * (0.2)
+        four1 = (economy/7.75)*(economy/7.75) * (0.3) * (economy/7.75) 
+        six1  = (economy/7.75)*(economy/7.75) * (0.2) * (economy/7.75)
 
     if balls<121:
         F = (four*2 + four1*3)/5
         S = (six*2 + six1*3)/5
     elif balls>120:
-        F = 0.8*max(four,four1)
-        S = 0.8*max(six,six1)
+        F = 0.65*max(four,four1)
+        S = 0.65*max(six,six1)
     if F+S>=1:
         FF = 0.99*(F/(F+S))
         SS = 0.99*(S/F+S)
@@ -166,6 +175,7 @@ def boundary_calculator(balls,batsman,bowler):
         NN=1-(F+S)     
 
     distribution = [FF,SS,NN]
+    #print(str(round(FF,2)) + ' - 4 probability\n' + str(round(SS,2)) +  ' - 6 probablity\n' + str(round(NN,2)) + ' - runs or dots probability\n')
     return choices(results,weights=distribution)[0]
 
 
@@ -245,14 +255,14 @@ def runs_calculator(balls,batsman,bowler):
             doub1 = 0.42
     
     elif balls > 120:
-        dot = 0.07*(1.35/strikerate)*(1.35/strikerate)
-        dot1 = 0.1*(7.75/economy)*(7.75/economy)
+        dot = 0.07*(1.35/strikerate)*(1.35/strikerate)*(1.35/strikerate)
+        dot1 = 0.1*(1.29666666/economy)*(1.2966666/economy)*(1.2966666/economy)
 
-        sing = 0.51*(strikerate/1.35)*(strikerate/1.35)
-        sing1 = 0.5*(1/((7.75/economy)*(7.75/economy)))
+        sing = 0.51*(strikerate/1.35)*(strikerate/1.35)*(strikerate/1.35)
+        sing1 = 0.5*(1/((1.291666/economy)*(1.2916666/economy))) *1/((1.2966666/economy))
 
-        doub = 0.42 *(strikerate/1.35)*(strikerate/1.35)
-        doub1 = 0.4*(1/((7.75/economy)*(7.75/economy)))
+        doub = 0.42 *(strikerate/1.35)*(strikerate/1.35)*(strikerate/1.35)
+        doub1 = 0.4*(1/((1.291666/economy)*(1.291666/economy)))*1/((1.2966666/economy))
 
     T = (2*dot+dot1)/3
     S = (2*sing+sing1)/3
@@ -267,6 +277,8 @@ def runs_calculator(balls,batsman,bowler):
         DD = 0.95*(D/(T+S+D))
 
     distribution = [TT,SS,DD,1-(TT+SS+DD)]
+
+    #print(str(round(TT,2)) + ' - Dot prob \n' + str(round(SS,2)) + ' - Single prob \n' + str(round(DD,2)) + ' - Double prob \n')
 
     return choices(results,weights=distribution)[0]
 

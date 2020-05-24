@@ -6,6 +6,11 @@ from out_sim1 import out_calculator,boundary_calculator, runs_calculator, change
 import xlsxwriter
 
 def superover(attributes1,attributes2):
+    current_batsmen=[]
+    for j in range(len(attributes2['batsmen'])):
+        if attributes2['batsmen'][j]['balls_faced']==0 and (j not in current_batsmen):
+            print(str(j)+'  '+attributes2['batsmen'][j]['name'])
+
     batsman_number=0
     bowler_number=0
     fall_of_wickets = []
@@ -15,7 +20,7 @@ def superover(attributes1,attributes2):
 
     kb = ""
 
-    current_batsmen=[]
+    
     current_bowler_id=0
     team_score=0
     team_wickets=0
@@ -127,7 +132,7 @@ def superover(attributes1,attributes2):
 
         if i%6==0 and i!=120:
             time.sleep(4)
-            os.system('cls')
+            #os.system('cls')
             overs=int(i/6)
             print('Summary :'+str(team_score)+'/'+str(team_wickets)+' after '+str(int(i/6))+' overs '+'\n\n'+'Current Batsmen :')
             kb = kb + 'Summary :'+str(team_score)+'/'+str(team_wickets)+' after '+str(int(i/6))+' overs '+'\n\n'+'Current Batsmen :' + '\n'
@@ -279,7 +284,7 @@ def chase1(target,attributes,A1,A2,a,b):
             fall_of_wickets.append(team_score)
             team_wickets+=1
             attributes['bowlers'][current_bowler_id]['wickets_taken']+=1
-            if team_wickets==10:
+            if team_wickets==2:
                 print("Team is all out at "+str(team_score))
                 kb = kb + "Team is all out at "+str(team_score) + '\n'
                 break
@@ -298,7 +303,7 @@ def chase1(target,attributes,A1,A2,a,b):
             attributes['batsmen'][next_batsman_id]['batting_order']=team_wickets+2
             
         if i%6==0 and i!=120:
-            time.sleep(4)
+            #time.sleep(4)
             os.system('cls')
             overs=int(i/6)
             print('Summary :'+str(team_score)+'/'+str(team_wickets)+' after '+str(overs)+' overs Required run rate:'+str(round(((target-team_score)/(20-overs)),2))
