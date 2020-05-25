@@ -5,7 +5,7 @@ from out_sim1 import out_calculator,boundary_calculator, runs_calculator, change
 from second_innings import chase
 import xlsxwriter
 from Super_over import superover
-from helper import initialise
+from helper import initialise,write_to_stats
 from bowl_a_ball import ball_result,update_result,print_summary
 
 #Batting Team
@@ -355,166 +355,26 @@ chasing = chase(team_score+1,attributes2,Report_file2,attributes11,attributes22)
 bat_use_cols = ["name","out_to","runs_scored","balls_faced","fours","sixes"]
 bowl_use_cols = ["name","balls_bowled","dots","runs_conceded","wickets_taken"]
 
-bts11 = pd.DataFrame(attributes['batsmen'])
-bos22 = pd.DataFrame(attributes['bowlers'])
-
-
-
-bts11 = bts11[bat_use_cols]
-bos22 = bos22[bowl_use_cols]
-
-#
+bts11 = pd.DataFrame(attributes['batsmen'],columns = bat_use_cols)
+bos22 = pd.DataFrame(attributes['bowlers'],columns = bowl_use_cols)
 
 
 
 BAT1 = pd.merge(bts1,bts11,how = 'left',left_on = 'Player',right_on = 'name' )
-
 BOWL2 = pd.merge(bos2,bos22,how = 'left' , left_on = 'Player',right_on = 'name')
 
-# BAT1.to_frame()
-# BOWL2.to_frame()
-
-
-
-BAT1['Orange Cap'] = BAT1['Orange Cap'] + BAT1['runs_scored']
-
-BAT1['Balls Faced'] = BAT1['Balls Faced'] + BAT1['balls_faced']
-
-BAT1['6s'] = BAT1['6s']+ BAT1['sixes']
-
-BAT1['4s'] = BAT1['4s'] + BAT1['fours']
-
-BAT1.loc[BAT1['balls_faced'] !=0, 'Innings' ] = BAT1['Innings'] + 1
-
-BAT1.loc[BAT1['runs_scored'] >=100 , '100'] = BAT1['100']+1
-
-BAT1.loc[BAT1['Highest'] < BAT1['runs_scored'] , 'Highest'] = BAT1['runs_scored']
-
-BAT1['Not Outs'] = BAT1.apply(lambda row: notout_cal(row['Not Outs'],row['balls_faced'],row['out_to']),axis=1)
-
-BAT1['50'] = BAT1.apply(lambda row: fifty_cal(row['50'],row['runs_scored']),axis=1)
-
-
-
-
-
-BAT1=BAT1[BATTING_COLS]
-# print('BAT1')
-# print(BAT1)
-
-BOWL2['Runs conceeded'] = BOWL2['Runs conceeded'] + BOWL2['runs_conceded']
-
-BOWL2['Dots'] = BOWL2['Dots'] + BOWL2['dots']
-
-BOWL2['Purple Cap'] = BOWL2['Purple Cap'] + BOWL2['wickets_taken']
-
-BOWL2['Balls'] = BOWL2['Balls'] + BOWL2['balls_bowled']
-
-BOWL2.loc[BOWL2['balls_bowled'] !=0, 'Innings' ] = BOWL2['Innings'] + 1
-
-BOWL2.loc[BOWL2['wickets_taken'] == 4 , '4fer'] = BOWL2['4fer']+1
-
-BOWL2.loc[BOWL2['wickets_taken'] >4  , '5fer'] = BOWL2['5fer']+1
-
-BOWL2['Best Figures'] = BOWL2.apply(lambda row: best_bowling(row['Best Figures'], row['wickets_taken'] , row['runs_conceded']),axis=1)
-
-
-BOWL2 = BOWL2[BOWLING_COLS]
-# print(BOWL2)
-
-
-
-bts22 = pd.DataFrame(chasing[0]['batsmen'])
-bos11 = pd.DataFrame(chasing[0]['bowlers'])
-
-bts22 = bts22[bat_use_cols]
-bos11 = bos11[bowl_use_cols]
+bts22 = pd.DataFrame(chasing[0]['batsmen'],columns = bat_use_cols)
+bos11 = pd.DataFrame(chasing[0]['bowlers'],columns = bowl_use_cols)
 
 
 BAT2 = pd.merge(bts2,bts22,how = 'left',left_on = 'Player',right_on = 'name' )
-
 BOWL1 = pd.merge(bos1,bos11,how = 'left' , left_on = 'Player',right_on = 'name')
 
-# BAT22=pd.DataFrame(columns = BATTING_COLS)
-# BOWL11= pd.DataFrame(columns = BOWLING_COLS)
 
+BAT = pd.concat([BAT1,BAT2],axis=0)
+BOWL = pd.concat([BOWL1,BOWL2],axis=0)
 
-BAT2['Orange Cap'] = BAT2['Orange Cap'] + BAT2['runs_scored']
-
-BAT2['Balls Faced'] = BAT2['Balls Faced'] + BAT2['balls_faced']
-
-BAT2['6s'] = BAT2['6s']+ BAT2['sixes']
-
-BAT2['4s'] = BAT2['4s'] + BAT2['fours']
-
-BAT2.loc[BAT2['balls_faced'] !=0, 'Innings' ] = BAT2['Innings'] + 1
-
-#BAT2['Not Outs'] = BAT2['Not Outs'] + 1
-
-BAT2.loc[BAT2['runs_scored'] >=100 , '100'] = BAT2['100']+1
-
-#BAT2[(BAT2.runs_scored<100) & (BAT2.runs_scored>=50 )] ['50'] = BAT2['50']+1
-
-BAT2.loc[BAT2['Highest'] < BAT2['runs_scored'] , 'Highest'] = BAT2['runs_scored']
-
-BAT2['Not Outs'] = BAT2.apply(lambda row: notout_cal(row['Not Outs'],row['balls_faced'],row['out_to']),axis=1)
-
-BAT2['50'] = BAT2.apply(lambda row: fifty_cal(row['50'],row['runs_scored']),axis=1)
-
-
-
-
-
-
-
-
-BAT2=BAT2[BATTING_COLS]
-# print('BAT2')
-# print(BAT2)
-
-BOWL1['Runs conceeded'] = BOWL1['Runs conceeded'] + BOWL1['runs_conceded']
-
-BOWL1['Dots'] = BOWL1['Dots'] + BOWL1['dots']
-
-BOWL1['Purple Cap'] = BOWL1['Purple Cap'] + BOWL1['wickets_taken']
-
-BOWL1['Balls'] = BOWL1['Balls'] + BOWL1['balls_bowled']
-
-BOWL1.loc[BOWL1['balls_bowled'] !=0, 'Innings' ] = BOWL1['Innings'] + 1
-
-BOWL1.loc[BOWL1['wickets_taken'] == 4 , '4fer'] = BOWL1['4fer']+1
-
-BOWL1.loc[BOWL1['wickets_taken'] >4  , '5fer'] = BOWL1['5fer']+1
-
-BOWL1['Best Figures'] = BOWL1.apply(lambda row: best_bowling(row['Best Figures'], row['wickets_taken'] , row['runs_conceded']),axis=1)
-
-
-
-
-
-BOWL1 = BOWL1[BOWLING_COLS]
-# print(BOWL1)
-
-pdList1 = [BAT1,BAT2,bat_stat_rem]
-pdList2 = [BOWL1,BOWL2,bowl_stat_rem]
-
-
-
-Bat_final = pd.concat(pdList1)
-Bowl_final = pd.concat(pdList2)
-
-Bat_final = Bat_final[BATTING_COLS]
-Bowl_final = Bowl_final[BOWLING_COLS]
-
-Bat_final.sort_values("Orange Cap",axis=0,ascending = False,inplace = True ,kind = 'quicksort',na_position = 'last' )
-Bowl_final.sort_values("Purple Cap",axis=0,ascending = False,inplace = True ,kind = 'quicksort',na_position = 'last' )
-
-
-# print(Bat_final)
-# print(Bowl_final)
-
-Bat_final.to_csv(Batting_stats)
-Bowl_final.to_csv(Bowling_stats)
+write_to_stats(BAT,BOWL,BATTING_COLS,BOWLING_COLS,bat_stat_rem,bowl_stat_rem,Batting_stats,Bowling_stats)
 
 
 
