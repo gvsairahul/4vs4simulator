@@ -119,54 +119,28 @@ result1.to_csv(Player1)
 result2.to_csv(Player2)
 
 
-call=input("Heads or Tails:")
-toss_result=toss()
-if call==toss_result:
-    choosing=input(Player1_Name + '!! You won the toss, Will u Bat or Bowl:')
-    if choosing=='Bat':
-        csvData=csv.reader(open(Player1))
-        csvData2=csv.reader(open(Player2))
-        bat_stat1 = bat_stat[bat_stat['Owner'] == Player1_Name]
-        bat_stat2 = bat_stat[bat_stat['Owner'] == Player2_Name]
-        bowl_stat1 = bowl_stat[bowl_stat['Owner'] == Player1_Name]
-        bowl_stat2 = bowl_stat[bowl_stat['Owner'] == Player2_Name]
 
-    else:
-        csvData2=csv.reader(open(Player1))
-        csvData=csv.reader(open(Player2))
-        bat_stat1 = bat_stat[bat_stat['Owner'] == Player2_Name]
-        bat_stat2 = bat_stat[bat_stat['Owner'] == Player1_Name]
-        bowl_stat1 = bowl_stat[bowl_stat['Owner'] == Player2_Name]
-        bowl_stat2 = bowl_stat[bowl_stat['Owner'] == Player1_Name]
+toss_result=toss(Player1_Name,Player2_Name)
+choosing=input(toss_result + '!! You won the toss, Will u Bat or Bowl:')
 
-else:
-    choosing=input(Player2_Name + '!! You won the toss, Will u Bat or Bowl:')
-    if choosing=='Bat':
-        csvData2=csv.reader(open(Player1))
-        csvData=csv.reader(open(Player2))
-        bat_stat1 = bat_stat[bat_stat['Owner'] == Player2_Name]
-        bat_stat2 = bat_stat[bat_stat['Owner'] == Player1_Name]
-        bowl_stat1 = bowl_stat[bowl_stat['Owner'] == Player2_Name]
-        bowl_stat2 = bowl_stat[bowl_stat['Owner'] == Player1_Name]
+if (choosing == 'Bat' and toss_result == Player1_Name) or (choosing == 'Bowl' and toss_result == Player2_Name):
+    csvData=csv.reader(open(Player1))
+    csvData2=csv.reader(open(Player2))
+    bts1 = bat_stat[bat_stat['Owner'] == Player1_Name]
+    bts2 = bat_stat[bat_stat['Owner'] == Player2_Name]
+    bos1 = bowl_stat[bowl_stat['Owner'] == Player1_Name]
+    bos2 = bowl_stat[bowl_stat['Owner'] == Player2_Name]
 
-    else:
-        csvData=csv.reader(open(Player1))
-        csvData2=csv.reader(open(Player2))
-        bat_stat1 = bat_stat[bat_stat['Owner'] == Player1_Name]
-        bat_stat2 = bat_stat[bat_stat['Owner'] == Player2_Name]
-        bowl_stat1 = bowl_stat[bowl_stat['Owner'] == Player1_Name]  
-        bowl_stat2 = bowl_stat[bowl_stat['Owner'] == Player2_Name]
-
+elif (choosing == 'Bat' and toss_result == Player2_Name) or (choosing == 'Bowl' and toss_result == Player1_Name):
+    csvData=csv.reader(open(Player2))
+    csvData2=csv.reader(open(Player1))
+    bts1 = bat_stat[bat_stat['Owner'] == Player2_Name]
+    bts2 = bat_stat[bat_stat['Owner'] == Player1_Name]
+    bos1 = bowl_stat[bowl_stat['Owner'] == Player2_Name]
+    bos2 = bowl_stat[bowl_stat['Owner'] == Player1_Name]
     
 non_header=False
 non_header2=False
-
-bts1 = bat_stat1
-bts2 = bat_stat2
-bos1 = bowl_stat1
-bos2 = bowl_stat2
-
-
 #print(csvData2)
 attributes={}
 attributes['batsmen']=[]
@@ -375,12 +349,6 @@ BAT = pd.concat([BAT1,BAT2],axis=0)
 BOWL = pd.concat([BOWL1,BOWL2],axis=0)
 
 write_to_stats(BAT,BOWL,BATTING_COLS,BOWLING_COLS,bat_stat_rem,bowl_stat_rem,Batting_stats,Bowling_stats)
-
-
-
-
-#
-
 
 f = open(Player1, "w+")
 f.close()

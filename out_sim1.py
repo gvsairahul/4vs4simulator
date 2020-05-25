@@ -1,6 +1,6 @@
 from random import choices
-def toss():
-    results=['Heads','Tails']
+def toss(p1,p2):
+    results=[p1,p2]
     weights=[0.5,0.5]
     return choices(results,weights=weights)[0]
 
