@@ -2,10 +2,8 @@ import csv, os, time
 import pandas as pd
 import numpy as np
 from out_sim1 import out_calculator,boundary_calculator, runs_calculator, change_batsman, toss, best_bowling,notout_cal,fifty_cal
-from second_innings import chase
 import xlsxwriter
-from Super_over import superover
-import copy
+
 
 def initialise(f1,f2):
     non_header=False
@@ -116,16 +114,16 @@ def Bowler_Select(attributes,current_bowler_id) :
             lll.append(str(j))
     answer = '0' 
     while answer != '1':
-        choser=int(input("Choose the valid id of bowler from above:"))
+        choser=input("Choose the valid id of bowler from above:")
         if str(choser) not in lll or choser == '':
             answer = '2'
         else:
-            answer = input("If the bowler chosen is " + attributes['bowlers'][choser]['name'] + " Press 1: ")    
+            answer = input("If the bowler chosen is " + attributes['bowlers'][int(choser)]['name'] + " Press 1: ")    
          
 
-    return choser
+    return int(choser)
 
-def Batsman_Select(attributes,current_batsman_id,current_batsman):
+def Batsman_Select(attributes,current_batsman_id,current_batsmen,order):
     ll=[]
     for j in range(len(attributes['batsmen'])):
         if attributes['batsmen'][j]['balls_faced']==0 and (j not in current_batsmen):
@@ -134,12 +132,20 @@ def Batsman_Select(attributes,current_batsman_id,current_batsman):
     answer = '0' 
      
     while answer != '1':
-        choser=int(input("Choose the next batsman :"))
+        if order == 3:
+            choser=input("Choose the next batsman : ")
+        elif order == 1:
+            choser = input("Choose the opener on strike : ")
+        elif order == 2:
+            choser = input("Choose the opener on Non Strike : ")
         if choser not in ll or choser == '':
             answer='2'
         else:
-            answer = input("If the batsman is " + attributes['batsmen'][current_batsmen_id]['name'] + " Press 1: ")    
-    return choser
+            answer = input("If the batsman is " + attributes['batsmen'][int(choser)]['name'] + " Press 1: ")    
+    return int(choser)
+
+
+
 def print_scorecard(attributes,team_score,balls,team_wickets,fall_of_wickets):
     for i in range(len(attributes['batsmen'])):
         if attributes['batsmen'][i]['balls_faced']>0:

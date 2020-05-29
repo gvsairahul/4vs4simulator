@@ -2,10 +2,7 @@ import csv, os, time
 import pandas as pd
 import numpy as np
 from out_sim1 import out_calculator,boundary_calculator, runs_calculator, change_batsman, toss, best_bowling,notout_cal,fifty_cal
-from second_innings import chase
 import xlsxwriter
-from Super_over import superover
-
 
 def ball_result(balls,batsman,bowler):
     result = out_calculator(balls,batsman,bowler)
@@ -46,14 +43,24 @@ def update_result(result,balls,team_score,team_wickets,batsman,bowler):
 
 def print_summary(team_score,team_wickets,attributes,current_batsmen,current_batsmen_id,target,balls):
     
-    if int(target) == 0:
-        print('Score:  ' + str(team_score) + '/' + str(team_wickets) + ' after ' + str((balls/6)%20) + '.' + str(6- (132-balls)%6) + ' Overs Current run rate:'  
-        +  str(round(float(team_score*6/balls),2)) )
-    
-    elif balls != 120 and int(target) !=0:
-        print('Score:  ' + str(team_score) + '/' + str(team_wickets) + ' after ' + str((balls/6)%20) + '.' + str(6- (132-balls)%6) + ' Overs  Current run rate : '  
-        +  str(round(float(team_score*6/balls),2)) + ' Required Run rate : ' + str(round(float((target-team_score)*6/(120-balls)),2)))
-    
+    if int(target) == 1800 :
+        if balls%6 != 0:
+            print('\nScore:  ' + str(team_score) + '/' + str(team_wickets) + ' after ' + str((balls/6)%20) + '.' + str(6- (132-balls)%6) + ' Overs Current run rate:'  
+            +  str(round(float(team_score*6/balls),2)) )
+        else : 
+            print('\nScore:  ' + str(team_score) + '/' + str(team_wickets) + ' after ' + str((balls/6)%20)  + ' Overs Current run rate:'  
+            +  str(round(float(team_score*6/balls),2)) )            
+    elif balls != 120 and int(target) !=1800:
+        if balls%6 != 0:
+
+            print('\nScore:  ' + str(team_score) + '/' + str(team_wickets) + ' after ' + str((balls/6)%20) + '.' + str(6- (132-balls)%6) + ' Overs  Current run rate : '  
+            +  str(round(float(team_score*6/balls),2)) + ' Required Run rate : ' + str(round(float((target-team_score)*6/(120-balls)),2)))
+        else : 
+            print('\nScore:  ' + str(team_score) + '/' + str(team_wickets) + ' after ' + str((balls/6)%20) +  ' Overs  Current run rate : '  
+            +  str(round(float(team_score*6/balls),2)) + ' Required Run rate : ' + str(round(float((target-team_score)*6/(120-balls)),2)))
+
+        print('\nNeed ' + str(target - team_score) + ' runs to win from ' + str(120-balls) + ' Balls' )   
+
     for j in (current_batsmen):
         if j!=current_batsmen_id:
             print(attributes['batsmen'][j]['name']+"* runs:"

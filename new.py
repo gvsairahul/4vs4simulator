@@ -2,11 +2,10 @@ import csv, os, time
 import pandas as pd
 import numpy as np
 from out_sim1 import out_calculator,boundary_calculator, runs_calculator, change_batsman, toss, best_bowling,notout_cal,fifty_cal
-from second_innings import chase
 import xlsxwriter
-from Super_over import superover
 from helper import initialise,write_to_stats,Bowler_Select,print_scorecard,Batsman_Select
 from bowl_a_ball import ball_result,update_result,print_summary
+from match import Innings_run,Super_over
 
 #Batting Team
 col_list = ["PLAYERS","Batsman_avg","Batsman_strikerate","Bowler_economy","Bowler_average","4s ratio","6s ratio","Balls per innings"]
@@ -125,6 +124,8 @@ choosing=input(toss_result + '!! You won the toss, Will u Bat or Bowl:')
 
 if (choosing == 'Bat' and toss_result == Player1_Name) or (choosing == 'Bowl' and toss_result == Player2_Name):
     csvData=csv.reader(open(Player1))
+    csvData1=csv.reader(open(Player1))
+    csvData3=csv.reader(open(Player2))
     csvData2=csv.reader(open(Player2)) 
     bts1 = bat_stat[bat_stat['Owner'] == Player1_Name]
     bts2 = bat_stat[bat_stat['Owner'] == Player2_Name]
@@ -133,120 +134,56 @@ if (choosing == 'Bat' and toss_result == Player1_Name) or (choosing == 'Bowl' an
 
 elif (choosing == 'Bat' and toss_result == Player2_Name) or (choosing == 'Bowl' and toss_result == Player1_Name):
     csvData=csv.reader(open(Player2))
-    csvData2=csv.reader(open(Player1))   
+    csvData2=csv.reader(open(Player1)) 
+    csvData3=csv.reader(open(Player1))
+    csvData1=csv.reader(open(Player2))
     bts1 = bat_stat[bat_stat['Owner'] == Player2_Name]
     bts2 = bat_stat[bat_stat['Owner'] == Player1_Name]
     bos1 = bowl_stat[bowl_stat['Owner'] == Player2_Name]
     bos2 = bowl_stat[bowl_stat['Owner'] == Player1_Name]
+
+    x = Player1_Name
+    Player1_Name = Player2_Name
+    Player2_Name = x
     
-#print(csvData2)
-
-
-
 
  
 kb = ""
 
 A = initialise(csvData,csvData2)
-B = initialise(csvData2,csvData)
+B = initialise(csvData3,csvData1)
+
 
 attributes = A[0]
 attributes2 = B[0]
 
+# print(attributes)
+# print(attributes2)
+
 attributes11 = A[0]
 attributes22 = B[0]
-fall_of_wickets = []
 
+Chase = Innings_run(attributes,1800,1,121)
 
+target = Chase[1] + 1
 
-current_batsmen=[]
-current_bowler_id=0
-team_score=0
-team_wickets=0
-for j in range(len(attributes['batsmen'])):
-    if attributes['batsmen'][j]['balls_faced']==0 and (j not in current_batsmen):
-        print(str(j)+'  '+attributes['batsmen'][j]['name'])
+print("\nTarget is " + str(target) + "\n")
 
-answer = '0' 
+Chase2 = Innings_run(attributes2,target,1,121)
 
-while answer != '1':
-    
-    choser=int(input("Choose the batsman on non strike:"))
-    next_batsman_id=choser
-    current_batsmen.append(next_batsman_id)
-    current_batsmen_id=next_batsman_id
-    answer = input("If the batsman on strike is " + attributes['batsmen'][current_batsmen_id]['name'] + " Press 1:  ")    
-    if answer != '1':
-        current_batsmen.remove(current_batsmen_id)
+score_final = Chase2[1]
 
-
-for j in range(len(attributes['batsmen'])):
-    if attributes['batsmen'][j]['balls_faced']==0 and (j not in current_batsmen):
-        print(str(j)+'  '+attributes['batsmen'][j]['name'])
-answer = '0' 
-
-while answer != '1':
-    choser=int(input("Choose the batsman on  strike:"))
-    next_batsman_id=choser
-    current_batsmen.append(next_batsman_id)
-    current_batsmen_id=next_batsman_id
-    answer = input("If the batsman on non strike is " + attributes['batsmen'][current_batsmen_id]['name'] + " Press 1:  ")    
-    if answer != '1':
-        current_batsmen.remove(current_batsmen_id)
-
-for i in range(len(attributes['bowlers'])):
-    print(str(i)+' '+attributes['bowlers'][i]['name'])
-answer = '0' 
-while answer != '1':              
-    choser=int(input("Choose the id of bowler from above:"))
-    current_bowler_id=choser
-    answer = input("If the bowler chosen is " + attributes['bowlers'][current_bowler_id]['name'] + " Press 1:  ")    
-        
-print('\n')
-
-target = 0
-alll=120
-
-for i in range(1,13):
-    
-    result = ball_result(i,attributes['batsmen'][current_batsmen_id],attributes['bowlers'][current_bowler_id])
-    
-    update_result(result,i,team_score,team_wickets,attributes['batsmen'][current_batsmen_id],attributes['bowlers'][current_bowler_id])
-    
-    if result != 'out':
-        team_score += int(result)
-    
-    if str(result) == '1' or str(result) == '3':
-        current_batsmen_id=change_batsman(current_batsmen,current_batsmen_id)
-    
-    elif str(result) == 'out':
-        team_wickets+=1
-        if team_wickets==10:
-            alll = i
-            print("Team is all out at "+str(team_score))
-            #kb = kb + "Team is all out at "+str(team_score) + '\n'
-            break
-        else:
-            current_batsmen.remove(current_batsmen_id)
-            current_batsmen_id = Batsman_Select(attributes,current_batsmen_id,current_batsmen)
-            current_batsmen.append(current_batsmen_id)
-            attributes['batsmen'][current_batsmen_id]['batting_order']=team_wickets+2
-    
-    if i%6==0 and i!=120:
-        time.sleep(4)
-        #os.system('cls')
-        overs=int(i/6)
-        print_summary(team_score,team_wickets,attributes,current_batsmen,current_batsmen_id,target,i)
-        
-        
-        current_batsmen_id=change_batsman(current_batsmen,current_batsmen_id)
-
-        current_bowler_id = Bowler_Select(attributes,current_bowler_id)
-
-
-print_scorecard(attributes,team_score,alll,team_wickets,fall_of_wickets)
-  
-
+if score_final < target-1:
+    print(Player1_Name + " Won by " + str(target-score_final -1) + " runs\n" )
+elif score_final >= target:
+    print(Player2_Name + " Won by " + str(10-Chase2[2]) + " Wickets\n")
+else : 
+    print("Its a Tie!!!\n")
+    result = Super_over(attributes11,attributes22)
+    if result == 2 :
+        print("\n" + Player1_Name + " Won the Super Over\n")
+    elif result == 1:
+        print("\n" + Player2_Name + " Won the Super Over\n")
 
 
 
@@ -254,7 +191,7 @@ print_scorecard(attributes,team_score,alll,team_wickets,fall_of_wickets)
 # n = f_1.write(kb)
 # f_1.close()
 
-chasing = chase(team_score+1,attributes2,Report_file2,attributes11,attributes22)
+# chasing = chase(team_score+1,attributes2,Report_file2,attributes11,attributes22)
 
 bat_use_cols = ["name","out_to","runs_scored","balls_faced","fours","sixes"]
 bowl_use_cols = ["name","balls_bowled","dots","runs_conceded","wickets_taken"]
@@ -267,8 +204,8 @@ bos22 = pd.DataFrame(attributes['bowlers'],columns = bowl_use_cols)
 BAT1 = pd.merge(bts1,bts11,how = 'left',left_on = 'Player',right_on = 'name' )
 BOWL2 = pd.merge(bos2,bos22,how = 'left' , left_on = 'Player',right_on = 'name')
 
-bts22 = pd.DataFrame(chasing[0]['batsmen'],columns = bat_use_cols)
-bos11 = pd.DataFrame(chasing[0]['bowlers'],columns = bowl_use_cols)
+bts22 = pd.DataFrame(attributes2['batsmen'],columns = bat_use_cols)
+bos11 = pd.DataFrame(attributes2['bowlers'],columns = bowl_use_cols)
 
 
 BAT2 = pd.merge(bts2,bts22,how = 'left',left_on = 'Player',right_on = 'name' )
@@ -279,10 +216,3 @@ BAT = pd.concat([BAT1,BAT2],axis=0)
 BOWL = pd.concat([BOWL1,BOWL2],axis=0)
 
 write_to_stats(BAT,BOWL,BATTING_COLS,BOWLING_COLS,bat_stat_rem,bowl_stat_rem,Batting_stats,Bowling_stats)
-
-f = open(Player1, "w+")
-f.close()
-f=open(Player2,"w+")
-f.close()
-
-#workbook.close()
