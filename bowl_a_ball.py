@@ -31,16 +31,18 @@ def update_result(result,balls,team_runs,team_wickets,batsman,bowler):
             batsman['fours']+=1
         elif rr == 6:
             batsman['sixes']+=1
+        print("\n Ball: " + str((int(int(balls-1)/6))%20) + '.' + str(6- int((132-balls))%6) + ' - '+ bowler['name']+ " to "+ batsman['name']+' : ' + str(result) + '\n')
+   
     
     else:
         team_wickets+=1
         batsman['out_to'] = bowler['name']
         bowler['wickets_taken']+=1
         bowler['dots']+=1
-
-    print("Ball: " + str((balls/6)%20) + '.' + str(6- (132-balls)%6) + ' - '+ bowler['name']+ " to "+ batsman['name']+' : ' + str(result))
-
-
+        print("Ball: " + str((int(int(balls-1)/6))%20) + '.' + str(6- int((132-balls))%6) + ' - '+ bowler['name']+ " to "+ batsman['name']+' : ' + str(result) + ' for '+ str(batsman['runs_scored'])+'\n')
+   
+    
+    return [team_runs,team_wickets,batsman,bowler]
 def print_summary(team_runs,team_wickets,target,balls):
     if int(target) == 0:
         print('Score:  ' + str(team_runs) + '/' + str(team_wickets) ' after ' + str((balls/6)%20) + '.' + str(6- (132-balls)%6)) + ' Overs Current run rate:'  
@@ -50,6 +52,9 @@ def print_summary(team_runs,team_wickets,target,balls):
         print('Score:  ' + str(team_runs) + '/' + str(team_wickets) ' after ' + str((balls/6)%20) + '.' + str(6- (132-balls)%6)) + ' Overs  Current run rate : '  
         +  str(round(float(team_runs*6/balls),2)) + ' Required Run rate : ' + str(round(float((target-team_runs)*6/(120-balls)),2)))
     
+
+
+        
 
 
         

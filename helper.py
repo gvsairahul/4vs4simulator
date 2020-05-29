@@ -5,7 +5,7 @@ from out_sim1 import out_calculator,boundary_calculator, runs_calculator, change
 from second_innings import chase
 import xlsxwriter
 from Super_over import superover
-
+import copy
 def initialise(f1,f2,attributes):
     batsman_number=0
     bowler_number=0
@@ -88,7 +88,26 @@ def write_to_stats(BAT,BOWL,BATTING_COLS,BOWLING_COLS,Bat_rem,Bowl_rem,Bat_stats
     bat_final.to_csv(Bat_stats)
     bowl_final.to_csv(Bowl_stats)
 
-    
 
+def Bowler_Select(attributes,current_bowler_id) :
+    lll=[]
+    for j in range(len(attributes['bowlers'])):
+        if attributes['bowlers'][j]['balls_bowled']<=18 and j!=current_bowler_id:
+            overs=str(int(attributes['bowlers'][j]['balls_bowled']/6))
+            spare_balls=str(int(attributes['bowlers'][j]['balls_bowled']%6))
+            overs=overs+'.'+spare_balls
+            print(str(j)+' '+attributes['bowlers'][j]['name']+" "+overs+'-'+str(attributes['bowlers'][j]['dots'])
+            +'-'+str(attributes['bowlers'][j]['runs_conceded'])+'-'+str(attributes['bowlers'][j]['wickets_taken']))
+            lll.append(str(j))
+    answer = '0' 
+    while answer != '1':
+        choser=int(input("Choose the valid id of bowler from above:"))
+        if str(choser) not in lll:
+            answer = '2'
+        else:
+            answer = input("If the bowler chosen is " + attributes['bowlers'][choser]['name'] + " Press 1: ")    
+         
+
+    return choser
 
 
