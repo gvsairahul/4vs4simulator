@@ -1,4 +1,4 @@
-S.NO,PLAYERS,Batsman_avg,Batsman_strikerate,Bowler_economy,Bowler_average,4s,6s,Ratio,Draft2_Player_id,Draft1_Player_id,Auction1_Player_id,Auction2_Player_id,Auction3_Player_id,No of balls played,4s ratio,6s ratio,Innings bowled,Balls bowled,Balls per innnings
+S.NO,PLAYERS,Batsman_avg,Batsman_strikerate,Bowler_economy,Bowler_average,4s,6s,Ratio,Draft2_Player_id,Draft1_Player_id,Auction1_Player_id,Auction2_Player_id,Auction3_Player_id,No of balls played,4s ratio,6s ratio,Innings bowled,Balls bowled,Balls per innings
 1,Virat Kohli,37.85,131.61,8.8,92,480,190,0.4,11,5,,10,,4112,0.12,0.05,26,251,9.65
 2,Ab de Villiers,39.95,151.24,0,0,357,212,0.59,10,10,,13,,2906,0.12,0.07,0,0,0
 3,Rohit Sharma,31.6,130.82,7.95,29.33,431,194,0.45,8,2,3,,12,3744,0.12,0.05,30,332,11.07

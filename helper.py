@@ -6,10 +6,16 @@ from second_innings import chase
 import xlsxwriter
 from Super_over import superover
 import copy
-def initialise(f1,f2,attributes):
-    batsman_number=0
-    bowler_number=0
+
+def initialise(f1,f2):
     non_header=False
+    non_header2=False
+    attributes={}
+    attributes['batsmen']=[]
+    attributes['bowlers']=[]
+    batsman_number=0
+    bowler_number2=0
+
     for row in f1:
         if non_header:
             attributes['batsmen'].append({})
@@ -20,23 +26,30 @@ def initialise(f1,f2,attributes):
             attributes['batsmen'][batsman_number]['balls_faced']=0
             attributes['batsmen'][batsman_number]['fours']=0
             attributes['batsmen'][batsman_number]['sixes']=0
-            attributes['batsmen'][batsman_number]['ratio']=float(row[8])
+            attributes['batsmen'][batsman_number]['4s ratio']=float(row[6])
             attributes['batsmen'][batsman_number]['out_to']='Not Out'
+            attributes['batsmen'][batsman_number]['6s ratio'] = float(row[7])
             batsman_number+=1
-            non_header = True
-    non_header = False
+        non_header = True
+        
     for row in f2:
-        if non_header and float(row[4])>0 and float(row[5])>0:
-            attributes2['bowlers'].append({})
-            attributes2['bowlers'][bowler_number2]['name']=row[1].strip(' ')
-            attributes2['bowlers'][bowler_number2]['economy']=float(row[4])
-            attributes2['bowlers'][bowler_number2]['average']=float(row[5])
-            attributes2['bowlers'][bowler_number2]['balls_bowled']=0
-            attributes2['bowlers'][bowler_number2]['runs_conceded']=0
-            attributes2['bowlers'][bowler_number2]['wickets_taken']=0
-            attributes2['bowlers'][bowler_number2]['dots']=0
-            bowler_number2+=1
-            non_header = True
+        if non_header2:
+
+            if float(row[4])>0 and float(row[5])>0:
+                attributes['bowlers'].append({})
+                attributes['bowlers'][bowler_number2]['name']=row[1].strip(' ')
+                attributes['bowlers'][bowler_number2]['economy']=float(row[4])
+                attributes['bowlers'][bowler_number2]['average']=float(row[5])
+                attributes['bowlers'][bowler_number2]['balls_bowled']=0
+                attributes['bowlers'][bowler_number2]['runs_conceded']=0
+                attributes['bowlers'][bowler_number2]['wickets_taken']=0
+                attributes['bowlers'][bowler_number2]['dots']=0
+                attributes['bowlers'][bowler_number2]['proper_bowl'] = float(row[8])
+                bowler_number2+=1
+        non_header2=True
+
+    return [attributes]
+
 
 def write_to_stats(BAT,BOWL,BATTING_COLS,BOWLING_COLS,Bat_rem,Bowl_rem,Bat_stats,Bowl_stats):
     
@@ -48,11 +61,12 @@ def write_to_stats(BAT,BOWL,BATTING_COLS,BOWLING_COLS,Bat_rem,Bowl_rem,Bat_stats
 
     BAT['4s'] = BAT['4s'] + BAT['fours']
 
-    BAT.loc[BAT['balls_faced'] !=0, 'Innings' ] = BAT['Innings'] + 1
+    BAT['Innings'] = np.where(BAT['balls_faced'] !=0, BAT['Innings'] + 1 , BAT['Innings'])
 
-    BAT.loc[BAT['runs_scored'] >=100 , '100'] = BAT['100']+1
+    BAT['100'] = np.where(BAT['runs_scored'] >=100, BAT['100']+1 , BAT['100'])
 
-    BAT.loc[BAT['Highest'] < BAT['runs_scored'] , 'Highest'] = BAT['runs_scored']
+
+    BAT['Highest'] = np.where(BAT['Highest'] < BAT['runs_scored'] ,  BAT['runs_scored'] , BAT['Highest'])
 
     BAT['Not Outs'] = BAT.apply(lambda row: notout_cal(row['Not Outs'],row['balls_faced'],row['out_to']),axis=1)
 
@@ -68,11 +82,12 @@ def write_to_stats(BAT,BOWL,BATTING_COLS,BOWLING_COLS,Bat_rem,Bowl_rem,Bat_stats
 
     BOWL['Balls'] = BOWL['Balls'] + BOWL['balls_bowled']
 
-    BOWL.loc[BOWL['balls_bowled'] !=0, 'Innings' ] = BOWL['Innings'] + 1
+    BOWL['Innings'] = np.where(BOWL['balls_bowled'] !=0 , BOWL['Innings'] + 1,BOWL['Innings'])
 
-    BOWL.loc[BOWL['wickets_taken'] == 4 , '4fer'] = BOWL['4fer']+1
+    BOWL['4fer'] = np.where(BOWL['wickets_taken'] == 4 , BOWL['4fer'] + 1 , BOWL['4fer'])
 
-    BOWL.loc[BOWL['wickets_taken'] >4  , '5fer'] = BOWL['5fer']+1
+    BOWL['5fer'] = np.where(BOWL['wickets_taken'] >4 , BOWL['5fer']+1 , BOWL['5fer'])
+
 
     BOWL['Best Figures'] = BOWL.apply(lambda row: best_bowling(row['Best Figures'], row['wickets_taken'] , row['runs_conceded']),axis=1)
 
@@ -102,7 +117,7 @@ def Bowler_Select(attributes,current_bowler_id) :
     answer = '0' 
     while answer != '1':
         choser=int(input("Choose the valid id of bowler from above:"))
-        if str(choser) not in lll:
+        if str(choser) not in lll or choser == '':
             answer = '2'
         else:
             answer = input("If the bowler chosen is " + attributes['bowlers'][choser]['name'] + " Press 1: ")    
@@ -110,4 +125,51 @@ def Bowler_Select(attributes,current_bowler_id) :
 
     return choser
 
-
+def Batsman_Select(attributes,current_batsman_id,current_batsman):
+    ll=[]
+    for j in range(len(attributes['batsmen'])):
+        if attributes['batsmen'][j]['balls_faced']==0 and (j not in current_batsmen):
+            print(str(j)+'  '+attributes['batsmen'][j]['name'])
+            ll.append(str(j))
+    answer = '0' 
+     
+    while answer != '1':
+        choser=int(input("Choose the next batsman :"))
+        if choser not in ll or choser == '':
+            answer='2'
+        else:
+            answer = input("If the batsman is " + attributes['batsmen'][current_batsmen_id]['name'] + " Press 1: ")    
+    return choser
+def print_scorecard(attributes,team_score,balls,team_wickets,fall_of_wickets):
+    for i in range(len(attributes['batsmen'])):
+        if attributes['batsmen'][i]['balls_faced']>0:
+            attributes['batsmen'][i].pop('average', None)
+            attributes['batsmen'][i].pop('ratio', None)
+            attributes['batsmen'][i].pop('strikerate', None)
+            if str(attributes['batsmen'][i]['out_to'])!='Not Out':
+                print(attributes['batsmen'][i]['name']+' '+str(attributes['batsmen'][i]['runs_scored'])
+                    +"("+str(attributes['batsmen'][i]['balls_faced'])+") "+" Out To:"
+                    +str(attributes['batsmen'][i]['out_to'])+" 4s:"
+                    +str(attributes['batsmen'][i]['fours'])+" 6s:"
+                    +str(attributes['batsmen'][i]['sixes']))
+            else:
+                print(attributes['batsmen'][i]['name']+' '+str(attributes['batsmen'][i]['runs_scored'])
+                    +"("+str(attributes['batsmen'][i]['balls_faced'])+") "
+                    +str(attributes['batsmen'][i]['out_to'])+" 4s:"
+                    +str(attributes['batsmen'][i]['fours'])+" 6s:"
+                    +str(attributes['batsmen'][i]['sixes']))
+    print('\nFall Of Wickets\n')
+    for i in range(len(fall_of_wickets)):
+        print(str(fall_of_wickets[i])+'- '+str(i+1))
+    print('\nBowling Scorecard\n')
+    for i in range(len(attributes['bowlers'])):
+        if attributes['bowlers'][i]['balls_bowled']>0:
+            attributes['bowlers'][i].pop('economy',None)
+            attributes['bowlers'][i].pop('average',None)
+            overs=str(int(attributes['bowlers'][i]['balls_bowled']/6))
+            spare_balls=str(int(attributes['bowlers'][i]['balls_bowled']%6))
+            overs=overs+'.'+spare_balls
+            print(attributes['bowlers'][i]['name']+" "+overs+'-'+str(attributes['bowlers'][i]['dots'])
+                +'-'+str(attributes['bowlers'][i]['runs_conceded'])+'-'+str(attributes['bowlers'][i]['wickets_taken']))
+    
+    

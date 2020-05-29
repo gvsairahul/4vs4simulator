@@ -17,12 +17,12 @@ def ball_result(balls,batsman,bowler):
 
     return result
 
-def update_result(result,balls,team_runs,team_wickets,batsman,bowler):
+def update_result(result,balls,team_score,team_wickets,batsman,bowler):
     batsman['balls_faced']+=1
     bowler['balls_bowled']+=1
     if result != 'out':
         rr = int(result)
-        team_runs+=rr
+        team_score+=rr
         batsman['runs_scored']+=rr
         bowler['runs_conceded']+=rr
         if rr == 0:
@@ -39,20 +39,35 @@ def update_result(result,balls,team_runs,team_wickets,batsman,bowler):
         batsman['out_to'] = bowler['name']
         bowler['wickets_taken']+=1
         bowler['dots']+=1
-        print("Ball: " + str((int(int(balls-1)/6))%20) + '.' + str(6- int((132-balls))%6) + ' - '+ bowler['name']+ " to "+ batsman['name']+' : ' + str(result) + ' for '+ str(batsman['runs_scored'])+'\n')
+        print("\n Ball: " + str((int(int(balls-1)/6))%20) + '.' + str(6- int((132-balls))%6) + ' - '+ bowler['name']+ " to "+ batsman['name']+' : ' + str(result) + ' for '+ str(batsman['runs_scored'])+'\n')
    
     
-    return [team_runs,team_wickets,batsman,bowler]
-def print_summary(team_runs,team_wickets,target,balls):
+    return [team_score,team_wickets,batsman,bowler]
+
+def print_summary(team_score,team_wickets,attributes,current_batsmen,current_batsmen_id,target,balls):
+    
     if int(target) == 0:
-        print('Score:  ' + str(team_runs) + '/' + str(team_wickets) ' after ' + str((balls/6)%20) + '.' + str(6- (132-balls)%6)) + ' Overs Current run rate:'  
-        +  str(round(float(team_runs*6/balls),2)) )
+        print('Score:  ' + str(team_score) + '/' + str(team_wickets) + ' after ' + str((balls/6)%20) + '.' + str(6- (132-balls)%6) + ' Overs Current run rate:'  
+        +  str(round(float(team_score*6/balls),2)) )
     
     elif balls != 120 and int(target) !=0:
-        print('Score:  ' + str(team_runs) + '/' + str(team_wickets) ' after ' + str((balls/6)%20) + '.' + str(6- (132-balls)%6)) + ' Overs  Current run rate : '  
-        +  str(round(float(team_runs*6/balls),2)) + ' Required Run rate : ' + str(round(float((target-team_runs)*6/(120-balls)),2)))
+        print('Score:  ' + str(team_score) + '/' + str(team_wickets) + ' after ' + str((balls/6)%20) + '.' + str(6- (132-balls)%6) + ' Overs  Current run rate : '  
+        +  str(round(float(team_score*6/balls),2)) + ' Required Run rate : ' + str(round(float((target-team_score)*6/(120-balls)),2)))
     
-
+    for j in (current_batsmen):
+        if j!=current_batsmen_id:
+            print(attributes['batsmen'][j]['name']+"* runs:"
+            + str(attributes['batsmen'][j]['runs_scored'])+ " balls:"
+            + str(attributes['batsmen'][j]['balls_faced'])+ " fours:"
+            + str(attributes['batsmen'][j]['fours'])+ " sixes:"
+            + str(attributes['batsmen'][j]['sixes']))
+        else:
+            print(attributes['batsmen'][j]['name']+" runs:"
+            + str(attributes['batsmen'][j]['runs_scored'])+ " balls:"
+            + str(attributes['batsmen'][j]['balls_faced'])+ " fours:"
+            + str(attributes['batsmen'][j]['fours'])+ " sixes:"
+            + str(attributes['batsmen'][j]['sixes']))
+    print('\n')
 
         
 

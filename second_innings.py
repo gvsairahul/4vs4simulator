@@ -51,7 +51,7 @@ def chase(target,attributes,Report_file2,A1,A2):
         
     print('\n')
 
-    for i in range(1,121):
+    for i in range(1,13):
         result=out_calculator(i,attributes['batsmen'][current_batsmen_id],attributes['bowlers'][current_bowler_id])
         attributes['batsmen'][current_batsmen_id]['balls_faced']+=1
         attributes['bowlers'][current_bowler_id]['balls_bowled']+=1
