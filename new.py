@@ -42,8 +42,6 @@ elif str(user_name) == '6':
     Bowling_stats = '/Users/dineshkotnani/Downloads/4vs4simulator-master/Stats/Bowl_in_code.csv'
 
    
-
-
 rrr=pd.read_csv(path,dtype = str)
 # rrr1=rrr
 
@@ -158,15 +156,6 @@ Chase2 = Innings_run(attributes2,target,1,121,10)
 
 score_final = Chase2[1]
 
-
-
-
-# f_1 = open(Report_file,'w')
-# n = f_1.write(kb)
-# f_1.close()
-
-# chasing = chase(team_score+1,attributes2,Report_file2,attributes11,attributes22)
-
 bat_use_cols = ["name","out_to","runs_scored","balls_faced","fours","sixes"]
 bowl_use_cols = ["name","balls_bowled","dots","runs_conceded","wickets_taken"]
 
@@ -190,7 +179,6 @@ BAT = pd.concat([BAT1,BAT2],axis=0)
 BOWL = pd.concat([BOWL1,BOWL2],axis=0)
 
 write_to_stats(BAT,BOWL,BATTING_COLS,BOWLING_COLS,bat_stat_rem,bowl_stat_rem,Batting_stats,Bowling_stats)
-
 
 if score_final < target-1:
     print(Player1_Name + " Won by " + str(target-score_final -1) + " runs\n" )
