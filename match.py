@@ -8,7 +8,7 @@ from bowl_a_ball import ball_result,update_result,print_summary
 
 
 
-def Innings_run(attributes,target,a,b):
+def Innings_run(attributes,target,a,b,team_wickets):
     fall_of_wickets = []
     current_batsmen=[]
     current_batsmen_id = 12
@@ -68,9 +68,9 @@ def Innings_run(attributes,target,a,b):
 
 
 def Super_over(attributes1,attributes2):
-    A = Innings_run(attributes2,1800,121,127)
+    A = Innings_run(attributes1,1800,121,127,2)
 
-    B = Innings_run(attributes1,A[1] + 1,121,127)
+    B = Innings_run(attributes2,A[1] + 1,121,127,2)
 
     if A[1] > B[1]:
         return 2

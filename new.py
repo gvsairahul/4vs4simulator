@@ -126,7 +126,11 @@ if (choosing == 'Bat' and toss_result == Player1_Name) or (choosing == 'Bowl' an
     csvData=csv.reader(open(Player1))
     csvData1=csv.reader(open(Player1))
     csvData3=csv.reader(open(Player2))
-    csvData2=csv.reader(open(Player2)) 
+    csvData2=csv.reader(open(Player2))
+    csvData11=csv.reader(open(Player1))
+    csvData12=csv.reader(open(Player1))
+    csvData13=csv.reader(open(Player2))
+    csvData14=csv.reader(open(Player2)) 
     bts1 = bat_stat[bat_stat['Owner'] == Player1_Name]
     bts2 = bat_stat[bat_stat['Owner'] == Player2_Name]
     bos1 = bowl_stat[bowl_stat['Owner'] == Player1_Name]
@@ -137,6 +141,10 @@ elif (choosing == 'Bat' and toss_result == Player2_Name) or (choosing == 'Bowl' 
     csvData2=csv.reader(open(Player1)) 
     csvData3=csv.reader(open(Player1))
     csvData1=csv.reader(open(Player2))
+    csvData11=csv.reader(open(Player2))
+    csvData12=csv.reader(open(Player2))
+    csvData13=csv.reader(open(Player1))
+    csvData14=csv.reader(open(Player1)) 
     bts1 = bat_stat[bat_stat['Owner'] == Player2_Name]
     bts2 = bat_stat[bat_stat['Owner'] == Player1_Name]
     bos1 = bowl_stat[bowl_stat['Owner'] == Player2_Name]
@@ -152,6 +160,8 @@ kb = ""
 
 A = initialise(csvData,csvData2)
 B = initialise(csvData3,csvData1)
+C = initialise(csvData13,csvData11)
+D = initialise(csvData12,csvData14)
 
 
 attributes = A[0]
@@ -160,30 +170,19 @@ attributes2 = B[0]
 # print(attributes)
 # print(attributes2)
 
-attributes11 = A[0]
-attributes22 = B[0]
+attributes11 = C[0]
+attributes22 = D[0]
 
-Chase = Innings_run(attributes,1800,1,121)
+Chase = Innings_run(attributes,1800,1,121,10)
 
 target = Chase[1] + 1
 
 print("\nTarget is " + str(target) + "\n")
 
-Chase2 = Innings_run(attributes2,target,1,121)
+Chase2 = Innings_run(attributes2,target,1,121,10)
 
 score_final = Chase2[1]
 
-if score_final < target-1:
-    print(Player1_Name + " Won by " + str(target-score_final -1) + " runs\n" )
-elif score_final >= target:
-    print(Player2_Name + " Won by " + str(10-Chase2[2]) + " Wickets\n")
-else : 
-    print("Its a Tie!!!\n")
-    result = Super_over(attributes11,attributes22)
-    if result == 2 :
-        print("\n" + Player1_Name + " Won the Super Over\n")
-    elif result == 1:
-        print("\n" + Player2_Name + " Won the Super Over\n")
 
 
 
@@ -216,3 +215,16 @@ BAT = pd.concat([BAT1,BAT2],axis=0)
 BOWL = pd.concat([BOWL1,BOWL2],axis=0)
 
 write_to_stats(BAT,BOWL,BATTING_COLS,BOWLING_COLS,bat_stat_rem,bowl_stat_rem,Batting_stats,Bowling_stats)
+
+
+if score_final < target-1:
+    print(Player1_Name + " Won by " + str(target-score_final -1) + " runs\n" )
+elif score_final >= target:
+    print(Player2_Name + " Won by " + str(10-Chase2[2]) + " Wickets\n")
+else : 
+    print("Its a Tie!!!\n")
+    result = Super_over(attributes11,attributes22)
+    if result == 2 :
+        print("\n" + Player1_Name + " Won the Super Over\n")
+    elif result == 1:
+        print("\n" + Player2_Name + " Won the Super Over\n")

@@ -67,10 +67,13 @@ def out_calculator(balls,batsman,bowler):
         rr = rr * 1.1
     if(rr>=1):
         rr=0.99
+    # if balls<=120:
+    #     rr=1
 
     # if balls<121:
     #     rr = 1
     distribution=[rr,1-rr]
+
 
     #print(str(round(rr,2)) + ' - wicket probability\n')
     return choices(results,weights=distribution)[0]
