@@ -1,123 +1,40 @@
 import csv, os, time
 import pandas as pd
 import numpy as np
-from out_sim1 import out_calculator,boundary_calculator, runs_calculator, change_batsman, toss, best_bowling,notout_cal,fifty_cal
+from out_sim1 import out_calculator,boundary_calculator, runs_calculator, change_batsman, best_bowling,notout_cal,fifty_cal
 import xlsxwriter
 from helper import initialise,write_to_stats,Bowler_Select,print_scorecard,Batsman_Select
 from bowl_a_ball import ball_result,update_result,print_summary
 from match import Innings_run,Super_over
+from Pre_Match import pre_match,toss
 
 #Batting Team
-col_list = ["PLAYERS","Batsman_avg","Batsman_strikerate","Bowler_economy","Bowler_average","4s ratio","6s ratio","Balls per innings"]
+Prematch_stuff = pre_match()
 BATTING_COLS = ["Player","Owner","Innings", "Not Outs","Orange Cap","Balls Faced","Highest","50","100", "6s" , "4s"]
 BOWLING_COLS = ["Player","Owner","Innings","Balls","Dots","Runs conceeded","Purple Cap","Best Figures","4fer","5fer"]
 
-user_name = input("If Rahul press 1, If Kb press 2,If Ganesh press 3,If Kaushik press 4,If Aditya press 5,If Dinesh press 6:")
-
-source_dict = {'1':'C:\\Users\\rahul\\Desktop\\4vs4simulator\\'
-              ,'2':'C:\\Users\\KB131141191\\Desktop\\4vs4simulator\\'
-              ,'3':'C:\\Users\\Ganesh\\Desktop\\4vs4simulator\\'
-              ,'4':'C:\\Users\\biddu\\Desktop\\4vs4simulator\\'
-              ,'5':'C:\\Users\\Aditya\\Desktop\\4vs4simulator\\'
-               }
-
-
-if str(user_name) != '6':
-    path = source_dict[user_name] + 'Teams\\Master_data_sheet.csv'
-    path1 = source_dict[user_name] + 'Teams\\Player_Mapping.csv'
-    Player1 = source_dict[user_name] + 'Teams\\Data_for_simulation - Player1.csv'
-    Player2 = source_dict[user_name] + 'Teams\\Data_for_simulation - Player2.csv'
-    Report_file = source_dict[user_name] + 'Teams\\Ball2Ball_1st_innings.txt'
-    Report_file2 = source_dict[user_name] + 'Teams\\Ball2Ball_2nd_innings.txt'
-    Batting_stats = source_dict[user_name] + 'Stats\\Bat_in_code.csv'
-    Bowling_stats = source_dict[user_name] + 'Stats\\Bowl_in_code.csv'
-elif str(user_name) == '6':
-    path = '/Users/dineshkotnani/Downloads/4vs4simulator-master/Teams/Master_data_sheet.csv'
-    path1 = '/Users/dineshkotnani/Downloads/4vs4simulator-master/Teams/Player_Mapping.csv'
-    Player1 = '/Users/dineshkotnani/Downloads/4vs4simulator-master/Teams/Data_for_simulation - Player1.csv'
-    Player2 = '/Users/dineshkotnani/Downloads/4vs4simulator-master/Teams/Data_for_simulation - Player2.csv'
-    Report_file = '/Users/dineshkotnani/Downloads/4vs4simulator-master/Teams/Ball2Ball_1st_innings.txt'
-    Report_file2 = '/Users/dineshkotnani/Downloads/4vs4simulator-master/Teams/Ball2Ball_2nd_innings.txt'
-    Batting_stats = '/Users/dineshkotnani/Downloads/4vs4simulator-master/Stats/Bat_in_code.csv'
-    Bowling_stats = '/Users/dineshkotnani/Downloads/4vs4simulator-master/Stats/Bowl_in_code.csv'
-
-   
-rrr=pd.read_csv(path,dtype = str)
-# rrr1=rrr
-
-bat_stat = pd.read_csv(Batting_stats)
-bowl_stat = pd.read_csv(Bowling_stats)
-
-bat_stat = bat_stat[BATTING_COLS]
-bowl_stat = bowl_stat[BOWLING_COLS]
-
-#rrr = rrr.rename(columns={'S.NO': 'Batting_Order'})
-
-id_1 = input("Player1 id:")
-
-id_2 = input("Player2 id:")
-
-
-bb = pd.read_csv(path1,dtype=str)
-p1 = bb[bb['Player_id']==id_1]['Name']
-p2 = bb[bb['Player_id']==id_2]['Name']
-for row in p2:
-    Player2_Name = row
-
-for row in p1:
-    Player1_Name = row
-
-
-
-print('Player 1: ' + Player1_Name)
-print('Player 2: ' + Player2_Name)
-
-
-result1 = rrr[rrr['Draft2_Player_id'] == id_1]
-result2 = rrr[rrr['Draft2_Player_id'] == id_2]
-
-
-bowl_stat_rem = bowl_stat[(bowl_stat['Owner'] != Player2_Name) & (bowl_stat['Owner'] != Player1_Name)]
-
-bat_stat_rem = bat_stat[(bat_stat['Owner'] != Player2_Name) & (bat_stat['Owner'] != Player1_Name)]
-
-
-result1 = result1[col_list]
-result2 = result2[col_list]
-
-
-result1.to_csv(Player1)
-
-result2.to_csv(Player2)
-
-
+Master_list = Prematch_stuff
+bat_stat_rem ,bowl_stat_rem ,Player1_Name ,Player2_Name,bat_stat,bowl_stat,Player1,Player2,Batting_stats,Bowling_stats = [Master_list[i] for i in range(0,10)]
 
 toss_result=toss(Player1_Name,Player2_Name)
 choosing=input(toss_result + '!! You won the toss, Will u Bat or Bowl:')
 
 if (choosing == 'Bat' and toss_result == Player1_Name) or (choosing == 'Bowl' and toss_result == Player2_Name):
-    csvData=csv.reader(open(Player1))
-    csvData1=csv.reader(open(Player1))
-    csvData3=csv.reader(open(Player2))
-    csvData2=csv.reader(open(Player2))
-    csvData11=csv.reader(open(Player1))
-    csvData12=csv.reader(open(Player1))
-    csvData13=csv.reader(open(Player2))
-    csvData14=csv.reader(open(Player2)) 
+    A = initialise(Player1,Player2)
+    B = initialise(Player2,Player1)
+    C = initialise(Player1,Player2)
+    D = initialise(Player2,Player1)
     bts1 = bat_stat[bat_stat['Owner'] == Player1_Name]
     bts2 = bat_stat[bat_stat['Owner'] == Player2_Name]
     bos1 = bowl_stat[bowl_stat['Owner'] == Player1_Name]
     bos2 = bowl_stat[bowl_stat['Owner'] == Player2_Name]
 
 elif (choosing == 'Bat' and toss_result == Player2_Name) or (choosing == 'Bowl' and toss_result == Player1_Name):
-    csvData=csv.reader(open(Player2))
-    csvData2=csv.reader(open(Player1)) 
-    csvData3=csv.reader(open(Player1))
-    csvData1=csv.reader(open(Player2))
-    csvData11=csv.reader(open(Player2))
-    csvData12=csv.reader(open(Player2))
-    csvData13=csv.reader(open(Player1))
-    csvData14=csv.reader(open(Player1)) 
+    
+    B = initialise(Player1,Player2)
+    A = initialise(Player2,Player1)
+    D = initialise(Player1,Player2)
+    C = initialise(Player2,Player1)
     bts1 = bat_stat[bat_stat['Owner'] == Player2_Name]
     bts2 = bat_stat[bat_stat['Owner'] == Player1_Name]
     bos1 = bowl_stat[bowl_stat['Owner'] == Player2_Name]
@@ -128,21 +45,8 @@ elif (choosing == 'Bat' and toss_result == Player2_Name) or (choosing == 'Bowl' 
     Player2_Name = x
     
 
- 
-kb = ""
-
-A = initialise(csvData,csvData2)
-B = initialise(csvData3,csvData1)
-C = initialise(csvData13,csvData11)
-D = initialise(csvData12,csvData14)
-
-
 attributes = A[0]
 attributes2 = B[0]
-
-# print(attributes)
-# print(attributes2)
-
 attributes11 = C[0]
 attributes22 = D[0]
 

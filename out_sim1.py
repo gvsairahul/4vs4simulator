@@ -1,10 +1,6 @@
 from random import choices
 
 
-def toss(p1,p2):
-    results=[p1,p2]
-    weights=[0.5,0.5]
-    return choices(results,weights=weights)[0]
 
 def out_calculator(balls,batsman,bowler):
 
@@ -88,16 +84,13 @@ def boundary_calculator(balls,batsman,bowler):
     sixes_ratio = batsman['6s ratio']
     strikerate=batsman['strikerate']/100
     runs_conceded=bowler['runs_conceded']
-    wickets_taken=bowler['wickets_taken']
     economy = bowler['economy']
     results = ["4","6","N"]
-    weights = []
+    
     if(float(fours_ratio) == 0.0):
         fours_ratio = 0.01
     if(float(sixes_ratio == 0.0)):
         sixes_ratio = 0.005    
-    possible_cases_batsman=[]
-    possible_cases_bowler=[]
     if balls_faced!=0:
         present_strike_rate=runs_scored/balls_faced
     else:
@@ -194,7 +187,6 @@ def runs_calculator(balls,batsman,bowler):
     #ratio=batsman['ratio']
     economy=bowler['economy']/6
     results=["0","1","2","3"]
-    weights=[]
     
             
 

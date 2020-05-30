@@ -1,11 +1,13 @@
 import csv, os, time
 import pandas as pd
 import numpy as np
-from out_sim1 import out_calculator,boundary_calculator, runs_calculator, change_batsman, toss, best_bowling,notout_cal,fifty_cal
+from out_sim1 import out_calculator,boundary_calculator, runs_calculator, change_batsman, best_bowling,notout_cal,fifty_cal
 import xlsxwriter
 
 
-def initialise(f1,f2):
+def initialise(g1,g2):
+    f1 = csv.reader(open(g1))
+    f2 = csv.reader(open(g2))
     non_header=False
     non_header2=False
     attributes={}

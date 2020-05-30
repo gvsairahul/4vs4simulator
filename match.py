@@ -1,7 +1,7 @@
 import csv, os, time
 import pandas as pd
 import numpy as np
-from out_sim1 import out_calculator,boundary_calculator, runs_calculator, change_batsman, toss, best_bowling,notout_cal,fifty_cal
+from out_sim1 import out_calculator,boundary_calculator, runs_calculator, change_batsman, best_bowling,notout_cal,fifty_cal
 import xlsxwriter
 from helper import initialise,write_to_stats,Bowler_Select,print_scorecard,Batsman_Select
 from bowl_a_ball import ball_result,update_result,print_summary
@@ -38,6 +38,7 @@ def Innings_run(attributes,target,a,b,team_wickets):
     
         elif str(result) == 'out':
             team_wickets+=1
+            fall_of_wickets.append(team_score)
             if team_wickets==10:
                 alll = i
                 print("Team is all out at "+str(team_score))
