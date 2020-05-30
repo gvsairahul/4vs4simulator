@@ -82,8 +82,14 @@ def boundary_calculator(balls,batsman,bowler):
     balls_bowled=bowler['balls_bowled']
     balls_faced=batsman['balls_faced']
     sixes_ratio = batsman['6s ratio']
+    avg = batsman['average']
+
+    
     strikerate=batsman['strikerate']/100
     runs_conceded=bowler['runs_conceded']
+    out_rate = strikerate/avg
+    fours_ratio = fours_ratio*(1/(1-out_rate))
+    sixes_ratio = sixes_ratio*(1/(1-out_rate))
     economy = bowler['economy']
     results = ["4","6","N"]
     
