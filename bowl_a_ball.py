@@ -4,12 +4,12 @@ import numpy as np
 from out_sim1 import out_calculator,boundary_calculator, runs_calculator, change_batsman, best_bowling,notout_cal,fifty_cal
 import xlsxwriter
 
-def ball_result(balls,batsman,bowler):
-    result = out_calculator(balls,batsman,bowler)
+def ball_result(balls,batsman,bowler,target,team_wickets,team_score):
+    result = out_calculator(balls,batsman,bowler,target,team_wickets,team_score)
     if result == 'notout':
-        result = boundary_calculator(balls,batsman,bowler)
+        result = boundary_calculator(balls,batsman,bowler,target,team_wickets,team_score)
         if result == 'N':
-            result = runs_calculator(balls,batsman,bowler)
+            result = runs_calculator(balls,batsman,bowler,target,team_wickets,team_score)
     
 
     return result

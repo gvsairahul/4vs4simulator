@@ -1,8 +1,9 @@
 from random import choices
+import math
 
 
 
-def out_calculator(balls,batsman,bowler):
+def out_calculator(balls,batsman,bowler,target,team_wickets,team_score):
 
     # print(batsman)
            
@@ -15,7 +16,15 @@ def out_calculator(balls,batsman,bowler):
     wickets_taken=bowler['wickets_taken']
     economy1 = bowler['economy']
     results=["out","notout"]
-
+    crr = team_score*6/balls
+    if target == 1800:
+        rrr = 9
+    else:
+        if balls < 114:
+            rrr = (target-team_score)/(120-balls)
+     
+    if rrr > 15:
+        rrr = 15
     if balls>120:
         wbat  = ((5.5*strikerate1)/(100*average1))
         wbowl = (5.5*economy1)/(6*bowlers_average)
@@ -76,15 +85,23 @@ def out_calculator(balls,batsman,bowler):
     #print(str(round(rr,2)) + ' - wicket probability\n')
     return choices(results,weights=distribution)[0]
 
-def boundary_calculator(balls,batsman,bowler):
+def boundary_calculator(balls,batsman,bowler,target,team_wickets,team_score):
     runs_scored=batsman['runs_scored']
     fours_ratio = batsman['4s ratio']
     balls_bowled=bowler['balls_bowled']
     balls_faced=batsman['balls_faced']
     sixes_ratio = batsman['6s ratio']
     avg = batsman['average']
-
-    
+    crr = team_score*6/balls
+    if target == 1800:
+        rrr = 9
+    else:
+        if balls < 114:
+            rrr = (target-team_score)/(120-balls)
+    if rrr > 15:
+        rrr = 15
+    if crr < 4:
+        crr = 4
     strikerate=batsman['strikerate']/100
     runs_conceded=bowler['runs_conceded']
     out_rate = strikerate/avg
@@ -163,12 +180,21 @@ def boundary_calculator(balls,batsman,bowler):
         four1 = (economy/7.75)*(economy/7.75) * (0.3) * (economy/7.75) 
         six1  = (economy/7.75)*(economy/7.75) * (0.2) * (economy/7.75)
 
+    if target == 1800:
+        if team_wickets< balls/12 and balls<60 and team_wickets < 3:
+            four = four * math.sqrt((10-team_wickets)*9/(121-balls)) * math.sqrt(crr/rrr)
+            six = six * math.sqrt((10-team_wickets)*9/(121-balls)) * math.sqrt(crr/rrr)
+        elif balls>60 and team_wickets < 4:
+            four = four * math.sqrt((10-team_wickets)*12/(121-balls)) * math.sqrt(crr/rrr)
+            six = six * math.sqrt((10-team_wickets)*12/(121-balls)) * math.sqrt(crr/rrr)
+        
     if balls<121:
         F = (four*2 + four1*3)/5
         S = (six*2 + six1*3)/5
     elif balls>120:
         F = 0.65*max(four,four1)
         S = 0.65*max(six,six1)
+    
     if F+S>=1:
         FF = 0.99*(F/(F+S))
         SS = 0.99*(S/F+S)
@@ -184,7 +210,7 @@ def boundary_calculator(balls,batsman,bowler):
 
 
 
-def runs_calculator(balls,batsman,bowler):
+def runs_calculator(balls,batsman,bowler,target,team_wickets,team_score):
     runs_scored=batsman['runs_scored']
     balls_faced=batsman['balls_faced']
     strikerate=batsman['strikerate']/100
@@ -193,7 +219,15 @@ def runs_calculator(balls,batsman,bowler):
     #ratio=batsman['ratio']
     economy=bowler['economy']/6
     results=["0","1","2","3"]
-    
+    crr = team_score*6/balls
+    if target == 1800:
+        rrr = 9
+    else:
+        if balls < 114:
+            rrr = (target-team_score)/(120-balls)
+     
+    if rrr>15:
+        rrr=15
             
 
     if balls_faced!=0:

@@ -26,7 +26,7 @@ def Innings_run(attributes,target,a,b,team_wickets):
 
     for i in range(a,b):
     
-        result = ball_result(i,attributes['batsmen'][current_batsmen_id],attributes['bowlers'][current_bowler_id])
+        result = ball_result(i,attributes['batsmen'][current_batsmen_id],attributes['bowlers'][current_bowler_id],target,team_wickets,team_score)
     
         update_result(result,i,team_score,team_wickets,attributes['batsmen'][current_batsmen_id],attributes['bowlers'][current_bowler_id])
     
@@ -51,16 +51,16 @@ def Innings_run(attributes,target,a,b,team_wickets):
                 attributes['batsmen'][current_batsmen_id]['batting_order']=team_wickets+2
         if team_score >= target:
             break
-        if i%6==0 and i!=b-1:
+        if i%6==0 :
             #time.sleep(4)
             #os.system('cls')
-            overs=int(i/6)
+            
             print_summary(team_score,team_wickets,attributes,current_batsmen,current_batsmen_id,target,i)
         
-        
-            current_batsmen_id=change_batsman(current_batsmen,current_batsmen_id)
+            if i!=b-1:
+                current_batsmen_id=change_batsman(current_batsmen,current_batsmen_id)
 
-            current_bowler_id = Bowler_Select(attributes,current_bowler_id)
+                current_bowler_id = Bowler_Select(attributes,current_bowler_id)
 
 
     print_scorecard(attributes,team_score,alll,team_wickets,fall_of_wickets)
