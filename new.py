@@ -5,7 +5,7 @@ from out_sim1 import out_calculator,boundary_calculator, runs_calculator, change
 import xlsxwriter
 from helper import initialise,write_to_stats,Bowler_Select,print_scorecard,Batsman_Select
 from bowl_a_ball import ball_result,update_result,print_summary
-from match import Innings_run,Super_over
+from match import Innings_run,Innings_run_chase,Super_over
 from Pre_Match import pre_match,toss
 
 #Batting Team
@@ -56,7 +56,7 @@ target = Chase[1] + 1
 
 print("\nTarget is " + str(target) + "\n")
 
-Chase2 = Innings_run(attributes2,target,1,121,10)
+Chase2 = Innings_run_chase(attributes2,target,1,121,10)
 
 score_final = Chase2[1]
 

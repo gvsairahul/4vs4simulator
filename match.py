@@ -80,3 +80,61 @@ def Super_over(attributes1,attributes2):
     else : 
         return Super_over(attributes2,attributes1)
 
+def Innings_run_chase(attributes,target,a,b,team_wickets):
+    fall_of_wickets = []
+    current_batsmen=[]
+    current_batsmen_id = 12
+    current_bowler_id=12
+    team_score=0
+    team_wickets=0
+    current_batsmen_id = Batsman_Select(attributes,current_batsmen_id,current_batsmen,1)
+    current_batsmen.append(current_batsmen_id)
+    attributes['batsmen'][current_batsmen_id]['batting_order'] = 1
+    next_batsmen_id = Batsman_Select(attributes,current_batsmen_id,current_batsmen,2)
+    current_batsmen.append(next_batsmen_id)
+    attributes['batsmen'][current_batsmen_id]['batting_order'] = 2
+    current_bowler_id = Bowler_Select(attributes,current_bowler_id)
+    alll=120
+
+    for i in range(a,b):
+    
+        result = ball_result(i,attributes['batsmen'][current_batsmen_id],attributes['bowlers'][current_bowler_id],target,team_wickets,team_score)
+    
+        update_result(result,i,team_score,team_wickets,attributes['batsmen'][current_batsmen_id],attributes['bowlers'][current_bowler_id])
+    
+        if result != 'out':
+            team_score += int(result)
+    
+        if str(result) == '1' or str(result) == '3':
+            current_batsmen_id=change_batsman(current_batsmen,current_batsmen_id)
+    
+        elif str(result) == 'out':
+            team_wickets+=1
+            fall_of_wickets.append(team_score)
+            if team_wickets==10:
+                alll = i
+                print("Team is all out at "+str(team_score))
+            #kb = kb + "Team is all out at "+str(team_score) + '\n'
+                break
+            elif team_wickets != 10 and i != b-1:
+                current_batsmen.remove(current_batsmen_id)
+                current_batsmen_id = Batsman_Select(attributes,current_batsmen_id,current_batsmen,3)
+                current_batsmen.append(current_batsmen_id)
+                attributes['batsmen'][current_batsmen_id]['batting_order']=team_wickets+2
+        if team_score >= target:
+            break
+        if i%6==0 :
+            #time.sleep(4)
+            #os.system('cls')
+            
+            print_summary(team_score,team_wickets,attributes,current_batsmen,current_batsmen_id,target,i)
+        
+            if i!=b-1:
+                current_batsmen_id=change_batsman(current_batsmen,current_batsmen_id)
+
+                current_bowler_id = Bowler_Select(attributes,current_bowler_id)
+
+
+    print_scorecard(attributes,team_score,alll,team_wickets,fall_of_wickets)
+
+    return [attributes,team_score,team_wickets]
