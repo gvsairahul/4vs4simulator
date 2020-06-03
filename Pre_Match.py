@@ -5,7 +5,7 @@ from random import choices
 
 
 def pre_match():
-    col_list = ["PLAYERS","Batsman_avg","Batsman_strikerate","Bowler_economy","Bowler_average","4s ratio","6s ratio","Balls per innings"]
+    col_list = ["PLAYERS","Batsman_avg","Batsman_strikerate","Bowler_economy","Bowler_average","4s ratio","6s ratio","Balls per innings","Bowler Style"]
     BATTING_COLS = ["Player","Owner","Innings", "Not Outs","Orange Cap","Balls Faced","Highest","50","100", "6s" , "4s"]
     BOWLING_COLS = ["Player","Owner","Innings","Balls","Dots","Runs conceeded","Purple Cap","Best Figures","4fer","5fer"]
 
@@ -65,8 +65,8 @@ def pre_match():
     print('Player 2: ' + Player2_Name)
 
 
-    result1 = rrr[rrr['Draft2_Player_id'] == id_1]
-    result2 = rrr[rrr['Draft2_Player_id'] == id_2]
+    result1 = rrr[rrr['Draft3_Player_id'] == id_1]
+    result2 = rrr[rrr['Draft3_Player_id'] == id_2]
 
 
     bowl_stat_rem = bowl_stat[(bowl_stat['Owner'] != Player2_Name) & (bowl_stat['Owner'] != Player1_Name)]

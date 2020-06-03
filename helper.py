@@ -45,6 +45,7 @@ def initialise(g1,g2):
                 attributes['bowlers'][bowler_number2]['wickets_taken']=0
                 attributes['bowlers'][bowler_number2]['dots']=0
                 attributes['bowlers'][bowler_number2]['proper_bowl'] = float(row[8])
+                attributes['bowlers'][bowler_number2]['Bowler_type'] = row[9].strip(' ')
                 bowler_number2+=1
         non_header2=True
 
