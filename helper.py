@@ -29,6 +29,7 @@ def initialise(g1,g2):
             attributes['batsmen'][batsman_number]['4s ratio']=float(row[6])
             attributes['batsmen'][batsman_number]['out_to']='Not Out'
             attributes['batsmen'][batsman_number]['6s ratio'] = float(row[7])
+            attributes['batsmen'][batsman_number]['batting_order'] = 12
             batsman_number+=1
         non_header = True
         
@@ -44,7 +45,7 @@ def initialise(g1,g2):
                 attributes['bowlers'][bowler_number2]['runs_conceded']=0
                 attributes['bowlers'][bowler_number2]['wickets_taken']=0
                 attributes['bowlers'][bowler_number2]['dots']=0
-                attributes['bowlers'][bowler_number2]['proper_bowl'] = float(row[8])
+                attributes['bowlers'][bowler_number2]['prop_bowl'] = float(row[8])
                 attributes['bowlers'][bowler_number2]['Bowler_type'] = row[9].strip(' ')
                 bowler_number2+=1
         non_header2=True
@@ -150,23 +151,60 @@ def Batsman_Select(attributes,current_batsman_id,current_batsmen,order):
 
 
 def print_scorecard(attributes,team_score,balls,team_wickets,fall_of_wickets):
+    ll = []
     for i in range(len(attributes['batsmen'])):
-        if attributes['batsmen'][i]['balls_faced']>0:
-            attributes['batsmen'][i].pop('average', None)
-            attributes['batsmen'][i].pop('ratio', None)
-            attributes['batsmen'][i].pop('strikerate', None)
-            if str(attributes['batsmen'][i]['out_to'])!='Not Out':
-                print(attributes['batsmen'][i]['name']+' '+str(attributes['batsmen'][i]['runs_scored'])
-                    +"("+str(attributes['batsmen'][i]['balls_faced'])+") "+" Out To:"
-                    +str(attributes['batsmen'][i]['out_to'])+" 4s:"
-                    +str(attributes['batsmen'][i]['fours'])+" 6s:"
-                    +str(attributes['batsmen'][i]['sixes']))
-            else:
-                print(attributes['batsmen'][i]['name']+' '+str(attributes['batsmen'][i]['runs_scored'])
-                    +"("+str(attributes['batsmen'][i]['balls_faced'])+") "
-                    +str(attributes['batsmen'][i]['out_to'])+" 4s:"
-                    +str(attributes['batsmen'][i]['fours'])+" 6s:"
-                    +str(attributes['batsmen'][i]['sixes']))
+        if attributes['batsmen'][i]['balls_faced'] > 0:
+            ll.append(attributes['batsmen'][i]['batting_order'])
+    ll.sort()
+    for k in ll:
+        for i in range(len(attributes['batsmen'])):
+            if attributes['batsmen'][i]['balls_faced']>0:
+                attributes['batsmen'][i].pop('average', None)
+                attributes['batsmen'][i].pop('ratio', None)
+                attributes['batsmen'][i].pop('strikerate', None)
+                if str(attributes['batsmen'][i]['out_to'])!='Not Out' and attributes['batsmen'][i]['batting_order'] ==k:
+                    str1 = attributes['batsmen'][i]['name']
+                    str2 = "Out To:" +str(attributes['batsmen'][i]['out_to'])
+                    str3 = str(attributes['batsmen'][i]['runs_scored'])+"("+str(attributes['batsmen'][i]['balls_faced'])+") "
+                    str6 = "4s:"+str(attributes['batsmen'][i]['fours'])+" 6s:"+str(attributes['batsmen'][i]['sixes'])
+                    str7 = ""
+                    str4 = ""
+                    str5 = ""
+                    l1 = len(str1)
+                    l2 = len(str2)
+                    l3 =len(str3)
+
+                    for i in range(1,25-l1):
+                        str4 = str4 + " "
+                    for i in range(1,32-l2):
+                        str5 = str5 + " "
+                    for i in range(1,10-l3):
+                        str7 = str7+ " "
+                    print(str1+str4+str2+str5+str3+str7+str6)
+                
+                elif str(attributes['batsmen'][i]['out_to']) == 'Not Out' and attributes['batsmen'][i]['batting_order'] ==k:
+                    str1 = attributes['batsmen'][i]['name']
+                    str2 = str(attributes['batsmen'][i]['out_to'])
+                    str3 = str(attributes['batsmen'][i]['runs_scored'])+"("+str(attributes['batsmen'][i]['balls_faced'])+") " 
+                    str6 = "4s:"+str(attributes['batsmen'][i]['fours'])+" 6s:"+str(attributes['batsmen'][i]['sixes'])
+                    l1 = len(str1)
+                    l2 = len(str2)
+                    l3 = len(str3)
+                    str4 = ""
+                    str5 = ""
+                    str7 = ""
+                    for i in range(1,25-l1):
+                        str4 = str4 + " "
+                    for i in range(1,32-l2):
+                        str5 = str5 + " "
+                    for i in range(1,10-l3):
+                        str7 = str7 + " "
+                    print(str1+str4+str2+str5+str3+str7+str6)
+    if balls%6 == 0:
+        print('\nScore after ' + str(balls/6) + ' Overs : ' + str(team_score) + '/' + str(team_wickets))
+    else:
+        print('\nScore after ' + str(int(balls/6)) +'.' +str(int(balls%6)) + ' Overs : ' + str(team_score) + '/' + str(team_wickets))
+    
     print('\nFall Of Wickets\n')
     for i in range(len(fall_of_wickets)):
         print(str(fall_of_wickets[i])+'- '+str(i+1))
@@ -178,7 +216,12 @@ def print_scorecard(attributes,team_score,balls,team_wickets,fall_of_wickets):
             overs=str(int(attributes['bowlers'][i]['balls_bowled']/6))
             spare_balls=str(int(attributes['bowlers'][i]['balls_bowled']%6))
             overs=overs+'.'+spare_balls
-            print(attributes['bowlers'][i]['name']+" "+overs+'-'+str(attributes['bowlers'][i]['dots'])
-                +'-'+str(attributes['bowlers'][i]['runs_conceded'])+'-'+str(attributes['bowlers'][i]['wickets_taken']))
-    
+            str1 = attributes['bowlers'][i]['name']
+            str2 = overs+'-'+str(attributes['bowlers'][i]['dots'])+'-'+str(attributes['bowlers'][i]['runs_conceded'])+'-'+str(attributes['bowlers'][i]['wickets_taken'])
+
+            str3 =""
+
+            for i in range(1,25 -len(str1)):
+                str3 = str3 + " "
+            print(str1+str3+str2)
     

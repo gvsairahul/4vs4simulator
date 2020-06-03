@@ -179,6 +179,9 @@ def boundary_calculator(balls,batsman,bowler,target,team_wickets,team_score):
         F = 0.65*max(four,four1)
         S = 0.65*max(six,six1)
     
+    F=1.15*F
+    S = 1.15*S
+    
     if F+S>=1:
         FF = 0.99*(F/(F+S))
         SS = 0.99*(S/F+S)
@@ -204,15 +207,15 @@ def runs_calculator(balls,batsman,bowler,target,team_wickets,team_score):
     #ratio=batsman['ratio']
     economy=bowler['economy']/6
     results=["0","1","2","3"]
-    crr = team_score*6/balls
-    if target == 1800:
-        rrr = 9
-    else:
-        if balls < 114:
-            rrr = (target-team_score)/(120-balls)
+    # crr = team_score*6/balls
+    # if target == 1800:
+    #     rrr = 9
+    # else:
+    #     if balls < 114:
+    #         rrr = (target-team_score)/(120-balls)
      
-    if rrr>15:
-        rrr=15
+    # if rrr>15:
+    #     rrr=15
             
 
     if balls_faced!=0:
@@ -298,6 +301,7 @@ def runs_calculator(balls,batsman,bowler,target,team_wickets,team_score):
         SS = 0.95*(S/(T+S+D))
         DD = 0.95*(D/(T+S+D))
 
+    TT =1.15 * TT
     distribution = [TT,SS,DD,1-(TT+SS+DD)]
 
     #print(str(round(TT,2)) + ' - Dot prob \n' + str(round(SS,2)) + ' - Single prob \n' + str(round(DD,2)) + ' - Double prob \n')

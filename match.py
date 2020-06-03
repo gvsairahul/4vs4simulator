@@ -20,7 +20,7 @@ def Innings_run(attributes,target,a,b,team_wickets):
     attributes['batsmen'][current_batsmen_id]['batting_order'] = 1
     next_batsmen_id = Batsman_Select(attributes,current_batsmen_id,current_batsmen,2)
     current_batsmen.append(next_batsmen_id)
-    attributes['batsmen'][current_batsmen_id]['batting_order'] = 2
+    attributes['batsmen'][next_batsmen_id]['batting_order'] = 2
     current_bowler_id = Bowler_Select(attributes,current_bowler_id)
     alll=120
 
@@ -92,7 +92,7 @@ def Innings_run_chase(attributes,target,a,b,team_wickets):
     attributes['batsmen'][current_batsmen_id]['batting_order'] = 1
     next_batsmen_id = Batsman_Select(attributes,current_batsmen_id,current_batsmen,2)
     current_batsmen.append(next_batsmen_id)
-    attributes['batsmen'][current_batsmen_id]['batting_order'] = 2
+    attributes['batsmen'][next_batsmen_id]['batting_order'] = 2
     current_bowler_id = Bowler_Select(attributes,current_bowler_id)
     alll=120
 
@@ -122,6 +122,7 @@ def Innings_run_chase(attributes,target,a,b,team_wickets):
                 current_batsmen.append(current_batsmen_id)
                 attributes['batsmen'][current_batsmen_id]['batting_order']=team_wickets+2
         if team_score >= target:
+            alll = i
             break
         if i%6==0 :
             #time.sleep(4)
