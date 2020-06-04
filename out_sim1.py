@@ -45,7 +45,7 @@ def out_calculator(balls,batsman,bowler,target,team_wickets,team_score):
         else:
             out_bowler=wbowl
     
-    else:
+    elif balls>120:
         out_batsman = wbat*(6- (132-balls)%6)*(0.222222)*135/(strikerate1)
         out_bowler = wbowl*(6- (132-balls)%6)*(0.25)*(7.75/(economy1))*(7.75/(economy1))
     
@@ -63,7 +63,7 @@ def out_calculator(balls,batsman,bowler,target,team_wickets,team_score):
         rr = (2*out_batsman + 3* out_bowler)/5
     elif balls>120 and balls<123 :
         rr = 2* min(out_batsman,out_bowler)
-    else:
+    elif balls>122:
         rr = min(out_batsman,out_bowler)
     if balls <=36:
         rr = rr * 1.1
@@ -112,7 +112,8 @@ def boundary_calculator(balls,batsman,bowler,target,team_wickets,team_score):
         present_economy=runs_conceded/balls_bowled
     else:
         present_economy=economy
-    
+    if present_economy<6:
+        present_economy=6
     if balls<=36:
         if(present_strike_rate<strikerate):
             four = fours_ratio*(1.05)
@@ -163,12 +164,9 @@ def boundary_calculator(balls,batsman,bowler,target,team_wickets,team_score):
     
     
     elif balls>96 and balls<121:
-        if(present_economy<economy):
-            four1 =  (economy/7.5)*(0.1875)
-            six1  =  (economy/7.5)*(0.1)
-        else:
-            four1 =  (economy/7.5)*(economy/present_economy)*(0.1875)
-            six1  =  (economy/7.5)*(economy/present_economy)*(0.1)
+
+            four1 =  (economy/7.75)*(economy/present_economy)*(0.1875) *(economy/7.75)
+            six1  =  (economy/7.75)*(economy/present_economy)*(0.1)*(economy/7.75)
 
     elif balls>120:
         four1 = (economy/7.75)*(economy/7.75) * (0.3) * (economy/7.75) 
@@ -184,7 +182,7 @@ def boundary_calculator(balls,batsman,bowler,target,team_wickets,team_score):
         F = 0.55*max(four,four1)
         S = 0.55*max(six,six1)
     
-    if balls < 90 and prop_bowler < 13 and balls_bowled > 12 :
+    if balls < 90 and prop_bowler < 13 and balls_bowled > 6 :
         four1 = four1* math.sqrt(13/prop_bowler)
         six1 = six * math.sqrt(13/prop_bowler)
 
