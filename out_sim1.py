@@ -16,6 +16,8 @@ def out_calculator(balls,batsman,bowler,target,team_wickets,team_score):
     wickets_taken=bowler['wickets_taken']
     economy1 = bowler['economy']
     results=["out","notout"]
+    out_rate_1 = average1*100/strikerate1
+    out_rate_2 = bowlers_average*6/economy1
     prop_bowler = bowler['prop_bowl']
 
     
@@ -36,7 +38,7 @@ def out_calculator(balls,batsman,bowler,target,team_wickets,team_score):
         wbowl = (4.66666*economy1)/(6*bowlers_average)
 
     if balls<121:
-        if (runs_scored/average1)<1.0:
+        if (runs_scored/average1)>1.0:
             out_batsman=wbat*(runs_scored/average1)
         else:
             out_batsman=wbat
@@ -59,12 +61,8 @@ def out_calculator(balls,batsman,bowler,target,team_wickets,team_score):
     if prop_bowler < 16:
         out_bowler = out_bowler * math.sqrt(prop_bowler/16) * math.sqrt(math.sqrt(prop_bowler/16))
     
-    if balls<121:
-        rr = (2*out_batsman + 3* out_bowler)/5
-    elif balls>120 and balls<123 :
-        rr = 2* min(out_batsman,out_bowler)
-    elif balls>122:
-        rr = min(out_batsman,out_bowler)
+    rr = correlate_wkt(out_batsman,out_bowler,balls,out_rate_1,out_rate_2,prop_bowler)
+
     if balls <=36:
         rr = rr * 1.1
     elif balls>36 and balls <=66:
@@ -89,6 +87,7 @@ def boundary_calculator(balls,batsman,bowler,target,team_wickets,team_score):
     balls_faced=batsman['balls_faced']
     sixes_ratio = batsman['6s ratio']
     avg = batsman['average']
+    avg1 = bowler['average']
     prop_bowler = bowler['prop_bowl']
     strikerate=batsman['strikerate']/100
     runs_conceded=bowler['runs_conceded']
@@ -175,9 +174,36 @@ def boundary_calculator(balls,batsman,bowler,target,team_wickets,team_score):
     if balls > 90 and prop_bowler < 16:
         four1 = four1 * math.sqrt(math.sqrt(16/prop_bowler))
         six1 = six1 * math.sqrt(math.sqrt(16/prop_bowler))
-    if balls<121:
+    
+    best_bowler = prop_bowler*((6/economy) +(20/avg1) + (120/(avg1*economy)))/16
+    if best_bowler <0.5:
+        best_bowler = 0.5
+    if balls>36 and balls<97 and economy <11:
+        four1 = four1/(3-economy/4)
+        six1  = six1/(3-economy/4)
+    elif balls > 36 and balls < 97 and economy >=11 : 
+        four1 = 2.25*four1
+        six1 = 2.25*six1
+    elif balls<37 and economy <9:
+        four1 = four1/(3-economy/3.5)
+        six1 = six1/(3-economy/3.5)
+    elif balls<37 and economy > 9:
+        four1 = four1*(2.33333)
+    
+    elif balls>96 :
+        four1 = four1*2.9/best_bowler
+        six1 =  six1*2.9/best_bowler
+
+
+
+    
+
+    if balls<97:
         F = (four*2 + four1*3)/5
         S = (six*2 + six1*3)/5
+    elif balls>96:
+        F = 2*four*four1/(four+four1)
+        S = 2*six*six1/(six+six1)
     elif balls>120:
         F = 0.55*max(four,four1)
         S = 0.55*max(six,six1)
@@ -200,6 +226,7 @@ def boundary_calculator(balls,batsman,bowler,target,team_wickets,team_score):
         NN=1-(F+S)     
 
     
+
     distribution = [FF,SS,NN]
     #print(str(round(FF,2)) + ' - 4 probability\n' + str(round(SS,2)) +  ' - 6 probablity\n' + str(round(NN,2)) + ' - runs or dots probability\n')
     return choices(results,weights=distribution)[0]
@@ -364,3 +391,63 @@ def fifty_cal(a,b):
         return a+1
     else:
         return a
+
+
+def correlate_wkt(x,y,balls,a,b,c):
+    if c<16 and c>=12 and x<y:
+        return x+ y*(math.sqrt(c/12)-1)
+    elif c<16 and c>=12 and x>=y:
+        return y+x*(c/12 - 1)
+    
+    elif c<12:
+        if x > math.sqrt(y):
+            return x-math.sqrt(y)
+        else:
+            return 0.01
+    else:
+        if balls < 36:
+            if a > 19:
+                if b<=16:
+                    return 2*x*y/(x+y)
+                elif b > 16 and b < 26:
+                    return 1.85*x*y/(x+y)
+                else:
+                    return 1.5*x*y/(x+y)
+            else :
+                if b<=16:
+                    return 2.25*x*y/(x+y)
+                elif b > 16 and b < 26:
+                    return 2*x*y/(x+y)
+                else :
+                    return 1.75*x*y/(x+y)
+        elif balls>=36 and balls < 84:
+            if a > 16:
+                if b<=16:
+                    return 2*x*y/(x+y)
+                elif b > 16 and b < 26:
+                    return 1.85*x*y/(x+y)
+                else:
+                    return 1.5*x*y/(x+y)
+            else :
+                if b<=16:
+                    return 2.25*x*y/(x+y)
+                elif b > 16 and b < 26:
+                    return 2*x*y/(x+y)
+                else :
+                    return 1.75*x*y/(x+y)
+        else : 
+            if a > 13:
+                if b<=16:
+                    return 2*x*y/(x+y)
+                elif b > 16 and b < 26:
+                    return 1.85*x*y/(x+y)
+                else:
+                    return 1.5*x*y/(x+y)
+            else :
+                if b<=16:
+                    return 2.25*x*y/(x+y)
+                elif b > 16 and b < 26:
+                    return 2*x*y/(x+y)
+                else :
+                    return 1.75*x*y/(x+y)    
+
