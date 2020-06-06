@@ -7,7 +7,7 @@
 4,Ishan Kishan,Girish,2,1,69,45,45,0,0,2,7
 10,Faf du Plessis,Kaushik,1,0,65,40,65,1,0,2,5
 5,Jos Butler,Rahul,1,1,64,34,64,1,0,3,5
-6,Quinton de Kock,Murali,1,0,60,33,60,1,0,2,7
+6,Quinton de Kock,Murali,2,0,93,62,60,1,0,2,9
 7,Mayank Agarwal,KB,1,0,58,32,58,1,0,4,5
 8,Virat Kohli,Subhash,1,0,58,45,58,1,0,1,5
 9,Krunal Pandya,Dk,1,0,57,38,57,1,0,1,5
@@ -23,9 +23,9 @@
 19,Ab de Villiers,Girish,2,0,43,27,28,0,0,1,2
 7,Sunil Narine,Dinesh,1,0,42,29,42,0,0,1,2
 20,Suryakumar Yadav,Subhash,1,0,40,35,40,0,0,0,3
-22,Ben Stokes,Sumanth,1,0,39,29,39,0,0,2,4
+22,Ben Stokes,Sumanth,2,0,54,44,39,0,0,2,4
 21,Rishab Pant,SBK,1,0,39,24,39,0,0,2,5
-23,Hardik Pandya,Sumanth,1,0,38,23,38,0,0,1,3
+23,Hardik Pandya,Sumanth,2,0,62,43,38,0,0,1,4
 24,David Miller,SBK,1,0,37,22,37,0,0,1,3
 27,Murali Vijay,KB,1,0,35,25,35,0,0,0,5
 26,Shimron Hetmyer,Chaitu,1,1,35,15,35,0,0,1,5
@@ -35,7 +35,7 @@
 1,James Faulkner,Kaushik,1,0,32,24,32,0,0,1,3
 32,Moeen Ali,Rahul,1,0,32,18,32,0,0,3,2
 31,Piyush Chawla,Girish,2,1,32,16,23,0,0,2,2
-30,Aaron Finch,Sumanth,1,0,32,22,32,0,0,0,3
+30,Aaron Finch,Sumanth,2,0,87,55,55,0,0,3,6
 34,Jason Roy,Dk,1,0,31,27,31,0,0,2,2
 33,Moises Henriques,Girish,2,0,31,22,27,0,0,0,2
 35,Sarfaraz Khan,Dk,1,0,29,17,29,0,0,0,5
@@ -45,11 +45,11 @@
 39,Karun Nair,Dk,1,0,24,16,24,0,0,0,4
 38,Harbhajan Singh,Chaitu,1,0,24,11,24,0,0,1,3
 41,Wriddhiman Saha,Aditya,1,1,23,10,23,0,0,0,3
-43,Steve Smith,Murali,1,0,21,16,21,0,0,1,1
+43,Steve Smith,Murali,2,1,76,50,55,0,0,3,5
 42,James Neesham,Ganesh,1,0,21,9,21,0,0,1,2
 46,Rahul Tripathi,Aditya,1,0,20,18,20,0,0,0,1
 45,Sanju Samson,KB,1,0,20,17,20,0,0,0,1
-44,Gurkeerat Singh,Murali,1,0,20,16,20,0,0,0,2
+44,Gurkeerat Singh,Murali,2,0,61,37,41,0,0,5,3
 4,Mandeep Singh,Dinesh,1,0,20,13,20,0,0,0,2
 47,Shivam Dube,Subhash,1,0,20,10,20,0,0,1,2
 48,Krishnappa Gowtham,Ravi,2,0,19,11,14,0,0,0,4
@@ -60,8 +60,8 @@
 54,Chris Woakes,Sumanth,1,0,18,10,18,0,0,0,2
 53,Andrew Tye,Subhash,1,1,18,11,18,0,0,1,0
 55,Stuart Binny,Girish,2,0,17,13,14,0,0,0,1
-57,Rahul Tewatia,Sumanth,1,0,16,8,16,0,0,0,2
-56,Ambati Rayudu,Sumanth,1,0,16,17,16,0,0,0,0
+57,Rahul Tewatia,Sumanth,2,1,28,12,16,0,0,1,3
+56,Ambati Rayudu,Sumanth,2,0,61,42,45,0,0,3,3
 2,Washington Sundar,Kaushik,1,0,16,10,16,0,0,0,3
 5,Marcus Stoinis,Kaushik,1,0,15,11,15,0,0,0,1
 59,Dinesh Karthik,KB,1,1,15,5,15,0,0,0,3
@@ -81,14 +81,14 @@
 69,Andre Russell,Chaitu,1,0,7,8,7,0,0,0,0
 72,Colin De Grandhomme,SBK,1,0,6,5,6,0,0,0,1
 71,D'arcy Short,SBK,1,0,6,8,6,0,0,0,1
-70,Ravindra Jadeja,Murali,1,0,6,4,6,0,0,0,0
-73,Sam Curran,Sumanth,1,0,5,4,5,0,0,0,0
+70,Ravindra Jadeja,Murali,2,1,17,18,11,0,0,0,0
+73,Sam Curran,Sumanth,2,0,29,15,24,0,0,2,1
 74,Lasith Malinga,Ravi,1,1,5,3,5,0,0,0,0
 75,Ajinkya Rahane,Ganesh,1,1,5,2,5,0,0,0,1
 0,Rishi Dhawan,Kaushik,1,0,5,3,5,0,0,0,1
 76,Mohammad Shami,Murali,1,0,4,7,4,0,0,0,0
 77,Hanuma Vihari,Dk,1,1,4,2,4,0,0,0,0
-78,Rohit Sharma,Murali,1,0,4,4,4,0,0,0,0
+78,Rohit Sharma,Murali,2,0,8,8,4,0,0,0,0
 79,Bhuvneshwar Kumar,Subhash,1,1,3,2,3,0,0,0,0
 80,Vinay Kumar,Ravi,2,1,2,4,2,0,0,0,0
 7,Isuru Udana,Kaushik,1,0,2,2,2,0,0,0,0
@@ -97,7 +97,7 @@
 10,Kagiso Rabada,Dinesh,1,0,1,2,1,0,0,0,0
 9,Imran Tahir,Dinesh,1,0,1,2,1,0,0,0,0
 88,Carlos Brathwaite,KB,1,1,1,1,1,0,0,0,0
-87,Mohit Sharma,Sumanth,1,1,1,1,1,0,0,0,0
+87,Mohit Sharma,Sumanth,2,2,2,2,1,0,0,0,0
 85,Hardus Viljoen,Chaitu,1,1,1,1,1,0,0,0,0
 84,Mitchell Marsh,SBK,1,0,1,2,1,0,0,0,0
 83,Axar Patel,Subhash,1,0,1,2,1,0,0,0,0
@@ -106,7 +106,7 @@
 0,Yusuf Pathan,Dinesh,1,0,1,2,1,0,0,0,0
 5,Siddarth Kaul,Dinesh,1,0,1,2,1,0,0,0,0
 144,Sreenath Aravind,Aditya,0,0,0,0,0,0,0,0,0
-133,Dwayne Bravo,Sumanth,1,0,0,1,0,0,0,0,0
+133,Dwayne Bravo,Sumanth,2,0,7,4,7,0,0,1,0
 125,Harshal Patel,KB,0,0,0,0,0,0,0,0,0
 126,Keemo Paul,KB,0,0,0,0,0,0,0,0,0
 127,Rashid Khan,KB,0,0,0,0,0,0,0,0,0
@@ -142,7 +142,7 @@
 95,Yuzvendra Chahal,Chaitu,0,0,0,0,0,0,0,0,0
 96,Jaydev Unadkat,Ganesh,0,0,0,0,0,0,0,0,0
 98,Navdeep Saini,Chaitu,0,0,0,0,0,0,0,0,0
-99,Glenn Maxwell,Sumanth,1,0,0,2,0,0,0,0,0
+99,Glenn Maxwell,Sumanth,2,0,8,10,8,0,0,0,0
 100,Shardul Thakur,Rahul,1,0,0,1,0,0,0,0,0
 101,JP Duminy,Ganesh,0,0,0,0,0,0,0,0,0
 103,Manish Pandey,Chaitu,1,0,0,1,0,0,0,0,0
