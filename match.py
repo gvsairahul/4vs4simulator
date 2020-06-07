@@ -80,7 +80,7 @@ def Super_over(attributes1,attributes2):
     else : 
         return Super_over(attributes2,attributes1)
 
-def Innings_run_chase(attributes,target,a,b,team_wickets):
+def Innings_run_chase(attributes,target,a,b,team_wick):
     fall_of_wickets = []
     current_batsmen=[]
     current_batsmen_id = 12
@@ -111,7 +111,7 @@ def Innings_run_chase(attributes,target,a,b,team_wickets):
         elif str(result) == 'out':
             team_wickets+=1
             fall_of_wickets.append(team_score)
-            if team_wickets==10:
+            if team_wickets==team_wick:
                 alll = i
                 print("Team is all out at "+str(team_score))
             #kb = kb + "Team is all out at "+str(team_score) + '\n'
