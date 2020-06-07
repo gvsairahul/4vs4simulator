@@ -8,7 +8,7 @@ from bowl_a_ball import ball_result,update_result,print_summary
 
 
 
-def Innings_run(attributes,target,a,b,team_wickets):
+def Innings_run(attributes,target,a,b,team_wick):
     fall_of_wickets = []
     current_batsmen=[]
     current_batsmen_id = 12
@@ -39,7 +39,7 @@ def Innings_run(attributes,target,a,b,team_wickets):
         elif str(result) == 'out':
             team_wickets+=1
             fall_of_wickets.append(team_score)
-            if team_wickets==10:
+            if team_wickets==team_wick:
                 alll = i
                 print("Team is all out at "+str(team_score))
             #kb = kb + "Team is all out at "+str(team_score) + '\n'
@@ -69,9 +69,9 @@ def Innings_run(attributes,target,a,b,team_wickets):
 
 
 def Super_over(attributes1,attributes2):
-    A = Innings_run(attributes1,1800,121,127,2)
+    A = Innings_run(attributes2,1800,121,127,2)
 
-    B = Innings_run_chase(attributes2,A[1] + 1,121,127,2)
+    B = Innings_run_chase(attributes1,A[1] + 1,121,127,2)
 
     if A[1] > B[1]:
         return 2
