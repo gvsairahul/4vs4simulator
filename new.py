@@ -91,7 +91,7 @@ elif score_final >= target:
 else : 
     print("Its a Tie!!!\n")
     result = Super_over(attributes11,attributes22)
-    if result == 2 :
+    if result == 1 :
         print("\n" + Player1_Name + " Won the Super Over\n")
-    elif result == 1:
+    elif result == 2:
         print("\n" + Player2_Name + " Won the Super Over\n")
