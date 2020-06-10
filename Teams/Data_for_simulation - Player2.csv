@@ -1,12 +1,12 @@
-,PLAYERS,Batsman_avg,Batsman_strikerate,Bowler_economy,Bowler_average,4s ratio,6s ratio,Balls per innings
-6,Lasith Malinga,5.5,88.89,7.14,19.79,0.06,0.05,23.17
-23,Kagiso Rabada,11.5,87.34,8.14,17.94,0.06,0.03,22.78
-28,Suresh Raina,33.34,137.11,7.39,44.72,0.13,0.05,13.16
-52,Moeen Ali,24.75,165.92,6.97,29.56,0.11,0.13,16.36
-67,Sheldon Cottrell,5,68.18,7.83,20.5,0.09,0,20.93
-69,Shivam Dube,17.5,136.36,10.05,43.2,0.09,0.08,11.73
-75,Washington Sundar,15,141.51,7.64,28.19,0.09,0.08,17.7
-80,Axar Patel,8.95,126.35,7.46,29.99,0.07,0.06,21.15
-119,Ishan Kishan,21.06,130.89,0,0,0.12,0.06,0
-150,Shaun Marsh,39.95,132.74,0,0,0.14,0.04,0
-151,Travis Head,26.58,130.2,0,0,0.08,0.04,8
+,PLAYERS,Batsman_avg,Batsman_strikerate,Bowler_economy,Bowler_average,4s ratio,6s ratio,Balls per innings,Bowler Style
+6,Dale Steyn,7.55,105.06,6.77,24.74,0.09,0.02,22.89,Pace
+48,Mitchell Santner,14.1,124.23,7.36,21.08,0.10,0.03,20.77,Spin
+55,Deepak Chahar,11.83,161.36,7.63,26.52,0.05,0.14,20.24,Pace
+56,Shardul Thakur,7.2,171.43,9.04,29.58,0.24,0.05,20.2,Pace
+70,Shane Watson,31.09,139.54,7.93,29.15,0.13,0.07,19.32,Pace
+77,Angelo Mathews,23.35,125.91,8.18,39.96,0.08,0.05,17.98,Pace
+88,Moeen Ali,24.75,165.92,6.97,29.56,0.11,0.13,16.36,Spin
+104,Deepak Hooda,14.56,127.18,8.42,44.71,0.07,0.06,11.15,Spin
+111,Nitish Rana,28.55,134.62,7.85,17,0.10,0.07,7.58,Spin
+120,Jos Butler,35.54,150.82,0,0,0.15,0.07,0,
+148,Kedar Jadhav,22.96,126.49,0,0,0.11,0.04,0,

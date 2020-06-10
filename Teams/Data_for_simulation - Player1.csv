@@ -1,12 +1,12 @@
-,PLAYERS,Batsman_avg,Batsman_strikerate,Bowler_economy,Bowler_average,4s ratio,6s ratio,Balls per innings
-16,Ben Stokes,22.68,132.02,8.26,31.08,0.09,0.05,19.57
-56,Lungisani Ngidi,2.33,46.67,8.65,15.5,0.07,0,22.29
-63,James Neesham,16.82,141.22,8.58,24.85,0.15,0.06,14.13
-68,Parthiv Patel,22.6,120.78,0,0,0.15,0.02,0
-78,Khaleel Ahmed,2,100,8.71,26.5,1,0,0
-109,Alex Hales,31.02,136.66,0,0,0.15,0.04,0
-115,Joshua Phillippe,33.25,138.3,0,0,0.13,0.04,0
-121,Karn Sharma,15.1,115.69,7.82,26.76,0.07,0.05,18.16
-131,Nitish Rana,28.55,134.62,7.85,17,0.1,0.07,0
-134,Rahul Tripathi,26.14,137.32,0,0,0.13,0.05,6
-152,Lendl Simmons,39.96,126.64,0,0,0.13,0.06,18
+,PLAYERS,Batsman_avg,Batsman_strikerate,Bowler_economy,Bowler_average,4s ratio,6s ratio,Balls per innings,Bowler Style
+14,Pat Cummins,12.83,140,8.29,29.35,0.09,0.07,22.56,Pace
+16,Jasprit Bumrah,11.67,92.11,7.56,26.62,0.05,0.03,22.49,Pace
+33,Ravichandran Ashwin,10.71,110.62,6.98,22.94,0.09,0.03,21.5,Spin
+46,Mohammad Nabi,15,148.35,6.62,27.18,0.12,0.08,20.85,Spin
+57,Adam Zampa,2.5,62.5,7.55,19.03,0.13,0.00,20.09,Spin
+59,Sreenath Aravind,14.75,103.51,8.2,23.09,0.12,0.00,20,Pace
+93,Chris Gayle,41.14,151.03,7.91,40.22,0.12,0.11,14.84,Spin
+110,Travis Head,26.58,130.2,9.75,39,0.08,0.04,8,Spin
+141,Wriddhiman Saha,23.85,131.13,0,0,0.12,0.04,0,
+144,Alex Carey,14.42,124.46,0,0,0.09,0.04,0,
+166,Rahul Tripathi,26.14,137.32,0,0,0.13,0.05,0,
