@@ -16,6 +16,7 @@ def pre_match():
                 ,'4':'C:\\Users\\biddu\\Desktop\\4vs4simulator\\'
                 ,'5':'C:\\Users\\Aditya\\Desktop\\4vs4simulator\\'
                 ,'7':'C:\\Users\\Thinkpad X250\\Desktop\\4vs4simulator\\'
+                ,'8':'C:\\Users\\Ravi\\Desktop\\4vs4simulator\\'
                  }
 
 
