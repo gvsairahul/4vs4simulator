@@ -37,9 +37,10 @@ for j in range(len(attributes['batsmen'])):
         list =[1,37,67,85,91,97,103,109]
         kkkk=0
         for i in list :
-            out = out_calculator(i,attributes['batsmen'][j],attributes['bowlers'][kk],1800,2,75)
+            out1 = out_calculator(i,attributes['batsmen'][j],attributes['bowlers'][kk],1800,2,75)
             bound = boundary_calculator(i,attributes['batsmen'][j],attributes['bowlers'][kk],1800,2,75)
             runs = runs_calculator(i,attributes['batsmen'][j],attributes['bowlers'][kk],1800,2,75)
+            out = out1[0]
             four = round(bound[0] * (1-out),3)
             six = round(bound[1] * (1-out),3)
             run1 = round(1-out-four-six,3)

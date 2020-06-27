@@ -20,7 +20,7 @@ def out_calculator(balls,batsman,bowler,target,team_wickets,team_score):
     out_rate_2 = bowlers_average*6/economy1
     prop_bowler = bowler['prop_bowl']
 
-    
+    best_batsman = batsman['average']/5.92 + batsman['strikerate']/99 + batsman['4s ratio']*4.33 + batsman['6s ratio']*4.33+4*batsman['average']/batsman['strikerate']
     
     if balls>120:
         wbat  = ((5.5*strikerate1)/(100*average1))
@@ -61,25 +61,33 @@ def out_calculator(balls,batsman,bowler,target,team_wickets,team_score):
     if prop_bowler < 16:
         out_bowler = out_bowler * math.sqrt(prop_bowler/16) * math.sqrt(math.sqrt(prop_bowler/16))
     
+    out_batsman = out_batsman*(8.13/best_batsman)*(8.12/best_batsman)
+    best_bowler = prop_bowler*((14/economy1) +(28/bowlers_average) + (60/(bowlers_average*economy1)))/16
+
+    out_bowler = out_bowler * (best_bowler/5.8)
+    
     rr = correlate_wkt(out_batsman,out_bowler,balls,out_rate_1,out_rate_2,prop_bowler)
 
     if balls <=36:
         rr = rr * 1.1
     elif balls>36 and balls <=66:
-        rr = rr * 0.75
+        rr = rr * 0.65
     elif balls>66 and balls<=108:
-        rr = rr * 0.85
+        rr = rr * 0.75
     elif balls>108 and balls<121:
-        rr = rr * 1.1
+        rr = rr * 1.05
     if(rr>=1):
         rr=0.99
+
+    if bowler['wickets_taken'] >=2:
+        rr = rr*0.5*best_bowler/6.5
     
-    distribution=[rr,1-rr]
+    distribution=[rr*0.5,1-rr*0.5]
 
 
     #print(str(round(rr,2)) + ' - wicket probability\n')
     return choices(results,weights=distribution)[0]
-
+    # return distribution
 def boundary_calculator(balls,batsman,bowler,target,team_wickets,team_score):
     runs_scored=batsman['runs_scored']
     fours_ratio = batsman['4s ratio']
@@ -96,6 +104,7 @@ def boundary_calculator(balls,batsman,bowler,target,team_wickets,team_score):
     sixes_ratio = sixes_ratio*(1/(1-out_rate))
     economy = bowler['economy']
     results = ["4","6","N"]
+    best_batsman = batsman['average']/14.92 + batsman['strikerate']/39 + batsman['4s ratio']*6.33 + batsman['6s ratio']*6.33+0.9*batsman['average']/batsman['strikerate']
     if prop_bowler < 5:
         prop_bowler = 5
     
@@ -178,7 +187,7 @@ def boundary_calculator(balls,batsman,bowler,target,team_wickets,team_score):
     best_bowler = prop_bowler*((24/economy) +(25/avg1) + (60/(avg1*economy)))/16
     if best_bowler <0.5:
         best_bowler = 0.5
-    if bowler['Bowler Type'] == 'Spin' : 
+    if bowler['Bowler_type'] == 'Spin' : 
         best_bowler = best_bowler * 0.8
     if balls>36 and balls<97 and economy <11:
         four1 = four1/(3-economy/4)
@@ -198,7 +207,8 @@ def boundary_calculator(balls,batsman,bowler,target,team_wickets,team_score):
         six1 =  six1*6.1/best_bowler
 
 
-
+    four = four*best_batsman/7
+    six = six*best_batsman/7
     
 
     if balls<97:
@@ -216,8 +226,8 @@ def boundary_calculator(balls,batsman,bowler,target,team_wickets,team_score):
         six1 = six * math.sqrt(13/prop_bowler)
 
 
-    F=1.15*F
-    S = 1.15*S
+    F=F*(best_batsman/6.9) 
+    S = S*(best_batsman/6.9)
     
     if F+S>=1:
         FF = 0.99*(F/(F+S))
@@ -234,6 +244,7 @@ def boundary_calculator(balls,batsman,bowler,target,team_wickets,team_score):
     distribution = [FF,SS,NN]
     #print(str(round(FF,2)) + ' - 4 probability\n' + str(round(SS,2)) +  ' - 6 probablity\n' + str(round(NN,2)) + ' - runs or dots probability\n')
     return choices(results,weights=distribution)[0]
+    # return distribution
 
 
 
@@ -331,6 +342,10 @@ def runs_calculator(balls,batsman,bowler,target,team_wickets,team_score):
     T = 1.15*(2*dot+dot1)/3
     S = (2*sing+sing1)/3
     D = (2*doub+doub1)/3
+
+    T = T*(economy*6/8)*(economy*6/8)*3.9
+    S = S*(1.33/economy)*(1.33/economy)*2.75
+    D = D*(1.33/economy)*1.2
     if balls<121:
         TT = 0.9916666*(T/(T+S+D))
         SS = 0.9916666*(S/(T+S+D))
@@ -347,7 +362,7 @@ def runs_calculator(balls,batsman,bowler,target,team_wickets,team_score):
 
     return choices(results,weights=distribution)[0]
 
-
+    # return distribution
 
     #print(str(round(TT,2)) + ' - Dot prob \n' + str(round(SS,2)) + ' - Single prob \n' + str(round(DD,2)) + ' - Double prob \n')
 
@@ -405,9 +420,9 @@ def correlate_wkt(x,y,balls,a,b,c):
     
     elif c<12:
         if x > math.sqrt(y):
-            return x-math.sqrt(y)
+            return 0.4*(x-math.sqrt(y))
         else:
-            return 0.01
+            return 0.002
     else:
         if balls < 36:
             if a > 19:

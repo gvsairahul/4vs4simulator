@@ -3,6 +3,8 @@ import pandas as pd
 import numpy as np
 from out_sim1 import out_calculator,boundary_calculator, runs_calculator, change_batsman, best_bowling,notout_cal,fifty_cal
 import xlsxwriter
+import sqlmlutils
+
 
 
 def initialise(g1,g2):
