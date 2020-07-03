@@ -76,13 +76,16 @@ def out_calculator(balls,batsman,bowler,target,team_wickets,team_score):
         rr = rr * 0.75
     elif balls>108 and balls<121:
         rr = rr * 1.05
-    if(rr>=1):
-        rr=0.99
 
+    if bowler['balls_bowled']<6:
+        rr/=2
     if bowler['wickets_taken'] >=2:
-        rr = rr*0.5*best_bowler/6.5
-    
-    distribution=[rr*0.5,1-rr*0.5]
+        rr = rr*0.25*best_bowler/6.5
+    if batsman['runs_scored']> 12:
+        rr = rr * 6.5/best_batsman
+    if(rr>=0.58):
+        rr=0.58
+    distribution=[rr*0.75,1-rr*0.75]
 
 
     #print(str(round(rr,2)) + ' - wicket probability\n')
@@ -183,7 +186,23 @@ def boundary_calculator(balls,batsman,bowler,target,team_wickets,team_score):
     if balls > 90 and prop_bowler < 16:
         four1 = four1 * math.sqrt(math.sqrt(16/prop_bowler))
         six1 = six1 * math.sqrt(math.sqrt(16/prop_bowler))
-    
+    if batsman['balls_faced']<7:
+        four/=2
+        six/=2
+    if batsman['balls_faced']>12 and batsman['balls_faced'] <=28:
+        four*=math.sqrt(batsman['balls_faced']/12)
+        six*=math.sqrt(batsman['balls_faced']/12)
+    if batsman['balls_faced']>30:
+        four*=batsman['balls_faced']/18.95
+        six*=batsman['balls_faced']/18.95
+
+
+    if bowler['Bowler_type'] == 'Spin':
+        four1/=1.3
+        six1*=1.3
+    else:
+        four1*=1.2
+        six/=1.4
     best_bowler = prop_bowler*((24/economy) +(25/avg1) + (60/(avg1*economy)))/16
     if best_bowler <0.5:
         best_bowler = 0.5
@@ -228,15 +247,15 @@ def boundary_calculator(balls,batsman,bowler,target,team_wickets,team_score):
         six1 = six * math.sqrt(13/prop_bowler)
 
 
-    F=F*(best_batsman/6.9) 
-    S = S*(best_batsman/6.9)
+    F=F*(best_batsman/6.9) *(17/prop_bowler)*1.3
+    S = S*(best_batsman/6.9)*(17/prop_bowler)*1.2
     
     if F+S>=1:
         FF = 0.99*(F/(F+S))
         SS = 0.99*(S/F+S)
         NN = 0.01
     else:
-        FF=F
+        FF=F*1.2
         SS=S
         NN=1-(F+S)     
 
@@ -344,10 +363,27 @@ def runs_calculator(balls,batsman,bowler,target,team_wickets,team_score):
     T = 1.15*(2*dot+dot1)/3
     S = (2*sing+sing1)/3
     D = (2*doub+doub1)/3
-
-    T = T*(economy*6/8)*(economy*6/8)*3.9
-    S = S*(1.33/economy)*(1.33/economy)*3.75
-    D = D*(1.33/economy)*2.2
+    if batsman['balls_faced']<5 and balls<=96:
+        T*1.5
+    best_batsman = batsman['average']/15.92 + batsman['strikerate']/32 + batsman['4s ratio']*6.33 + batsman['6s ratio']*6.33+0.9*batsman['average']/batsman['strikerate']
+    if batsman['balls_faced']>10:
+        S=2*S
+        D=1.3*D
+    if bowler['balls_bowled']>6:
+        if bowler['runs_conceded']/bowler['balls_bowled']>1.3:
+            T/=2
+            S*=1.3
+            D*=1.06
+        elif bowler['balls_bowled'] > 12 and bowler['runs_conceded']/bowler['balls_bowled']>1.4:
+            T/=3
+            S*=1.5
+            
+    T = T*5.2/best_batsman
+    S = S*best_batsman/5.2
+    D = D*best_batsman/6
+    T = T*(economy*0.75)*(economy*0.75)*3.5
+    S = S*(1.33/economy)*(1.33/economy)*3.1
+    D = D*(1.33/economy)*1.1
     if balls<121:
         TT = 0.9916666*(T/(T+S+D))
         SS = 0.9916666*(S/(T+S+D))
