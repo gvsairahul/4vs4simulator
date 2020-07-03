@@ -1,12 +1,11 @@
 ,PLAYERS,Batsman_avg,Batsman_strikerate,Bowler_economy,Bowler_average,4s ratio,6s ratio,Balls per innings,Bowler Style
-6,Dale Steyn,7.55,105.06,6.77,24.74,0.09,0.02,22.89,Pace
-23,Navdeep Saini,2,50,8.27,36.09,0.00,0.00,22.15,Pace
-31,Yuzvendra Chahal,4.2,43.75,7.78,23.18,0.00,0.00,21.53,Spin
-62,Tom Curran,12.67,131.03,9.1,25.57,0.10,0.00,19.67,Pace
-80,Mayank Markhande,9,93.1,8.54,26.69,0.10,0.00,17.65,Spin
-116,Shreyas Iyer,30.56,126.96,0,0,0.11,0.05,0,
-120,Jos Butler,35.54,150.82,0,0,0.15,0.07,0,
-121,David Warner,43.17,142.39,0,0,0.14,0.05,0,
-122,Eoin Morgan,21.35,121.13,0,0,0.10,0.05,0,
-148,Kedar Jadhav,22.96,126.49,0,0,0.11,0.04,0,
-149,David Miller,34.25,138.78,0,0,0.09,0.07,0,
+21,Chris Morris,27.21,157.62,7.99,24.77,0.11,0.08,21.05,Pace
+22,Jason Roy,24.57,147.51,0,0,0.15,0.07,0,
+23,Krunal Pandya,25.46,146.07,7.17,28.2,0.14,0.06,17.81,Spin
+24,Sarfaraz Khan,27.2,142.66,0,0,0.16,0.04,0,
+25,Sam Billings,17.58,133.6,0,0,0.12,0.04,0,
+26,David WIlley,13.83,131.75,8.2,22.38,0.06,0.08,19.89,Pace
+27,Karun Nair,24.81,128.53,0,0,0.14,0.03,0,
+28,Pawan Negi,14.04,126.3,7.87,27.62,0.09,0.06,17.05,Spin
+29,Hanuma Vihari,14.2,88.47,6.71,47,0.07,0,7,Spin
+30,Billy Stanlake,9,75,7.77,20.15,0.08,0.08,22.11,Pace
