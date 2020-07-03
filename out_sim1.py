@@ -22,6 +22,8 @@ def out_calculator(balls,batsman,bowler,target,team_wickets,team_score):
 
     best_batsman = batsman['average']/5.92 + batsman['strikerate']/99 + batsman['4s ratio']*4.33 + batsman['6s ratio']*4.33+4*batsman['average']/batsman['strikerate']
     
+
+       
     if balls>120:
         wbat  = ((5.5*strikerate1)/(100*average1))
         wbowl = (5.5*economy1)/(6*bowlers_average)
@@ -57,9 +59,12 @@ def out_calculator(balls,batsman,bowler,target,team_wickets,team_score):
         out_bowler = out_bowler*0.8
     elif balls > 120 and bowler['Bowler_type'] == 'Spin':
         out_bowler = out_bowler*0.85
-
+    if prop_bowler < 20.2 and balls>84:
+        out_bowler/=((20.2/prop_bowler)*(20.2/prop_bowler))
+    if prop_bowler<21.2 and balls >=108:
+        out_bowler/=((21.2/prop_bowler)) 
     if prop_bowler < 16:
-        out_bowler = out_bowler * math.sqrt(prop_bowler/16) * math.sqrt(math.sqrt(prop_bowler/16))
+        out_bowler = out_bowler*(prop_bowler/16) * math.sqrt(math.sqrt(prop_bowler/16))
     
     out_batsman = out_batsman*(8.13/best_batsman)
     best_bowler = prop_bowler*((14/economy1) +(28/bowlers_average) + (60/(bowlers_average*economy1)))/16
@@ -83,9 +88,30 @@ def out_calculator(balls,batsman,bowler,target,team_wickets,team_score):
         rr = rr*0.25*best_bowler/6.5
     if batsman['runs_scored']> 12:
         rr = rr * 6.5/best_batsman
+    if prop_bowler>22:
+        rr*=(prop_bowler/22)
+    if prop_bowler>22.5:
+        rr*=(prop_bowler/22.5)
+    if prop_bowler>23:
+        rr*=(prop_bowler/23)
     if(rr>=0.58):
         rr=0.58
+    if best_batsman > 7 and batsman['balls_faced']>out_rate_1*0.7 and batsman['balls_faced']<out_rate_1*1.3:
+        rr*=(7/best_batsman)
+
+    if out_rate_1 < 16:
+        if batsman['balls_faced']>15:
+            rr*=(batsman['balls_faced']/15)
+        if batsman['balls_faced']>=25:
+            rr*=(batsman['balls_faced']*batsman['balls_faced']/625)
+    if out_rate_1 < 13:
+        if batsman['balls_faced']>10:
+            rr*=(batsman['balls_faced']/10)
+        if batsman['balls_faced']>=20:
+            rr*=(batsman['balls_faced']/20)
+
     distribution=[rr*0.75,1-rr*0.75]
+
 
 
     #print(str(round(rr,2)) + ' - wicket probability\n')
@@ -246,16 +272,21 @@ def boundary_calculator(balls,batsman,bowler,target,team_wickets,team_score):
         four1 = four1* math.sqrt(13/prop_bowler)
         six1 = six * math.sqrt(13/prop_bowler)
 
-
-    F=F*(best_batsman/6.9) *(17/prop_bowler)*1.3
-    S = S*(best_batsman/6.9)*(17/prop_bowler)*1.2
+    if prop_bowler < 20.2 and balls>84:
+        four1*=(20.2/prop_bowler)*(20.2/prop_bowler)
+        six1*=(20.2/prop_bowler)*(20.2/prop_bowler)
+    if prop_bowler<21.2 and balls >=108:
+        four1*=(21.2/prop_bowler)
+        six1*=(21.2/prop_bowler)
+    F=F*(best_batsman/6.9) *(17/prop_bowler)
+    S = S*(best_batsman/6.9)*(17/prop_bowler)
     
-    if F+S>=1:
-        FF = 0.99*(F/(F+S))
-        SS = 0.99*(S/F+S)
-        NN = 0.01
+    if F+S>=0.88:
+        FF = 0.88*(F/(F+S))
+        SS = 0.88*(S/F+S)
+        NN = 0.12
     else:
-        FF=F*1.2
+        FF=F
         SS=S
         NN=1-(F+S)     
 
