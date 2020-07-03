@@ -278,8 +278,8 @@ def boundary_calculator(balls,batsman,bowler,target,team_wickets,team_score):
     if prop_bowler<21.2 and balls >=108:
         four1*=(21.2/prop_bowler)
         six1*=(21.2/prop_bowler)
-    F=F*(best_batsman/6.9) *(17/prop_bowler)
-    S = S*(best_batsman/6.9)*(17/prop_bowler)
+    F=F*(best_batsman/6.9) *(17/prop_bowler)*1.25
+    S = S*(best_batsman/6.9)*(17/prop_bowler)*1.45
     
     if F+S>=0.88:
         FF = 0.88*(F/(F+S))
@@ -409,7 +409,7 @@ def runs_calculator(balls,batsman,bowler,target,team_wickets,team_score):
             T/=3
             S*=1.5
             
-    T = T*5.2/best_batsman
+    T = T*7.2/best_batsman
     S = S*best_batsman/5.2
     D = D*best_batsman/6
     T = T*(economy*0.75)*(economy*0.75)*3.5
