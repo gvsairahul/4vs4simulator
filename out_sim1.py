@@ -76,7 +76,7 @@ def out_calculator(balls,batsman,bowler,target,team_wickets,team_score):
     rr = correlate_wkt(out_batsman,out_bowler,balls,out_rate_1,out_rate_2,prop_bowler)
 
     if balls <=36:
-        rr = rr * 1.1
+        rr = rr * 1.16
     elif balls>36 and balls <=66:
         rr = rr * 0.65
     elif balls>66 and balls<=108:
@@ -127,7 +127,7 @@ def out_calculator(balls,batsman,bowler,target,team_wickets,team_score):
 
     if strikerate1<105:
         rr*=2.5
-    distribution=[rr*0.67,1-rr*0.67]
+    distribution=[rr*0.73,1-rr*0.73]
 
 
 
@@ -293,12 +293,12 @@ def boundary_calculator(balls,batsman,bowler,target,team_wickets,team_score):
         six1*=math.sqrt((21.2/prop_bowler))    
     four*=1.29
     six*=1.29
-    four1*=math.sqrt(7.5/best_bowler)
-    six1*=math.sqrt(7.5/best_bowler)
+    four1*=math.sqrt(6.25/best_bowler)
+    six1*=math.sqrt(6.25/best_bowler)
 
     if balls>96 and economy< 7.75 and bowler['Bowler_type'] == 'Pace' :
-        four1*= (economy/7.75)
-        six1*= (economy/7.75)
+        four1*= ((economy/7.75)*(economy/7.75))
+        six1*= ((economy/7.75)*(economy/7.75))
 
     if balls<97:
         F = (four*2 + four1*3)/5
@@ -384,21 +384,21 @@ def runs_calculator(balls,batsman,bowler,target,team_wickets,team_score):
     
     if balls<=36:
         if present_strike_rate>strikerate:
-            dot  = 0.55
-            sing = 0.28
+            dot  = 0.35
+            sing = 0.48
             doub = 0.17
         else:
-            dot  = 0.5
-            sing = 0.35
-            doub = 0.15
+            dot  = 0.395
+            sing = 0.435
+            doub = 0.16
         if present_economy>economy:
-            dot1  = 0.55
-            sing1 = 0.28
-            doub1 = 0.17
+            dot1  = 0.395
+            sing1 = 0.435
+            doub1 = 0.16
         else:
-            dot1  = 0.5
-            sing1 = 0.35
-            doub1 = 0.15
+            dot1  = 0.35
+            sing1 = 0.48
+            doub1 = 0.17
     elif balls>36 and balls < 97:
         if present_strike_rate>strikerate:
             dot  = 0.3
@@ -447,7 +447,7 @@ def runs_calculator(balls,batsman,bowler,target,team_wickets,team_score):
     T = 1.15*(2*dot+dot1)/3
     S = (2*sing+sing1)/3
     D = (2*doub+doub1)/3
-    if batsman['balls_faced']<5 and balls<=96:
+    if batsman['balls_faced']<3 and balls<=96:
         T*1.25
     best_batsman = batsman['average']/15.92 + batsman['strikerate']/32 + batsman['4s ratio']*6.33 + batsman['6s ratio']*6.33+0.9*batsman['average']/batsman['strikerate']
     if batsman['balls_faced']>10:
@@ -464,6 +464,10 @@ def runs_calculator(balls,batsman,bowler,target,team_wickets,team_score):
             
     T = T*7/best_batsman
     T = T*(economy*0.75)*(economy*0.75)*2.8
+    if balls>115:
+        T=0.04
+        S=0.6
+        D=0.36
     if balls<121:
         TT = 0.9916666*(T/(T+S+D))
         SS = 0.9916666*(S/(T+S+D))
