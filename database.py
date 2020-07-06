@@ -4,8 +4,16 @@ import numpy as np
 
 connection = pyodbc.connect('DRIVER={ODBC Driver 17 for SQL Server};SERVER=KALYAN_BHARGAV;DATABASE=Cricket;Trusted_Connection=yes')
 cursor = connection.cursor()
-sql_query = pd.read_sql_query('Select * from dbo.batting ',connection)
-sql_query2 = pd.read_sql_query('Select * from dbo.bowling ',connection)
+# df = pd.read_csv('C:\\Users\\KB131141191\\Desktop\\4vs4simulator\\Stats\\second_innings.csv')
+df = pd.read_sql_query('Select * from dbo.first_innings11 ',connection)
+df['dot_prob'] = df['dot'].astype(float)/df['total'].astype(float)
+df['sing_prob'] = df['sing'].astype(float)/df['total'].astype(float)
+df['doub_prob'] = df['doub'].astype(float)/df['total'].astype(float)
+df['trip_prob'] = df['triple'].astype(float)/df['total'].astype(float)
+df['four_prob'] = df['four'].astype(float)/df['total'].astype(float)
+df['six_prob'] = df['six'].astype(float)/df['total'].astype(float)
+df['wkt_prob'] = df['wicket'].astype(float)/df['total'].astype(float)
+# 
 
-sql_query.to_csv('C:\\Users\\KB131141191\\Desktop\\4vs4simulator\\Stats\\batting_stats.csv')
-sql_query2.to_csv('C:\\Users\\KB131141191\\Desktop\\4vs4simulator\\Stats\\bowling_stats.csv')
+df.to_csv('C:\\Users\\KB131141191\\Desktop\\4vs4simulator\\Stats\\first_innings.csv')
+# sql_query2.to_csv('C:\\Users\\KB131141191\\Desktop\\4vs4simulator\\Stats\\bowling_stats.csv')

@@ -1,12 +1,12 @@
 ,PLAYERS,Batsman_avg,Batsman_strikerate,Bowler_economy,Bowler_average,4s ratio,6s ratio,Balls per innings,Bowler Style
-24,Billy Stanlake,9,75,7.77,20.15,0.08,0.08,22.11,Pace
-42,Chris Morris,27.21,157.62,7.99,24.77,0.11,0.08,21.05,Pace
-60,David WIlley,13.83,131.75,8.2,22.38,0.06,0.08,19.89,Pace
-78,Krunal Pandya,25.46,146.07,7.17,28.2,0.14,0.06,17.81,Spin
-84,Pawan Negi,14.04,126.3,7.87,27.62,0.09,0.06,17.05,Spin
-112,Hanuma Vihari,14.2,88.47,6.71,47,0.07,0.00,7,Spin
-121,David Warner,43.17,142.39,0,0,0.14,0.05,0,
-137,Jason Roy,24.57,147.51,0,0,0.15,0.07,0,
-161,Karun Nair,24.81,128.53,0,0,0.14,0.03,0,
-162,Sarfaraz Khan,27.2,142.66,0,0,0.16,0.04,0,
-174,Sam Billings,17.58,133.6,0,0,0.12,0.04,0,
+18,Mitchell Starc,13.71,97.96,7.17,20.38,0.10,0.00,22.31,Pace
+48,Mitchell Santner,14.1,124.23,7.36,21.08,0.10,0.03,20.77,Spin
+54,Shahbaz Nadeem,2.67,41.03,7.48,37.38,0.00,0.00,20.31,Spin
+55,Deepak Chahar,11.83,161.36,7.63,26.52,0.05,0.14,20.24,Pace
+76,Andre Russell,33.33,186.42,8.88,27.96,0.13,0.16,17.03,Pace
+79,Shane Watson,31.09,139.54,7.93,29.15,0.13,0.07,19.32,Pace
+99,Krishnappa Gowtham,12,173.49,7.97,39.83,0.12,0.12,16.36,Spin
+140,Parthiv Patel,22.6,120.78,0,0,0.15,0.02,0,
+159,Ishan Kishan,21.06,130.89,0,0,0.12,0.06,0,
+160,Prithvi Shaw,23.92,141.04,0,0,0.17,0.04,0,
+173,Lendl Simmons,39.96,126.64,0,0,0.13,0.06,0,

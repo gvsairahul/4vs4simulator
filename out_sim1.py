@@ -40,11 +40,11 @@ def out_calculator(balls,batsman,bowler,target,team_wickets,team_score):
         wbowl = (4.66666*economy1)/(6*bowlers_average)
 
     if balls<121:
-        if (runs_scored/average1)>1.0 and (runs_scored/average1) < 1.2:
+        if float(runs_scored/average1)>1.0 and float(runs_scored/average1) < 1.2:
             out_batsman=wbat*(runs_scored/average1)
         else:
             out_batsman=wbat
-        if (runs_conceded/(bowlers_average*(wickets_taken+1)))<1.0 and (runs_conceded/(bowlers_average*(wickets_taken+1)))>0.8:
+        if float(runs_conceded/(bowlers_average*(wickets_taken+1)))<1.0 and float(runs_conceded/(bowlers_average*(wickets_taken+1)))>0.8:
             out_bowler=wbowl*(runs_conceded/(bowlers_average*(wickets_taken+1)))
         else:
             out_bowler=wbowl
@@ -55,6 +55,8 @@ def out_calculator(balls,batsman,bowler,target,team_wickets,team_score):
     
     # print(out_batsman)
     # print(out_bowler)
+    if batsman['balls_faced']>=35:
+        out_batsman*=(batsman['balls_faced']*batsman['balls_faced']/1225)
     if balls>102 and balls < 121 and bowler['Bowler_type'] == 'Spin':
         out_bowler = out_bowler*0.8
     elif balls > 120 and bowler['Bowler_type'] == 'Spin':
@@ -81,13 +83,13 @@ def out_calculator(balls,batsman,bowler,target,team_wickets,team_score):
         rr = rr * 0.75
     elif balls>108 and balls<121:
         rr = rr * 1.05
-
+    xx=batsman['runs_scored']
+    if xx>70:
+        rr*=(xx*xx*xx*xx/24010000)    
     if bowler['balls_bowled']<6:
         rr/=2
     if bowler['wickets_taken'] >=2:
         rr = rr*0.25*best_bowler/6.5
-    if batsman['runs_scored']> 12:
-        rr = rr * 6.5/best_batsman
     if prop_bowler>22:
         rr*=(prop_bowler/22)
     if prop_bowler>22.5:
@@ -96,9 +98,10 @@ def out_calculator(balls,batsman,bowler,target,team_wickets,team_score):
         rr*=(prop_bowler/23)
     if(rr>=0.58):
         rr=0.58
-    if best_batsman > 7 and batsman['balls_faced']>out_rate_1*0.7 and batsman['balls_faced']<out_rate_1*1.3:
-        rr*=(7/best_batsman)
-
+    if best_batsman > 8.5 and batsman['balls_faced']>out_rate_1*0.7 and batsman['balls_faced']<out_rate_1*1.3:
+        rr*=(8.5/best_batsman)
+    if batsman['fours']+batsman['sixes']>8:
+        rr*=((batsman['fours']+batsman['sixes'])/8)
     if out_rate_1 < 16:
         if batsman['balls_faced']>15:
             rr*=(batsman['balls_faced']/15)
@@ -109,12 +112,26 @@ def out_calculator(balls,batsman,bowler,target,team_wickets,team_score):
             rr*=(batsman['balls_faced']/10)
         if batsman['balls_faced']>=20:
             rr*=(batsman['balls_faced']/20)
+    if batsman['runs_scored']>0 and batsman['balls_faced']>8 :
+        if (float(batsman['runs_scored'])/batsman['balls_faced']) < 1.1:
+            rr/=(batsman['runs_scored']/1.1*batsman['balls_faced'])
+    if batsman['runs_scored']>1.3*average1:
+        rr*=(batsman['runs_scored']/(1.3*average1))
+        if batsman['runs_scored']>2.3*average1:
+            rr*=(batsman['runs_scored']/(2.3*average1))
+    rr*=(25/bowlers_average)
 
-    distribution=[rr*0.75,1-rr*0.75]
+    if economy1 < 8 and bowler['Bowler_type'] == 'Pace':
+        rr*=(math.sqrt(8/economy1) * math.sqrt(math.sqrt(8/economy1)))
+
+
+    if strikerate1<105:
+        rr*=2.5
+    distribution=[rr*0.67,1-rr*0.67]
 
 
 
-    #print(str(round(rr,2)) + ' - wicket probability\n')
+    # print(str(round(rr,2)) + ' - wicket probability\n')
     return choices(results,weights=distribution)[0]
     # return distribution
 def boundary_calculator(balls,batsman,bowler,target,team_wickets,team_score):
@@ -146,7 +163,7 @@ def boundary_calculator(balls,batsman,bowler,target,team_wickets,team_score):
     else:
         present_strike_rate=strikerate
     if balls_bowled!=0:
-        present_economy=runs_conceded/balls_bowled
+        present_economy=runs_conceded*6/balls_bowled
     else:
         present_economy=economy
     if present_economy<6:
@@ -161,11 +178,11 @@ def boundary_calculator(balls,batsman,bowler,target,team_wickets,team_score):
     
     elif balls>36 and balls<=96:
         if(present_strike_rate<strikerate):
-            four = fours_ratio*(0.7)
-            six  = sixes_ratio*(0.7)
+            four = fours_ratio*(0.68)
+            six  = sixes_ratio*(0.68)
         else:
-            four = fours_ratio*(0.7)*0.9
-            six = sixes_ratio*(0.7)*0.9
+            four = fours_ratio*(0.62)*0.9
+            six = sixes_ratio*(0.58)*0.9
 
     elif balls>96 and balls<121:
         if(present_strike_rate<strikerate):
@@ -185,19 +202,19 @@ def boundary_calculator(balls,batsman,bowler,target,team_wickets,team_score):
 
     if balls<=36:
         if(present_economy<economy):
-            four1 =  (economy/7.5)*(0.1071428)
-            six1  =  (economy/7.5)*(0.05714285)
+            four1 =  (economy*economy/64)*(0.1071428)
+            six1  =  (economy*economy/64)*(0.05714285)
         else:
             four1 =  (economy/7.5)*(1.1)*(0.1071428)
             six1  =  (economy/7.5)*(1.1)*(0.1071428)
     
     elif balls>36 and balls<=96:
         if(present_economy<economy):
-            four1 =  (economy/7.5)*(3/56)
-            six1  =  (economy/7.5)*(0.0285714)
+            four1 =  (economy/7.5)*(4/112)
+            six1  =  (economy/7.5)*(0.031285714)
         else:
-            four1 =  (economy/7.5)*(1.1)*(0.1071428)
-            six1  =  (economy/7.5)*(1.1)*(0.0285714)
+            four1 =  (economy/7.5)*(1.1)*(0.01391071428)
+            six1  =  (economy/7.5)*(1.3)*(0.018285714)
     
     
     elif balls>96 and balls<121:
@@ -208,7 +225,9 @@ def boundary_calculator(balls,batsman,bowler,target,team_wickets,team_score):
     elif balls>120:
         four1 = (economy/7.75)*(economy/7.75) * (0.3) * (economy/7.75) 
         six1  = (economy/7.75)*(economy/7.75) * (0.2) * (economy/7.75)
-
+    if balls<37 and economy < 7.8:
+        four1*=(economy/7.8)
+        six1*=(economy/7.8)
     if balls > 90 and prop_bowler < 16:
         four1 = four1 * math.sqrt(math.sqrt(16/prop_bowler))
         six1 = six1 * math.sqrt(math.sqrt(16/prop_bowler))
@@ -221,8 +240,11 @@ def boundary_calculator(balls,batsman,bowler,target,team_wickets,team_score):
     if batsman['balls_faced']>30:
         four*=batsman['balls_faced']/18.95
         six*=batsman['balls_faced']/18.95
-
-
+    
+    if batsman['fours']>7:
+        four*=(7/batsman['fours'])
+    if batsman['sixes']>5:
+        six*=(5/batsman['sixes'])
     if bowler['Bowler_type'] == 'Spin':
         four1/=1.3
         six1*=1.3
@@ -241,8 +263,8 @@ def boundary_calculator(balls,batsman,bowler,target,team_wickets,team_score):
         four1 = 2.25*four1
         six1 = 2.25*six1
     elif balls<37 and economy <9:
-        four1 = four1/(3-economy/3.5)
-        six1 = six1/(3-economy/3.5)
+        four1 = four1/math.sqrt((3-economy/3.5))
+        six1 = six1/math.sqrt((3-economy/3.5))
     elif balls<37 and economy > 9:
         four1 = four1*(2.33333)
         six1 = six1 *(2)
@@ -251,19 +273,39 @@ def boundary_calculator(balls,batsman,bowler,target,team_wickets,team_score):
         four1 = four1*6.1/best_bowler
         six1 =  six1*6.1/best_bowler
 
+    if balls>36 and balls < 73 and best_bowler > 7.5:
+        four/=1.5
+        six/=1.23
+        four1/=1.5
+        six/=1.23
+    else:
+        four*=1.21
+        six*=1.1
+        four1*=1.21
+        six1*=1.1
+    four = four*math.sqrt(best_batsman/7)
+    six = six*math.sqrt(best_batsman/7)
+    if prop_bowler < 20.2 and balls>90:
+        four1*=math.sqrt((20.2/prop_bowler))
+        six1*=math.sqrt((20.2/prop_bowler))
+    if prop_bowler<21.2 and balls >=108:
+        four1*=math.sqrt((21.2/prop_bowler))
+        six1*=math.sqrt((21.2/prop_bowler))    
+    four*=1.29
+    six*=1.29
+    four1*=math.sqrt(7.5/best_bowler)
+    six1*=math.sqrt(7.5/best_bowler)
 
-    four = four*best_batsman/7
-    six = six*best_batsman/7
-    
-    four*=1.2
-    six*=1.2
+    if balls>96 and economy< 7.75 and bowler['Bowler_type'] == 'Pace' :
+        four1*= (economy/7.75)
+        six1*= (economy/7.75)
 
     if balls<97:
         F = (four*2 + four1*3)/5
         S = (six*2 + six1*3)/5
     elif balls>96:
-        F = 2*four*four1/(four+four1)
-        S = 2*six*six1/(six+six1)
+        F = (1.462*four*four1)/((four+four1))
+        S = (1.462*six*six1)/((six+six1))
     elif balls>120:
         F = 0.55*max(four,four1)
         S = 0.55*max(six,six1)
@@ -272,15 +314,15 @@ def boundary_calculator(balls,batsman,bowler,target,team_wickets,team_score):
         four1 = four1* math.sqrt(13/prop_bowler)
         six1 = six * math.sqrt(13/prop_bowler)
 
-    if prop_bowler < 20.2 and balls>84:
-        four1*=(20.2/prop_bowler)*(20.2/prop_bowler)
-        six1*=(20.2/prop_bowler)*(20.2/prop_bowler)
-    if prop_bowler<21.2 and balls >=108:
-        four1*=(21.2/prop_bowler)
-        six1*=(21.2/prop_bowler)
-    F=F*(best_batsman/6.9) *(17/prop_bowler)*1.25
-    S = S*(best_batsman/6.9)*(17/prop_bowler)*1.45
-    
+
+    F=F*math.sqrt((best_batsman/8.5) *(17/prop_bowler)*1.3627*avg/25)
+    S = S*math.sqrt((best_batsman/8.5)*(17/prop_bowler)*1.3627*avg/25)
+    if economy < 8 and balls < 96 and balls > 36:
+        F = F*(economy/8)
+        S = S*(economy/8)*(economy/8)
+    if batsman['balls_faced']<6 and strikerate < 1.75 and balls<=96:
+        F/=(3/strikerate)
+        S/=(2/strikerate)    
     if F+S>=0.88:
         FF = 0.88*(F/(F+S))
         SS = 0.88*(S/F+S)
@@ -290,11 +332,22 @@ def boundary_calculator(balls,batsman,bowler,target,team_wickets,team_score):
         SS=S
         NN=1-(F+S)     
 
+    if balls < 37:
+        if FF>0.13: 
+            FF=0.13
+        if SS>0.1:
+            SS=0.1
+    elif balls < 97 and balls > 36:
+        if FF>0.11:
+            FF=0.11
+        if SS>0.1:
+            SS=0.1
     
+    NN = 1-(FF+SS)
     
 
     distribution = [FF,SS,NN]
-    #print(str(round(FF,2)) + ' - 4 probability\n' + str(round(SS,2)) +  ' - 6 probablity\n' + str(round(NN,2)) + ' - runs or dots probability\n')
+    # print(str(round(FF,2)) + ' - 4 probability\n' + str(round(SS,2)) +  ' - 6 probablity\n' + str(round(NN,2)) + ' - runs or dots probability\n')
     return choices(results,weights=distribution)[0]
     # return distribution
 
@@ -395,7 +448,7 @@ def runs_calculator(balls,batsman,bowler,target,team_wickets,team_score):
     S = (2*sing+sing1)/3
     D = (2*doub+doub1)/3
     if batsman['balls_faced']<5 and balls<=96:
-        T*1.5
+        T*1.25
     best_batsman = batsman['average']/15.92 + batsman['strikerate']/32 + batsman['4s ratio']*6.33 + batsman['6s ratio']*6.33+0.9*batsman['average']/batsman['strikerate']
     if batsman['balls_faced']>10:
         S=2*S
@@ -409,12 +462,8 @@ def runs_calculator(balls,batsman,bowler,target,team_wickets,team_score):
             T/=3
             S*=1.5
             
-    T = T*7.2/best_batsman
-    S = S*best_batsman/5.2
-    D = D*best_batsman/6
-    T = T*(economy*0.75)*(economy*0.75)*3.5
-    S = S*(1.33/economy)*(1.33/economy)*3.1
-    D = D*(1.33/economy)*1.1
+    T = T*7/best_batsman
+    T = T*(economy*0.75)*(economy*0.75)*2.8
     if balls<121:
         TT = 0.9916666*(T/(T+S+D))
         SS = 0.9916666*(S/(T+S+D))
@@ -424,16 +473,19 @@ def runs_calculator(balls,batsman,bowler,target,team_wickets,team_score):
         SS = 0.95*(S/(T+S+D))
         DD = 0.95*(D/(T+S+D))
 
-    
+    if batsman['balls_faced'] > 3 and batsman['runs_scored'] <2:
+        TT = 0.15
+        SS=0.7
+        DD = 0.143
     distribution = [TT,SS,DD,1-(TT+SS+DD)]
 
-    #print(str(round(TT,2)) + ' - Dot prob \n' + str(round(SS,2)) + ' - Single prob \n' + str(round(DD,2)) + ' - Double prob \n')
+    # print(str(round(TT,2)) + ' - Dot prob \n' + str(round(SS,2)) + ' - Single prob \n' + str(round(DD,2)) + ' - Double prob \n')
 
     return choices(results,weights=distribution)[0]
 
     # return distribution
 
-    #print(str(round(TT,2)) + ' - Dot prob \n' + str(round(SS,2)) + ' - Single prob \n' + str(round(DD,2)) + ' - Double prob \n')
+    # print(str(round(TT,2)) + ' - Dot prob \n' + str(round(SS,2)) + ' - Single prob \n' + str(round(DD,2)) + ' - Double prob \n')
 
     
 
@@ -539,3 +591,4 @@ def correlate_wkt(x,y,balls,a,b,c):
                 else :
                     return 1.75*x*y/(x+y)    
 
+ 

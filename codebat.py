@@ -11,7 +11,7 @@ col_list = ["PLAYERS","Batsman_avg","Batsman_strikerate","Bowler_economy","Bowle
 Col_Test = ["Batsman","Bowler","Ball","0","1","2","3","4","6","Out"]
 
 master1 = pd.read_csv(master)
-master1 = master1[master1['Draft3_Player_id'] > 0]
+master1 = master1[master1['Minidraft3'] > 0]
 
 master1 = master1[col_list]
 
@@ -37,10 +37,12 @@ for j in range(len(attributes['batsmen'])):
         list =[1,37,67,85,91,97,103,109]
         kkkk=0
         for i in list :
+            attributes['batsmen'][j]['runs_scored']=6
+            attributes['batsmen'][j]['balls_faced']=5
             out1 = out_calculator(i,attributes['batsmen'][j],attributes['bowlers'][kk],1800,2,75)
             bound = boundary_calculator(i,attributes['batsmen'][j],attributes['bowlers'][kk],1800,2,75)
             runs = runs_calculator(i,attributes['batsmen'][j],attributes['bowlers'][kk],1800,2,75)
-            out = out1[0]
+            out = float(out1[0])
             four = round(bound[0] * (1-out),3)
             six = round(bound[1] * (1-out),3)
             run1 = round(1-out-four-six,3)
