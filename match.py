@@ -8,7 +8,7 @@ from bowl_a_ball import ball_result,update_result,print_summary
 
 
 
-def Innings_run(attributes,target,a,b,team_wick):
+def Innings_run(attributes,first,target,a,b,team_wick):
     fall_of_wickets = []
     current_batsmen=[]
     current_batsmen_id = 12
@@ -26,7 +26,7 @@ def Innings_run(attributes,target,a,b,team_wick):
 
     for i in range(a,b):
     
-        result = ball_result(i,attributes['batsmen'][current_batsmen_id],attributes['bowlers'][current_bowler_id],target,team_wickets,team_score)
+        result = ball_result(i,first,attributes['batsmen'][current_batsmen_id],attributes['bowlers'][current_bowler_id],target,team_wickets,team_score)
     
         update_result(result,i,team_score,team_wickets,attributes['batsmen'][current_batsmen_id],attributes['bowlers'][current_bowler_id])
     

@@ -65,6 +65,61 @@ def initialise(g1,g2):
         non_header2=True
 
     return [attributes]
+def situation_cal(a,b):
+    f1=csv.reader(open(a))
+    f2=csv.reader(open(b))
+    non_header=False
+    non_header2=False
+    attributes={}
+    attributes['first']=[]
+    attributes['second']=[]
+    first=0
+    second=0
+    #crr_ran,over,wickets_fell,total_Score_range,dot,sing,doub,triple,four,six,wicket,total,dot_prob,sing_prob,doub_prob,trip_prob,four_prob,six_prob,wkt_prob
+
+    for row in f1:
+        if non_header:
+            attributes['first'].append({})
+            attributes['first'][first]['rr']=row[0].strip(' ')
+            attributes['first'][first]['over']=int(row[1])
+            attributes['first'][first]['wickets']=int(row[2])
+            attributes['first'][first]['score']=row[3].strip(' ')
+            attributes['first'][first]['total']=int(row[11])
+            attributes['first'][first]['dot_prob']=float(row[12])
+            attributes['first'][first]['sing_prob']=float(row[13])
+            attributes['first'][first]['doub_prob']=float(row[14])
+            attributes['first'][first]['trip_prob']=float(row[15])
+            attributes['first'][first]['four_prob']=float(row[16])
+            attributes['first'][first]['six_prob']=float(row[17])
+            attributes['first'][first]['wkt_prob']=float(row[18])
+            first+=1
+        non_header = True
+        
+    for row in f2:
+        if non_header2:
+            attributes['second'].append({})
+            attributes['second'][second]['rr']=row[0].strip(' ')
+            attributes['second'][second]['over']=int(row[1])
+            attributes['second'][second]['wickets']=int(row[2])
+            attributes['second'][second]['score']=row[3].strip(' ')
+            attributes['second'][second]['total']=int(row[11])
+            attributes['second'][second]['dot_prob']=float(row[12])
+            attributes['second'][second]['sing_prob']=float(row[13])
+            attributes['second'][second]['doub_prob']=float(row[14])
+            attributes['second'][second]['trip_prob']=float(row[15])
+            attributes['second'][second]['four_prob']=float(row[16])
+            attributes['second'][second]['six_prob']=float(row[17])
+            attributes['second'][second]['wkt_prob']=float(row[18])
+            second+=1
+        non_header2 = True
+
+    
+    return [attributes]
+
+
+
+
+
 
 
 def write_to_stats(BAT,BOWL,BATTING_COLS,BOWLING_COLS,Bat_rem,Bowl_rem,Bat_stats,Bowl_stats):

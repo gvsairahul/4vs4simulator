@@ -3,7 +3,7 @@ import pandas as pd
 import numpy as np
 from out_sim1 import out_calculator,boundary_calculator, runs_calculator, change_batsman, best_bowling,notout_cal,fifty_cal
 import xlsxwriter
-from helper import initialise,write_to_stats,Bowler_Select,print_scorecard,Batsman_Select
+from helper import initialise,write_to_stats,Bowler_Select,print_scorecard,Batsman_Select,situation_cal
 from bowl_a_ball import ball_result,update_result,print_summary
 from match import Innings_run,Innings_run_chase,Super_over
 from Pre_Match import pre_match,toss
@@ -14,7 +14,7 @@ BATTING_COLS = ["Player","Owner","Innings", "Not Outs","Orange Cap","Balls Faced
 BOWLING_COLS = ["Player","Owner","Innings","Balls","Dots","Runs conceeded","Purple Cap","Best Figures","4fer","5fer"]
 
 Master_list = Prematch_stuff
-bat_stat_rem ,bowl_stat_rem ,Player1_Name ,Player2_Name,bat_stat,bowl_stat,Player1,Player2,Batting_stats,Bowling_stats = [Master_list[i] for i in range(0,10)]
+bat_stat_rem ,bowl_stat_rem ,Player1_Name ,Player2_Name,bat_stat,bowl_stat,Player1,Player2,Batting_stats,Bowling_stats,first,second = [Master_list[i] for i in range(0,12)]
 
 toss_result=toss(Player1_Name,Player2_Name)
 choosing=input(toss_result + '!! You won the toss, Will u Bat or Bowl:')
@@ -50,13 +50,18 @@ attributes2 = B[0]
 attributes11 = C[0]
 attributes22 = D[0]
 
-Chase = Innings_run(attributes,1800,1,121,10)
+F1 = situation_cal(first,second)
+
+First = F1[0]['first']
+Second = F1[0]['second']
+
+Chase = Innings_run(attributes,First,1800,1,121,10)
 
 target = Chase[1] + 1
 
 print("\nTarget is " + str(target) + "\n")
 
-Chase2 = Innings_run_chase(attributes2,target,1,121,10)
+Chase2 = Innings_run_chase(attributes2,Second,target,1,121,10)
 
 score_final = Chase2[1]
 

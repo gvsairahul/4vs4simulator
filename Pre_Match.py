@@ -27,6 +27,8 @@ def pre_match():
         Player2 = source_dict[user_name] + 'Teams\\Data_for_simulation - Player2.csv'
         Batting_stats = source_dict[user_name] + 'Stats\\Bat_in_code.csv'
         Bowling_stats = source_dict[user_name] + 'Stats\\Bowl_in_code.csv'
+        first = source_dict[user_name] + 'Stats\\first_innings.csv'
+        second = source_dict[user_name] + 'Stats\\second_innings.csv'
     elif str(user_name) == '6':
         path = '/Users/dineshkotnani/Downloads/4vs4simulator-master/Teams/Master_data_sheet.csv'
         path1 = '/Users/dineshkotnani/Downloads/4vs4simulator-master/Teams/Player_Mapping.csv'
@@ -84,7 +86,7 @@ def pre_match():
 
     result2.to_csv(Player2,index=False)
 
-    return [bat_stat_rem,bowl_stat_rem,Player1_Name,Player2_Name,bat_stat,bowl_stat,Player1,Player2,Batting_stats,Bowling_stats]
+    return [bat_stat_rem,bowl_stat_rem,Player1_Name,Player2_Name,bat_stat,bowl_stat,Player1,Player2,Batting_stats,Bowling_stats,first,second]
 
 
 def toss(p1,p2):
