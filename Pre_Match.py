@@ -5,7 +5,7 @@ from random import choices
 
 
 def pre_match():
-    col_list = ["PLAYERS","Batsman_avg","Batsman_strikerate","Bowler_economy","Bowler_average","4s ratio","6s ratio","Balls per innings","Bowler Style"]
+    col_list = ["player","balls_Faced","dot_prob","sing_prob","doub_prob","trip_prob","four_prob","six_prob","wkt_prob","balls_bowled","dot_conc_prob","sing_conc_prob","doub_conc_prob","trip_conc_prob","four_conc_prob","six_conc_prob","wkt_conc_prob"]
     BATTING_COLS = ["Player","Owner","Innings", "Not Outs","Orange Cap","Balls Faced","Highest","50","100", "6s" , "4s"]
     BOWLING_COLS = ["Player","Owner","Innings","Balls","Dots","Runs conceeded","Purple Cap","Best Figures","4fer","5fer"]
 
@@ -21,7 +21,7 @@ def pre_match():
 
 
     if str(user_name) != '6':
-        path = source_dict[user_name] + 'Teams\\Master_data_sheet.csv'
+        path = source_dict[user_name] + 'Teams\\grand_master_sheet.csv'
         path1 = source_dict[user_name] + 'Teams\\Player_Mapping.csv'
         Player1 = source_dict[user_name] + 'Teams\\Data_for_simulation - Player1.csv'
         Player2 = source_dict[user_name] + 'Teams\\Data_for_simulation - Player2.csv'
@@ -67,8 +67,8 @@ def pre_match():
     print('Player 2: ' + Player2_Name)
 
 
-    result1 = rrr[rrr['Minidraft3'] == id_1]
-    result2 = rrr[rrr['Minidraft3'] == id_2]
+    result1 = rrr[rrr['Present_league'] == id_1]
+    result2 = rrr[rrr['Present_league'] == id_2]
 
 
     bowl_stat_rem = bowl_stat[(bowl_stat['Owner'] != Player2_Name) & (bowl_stat['Owner'] != Player1_Name)]
@@ -80,9 +80,9 @@ def pre_match():
     result2 = result2[col_list]
 
 
-    result1.to_csv(Player1)
+    result1.to_csv(Player1,index=False)
 
-    result2.to_csv(Player2)
+    result2.to_csv(Player2,index=False)
 
     return [bat_stat_rem,bowl_stat_rem,Player1_Name,Player2_Name,bat_stat,bowl_stat,Player1,Player2,Batting_stats,Bowling_stats]
 

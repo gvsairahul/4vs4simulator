@@ -18,19 +18,27 @@ def initialise(g1,g2):
     batsman_number=0
     bowler_number2=0
 
+#    player,balls_Faced,dot_prob,sing_prob,doub_prob,trip_prob,four_prob,six_prob,wkt_prob,balls_bowled,dot_conc_prob,sing_conc_prob,doub_conc_prob,trip_conc_prob,four_conc_prob,six_conc_prob,wkt_conc_prob
+
+
     for row in f1:
         if non_header:
             attributes['batsmen'].append({})
-            attributes['batsmen'][batsman_number]['name']=row[1].strip(' ')
-            attributes['batsmen'][batsman_number]['average']=float(row[2])
-            attributes['batsmen'][batsman_number]['strikerate']=float(row[3])
+            attributes['batsmen'][batsman_number]['name']=row[0].strip(' ')
+            attributes['batsmen'][batsman_number]['career_balls']=int(row[1])
+            attributes['batsmen'][batsman_number]['dot_prob']=float(row[2])
+            attributes['batsmen'][batsman_number]['sing_prob']=float(row[3])
+            attributes['batsmen'][batsman_number]['doub_prob']=float(row[4])
+            attributes['batsmen'][batsman_number]['trip_prob']=float(row[5])
+            attributes['batsmen'][batsman_number]['four_prob']=float(row[6])
+            attributes['batsmen'][batsman_number]['six_prob']=float(row[7])
+            attributes['batsmen'][batsman_number]['wkt_prob']=float(row[8])
+            attributes['batsmen'][batsman_number]['out_to']='Not Out'
+            # attributes['batsmen'][batsman_number]['6s ratio'] = float(row[7])
             attributes['batsmen'][batsman_number]['runs_scored']=0
             attributes['batsmen'][batsman_number]['balls_faced']=0
             attributes['batsmen'][batsman_number]['fours']=0
-            attributes['batsmen'][batsman_number]['sixes']=0
-            attributes['batsmen'][batsman_number]['4s ratio']=float(row[6])
-            attributes['batsmen'][batsman_number]['out_to']='Not Out'
-            attributes['batsmen'][batsman_number]['6s ratio'] = float(row[7])
+            attributes['batsmen'][batsman_number]['sixes']=0            
             attributes['batsmen'][batsman_number]['batting_order'] = 12
             batsman_number+=1
         non_header = True
@@ -38,17 +46,21 @@ def initialise(g1,g2):
     for row in f2:
         if non_header2:
 
-            if float(row[4])>0 and float(row[5])>0:
+            if float(row[9])>100 :
                 attributes['bowlers'].append({})
-                attributes['bowlers'][bowler_number2]['name']=row[1].strip(' ')
-                attributes['bowlers'][bowler_number2]['economy']=float(row[4])
-                attributes['bowlers'][bowler_number2]['average']=float(row[5])
+                attributes['bowlers'][bowler_number2]['name']=row[0].strip(' ')
+                attributes['bowlers'][bowler_number2]['career_balls']=int(row[9])
+                attributes['bowlers'][bowler_number2]['dot_prob']=float(row[10])
+                attributes['bowlers'][bowler_number2]['sing_prob']=float(row[11])
+                attributes['bowlers'][bowler_number2]['doub_prob']=float(row[12])
+                attributes['bowlers'][bowler_number2]['trip_prob']=float(row[13])
+                attributes['bowlers'][bowler_number2]['four_prob']=float(row[14])
+                attributes['bowlers'][bowler_number2]['six_prob']=float(row[15])
+                attributes['bowlers'][bowler_number2]['wkt_prob']=float(row[16])
                 attributes['bowlers'][bowler_number2]['balls_bowled']=0
                 attributes['bowlers'][bowler_number2]['runs_conceded']=0
                 attributes['bowlers'][bowler_number2]['wickets_taken']=0
                 attributes['bowlers'][bowler_number2]['dots']=0
-                attributes['bowlers'][bowler_number2]['prop_bowl'] = float(row[8])
-                attributes['bowlers'][bowler_number2]['Bowler_type'] = row[9].strip(' ')
                 bowler_number2+=1
         non_header2=True
 

@@ -1,4 +1,4 @@
-,batsman,balls_Faced,dots,singles,doubles,triples,fours,sixes,wickets,dot_prob,sing_prob,doub_prob,trip_prop,four_prob,six_prob,wkt_prob
+num,batsman,balls_Faced,dots,singles,doubles,triples,fours,sixes,wickets,dot_prob,sing_prob,doub_prob,trip_prop,four_prob,six_prob,wkt_prob
 0,A Ashish Reddy,193,43,83,20,1,16,15,15,0.22279792746113988,0.43005181347150256,0.10362694300518134,0.0051813471502590676,0.08290155440414508,0.07772020725388601,0.07772020725388601
 1,A Chandila,7,3,4,0,0,0,0,0,0.42857142857142855,0.5714285714285714,0.0,0.0,0.0,0.0,0.0
 2,A Chopra,71,35,21,2,0,7,0,6,0.49295774647887325,0.29577464788732394,0.028169014084507043,0.0,0.09859154929577464,0.0,0.08450704225352113
