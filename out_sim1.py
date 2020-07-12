@@ -17,6 +17,7 @@ def result_calculator(batsman,bowler,situation,sit1) :
 
         aa = correlate(bat_prob,bowl_prob,sit_prob[1])
     else : 
+        print('New Situation')
         aa = correlate(bat_prob,bowl_prob,default_sit)
     # aa = [0.1,0.1,0.1,0.1,0.1,0.1,0.1]
     # for i in range(0,7):
@@ -32,27 +33,30 @@ def result_calculator(batsman,bowler,situation,sit1) :
     
 
 
-def situation_calculator(score,wickets,chase,ball,target):
+def situation_calculator(score,wickets,chase,balls,target):
     SR = score_range(score)
+    ball = int(balls)
     if chase==1:
         rr  = float((target-score)*6.00/(121-ball))
     else : 
         rr = float(score)*6.00/float(ball)
     rr_range = rate_range(rr)
     if ball%6 !=0:
-        over = ball/6  + 1
+        over = int(ball/6)  + 1
     else:
         over = ball/6
     return [SR,rr_range,over,wickets,chase]
 
 
 def score_range(score) : 
-    if score == 0:
+    ss = int(score)
+
+    if ss == 0:
         return '0 to 10'
-    elif score%10 == 0  :
-        return str(score-10) + ' to ' + str(score)
-    else:
-        return str (10*(int(score)/10)) + ' to ' + str(10 + (int(score)/10))
+    elif ss%10 == 0:
+        return str(ss)+ ' to ' + str(ss+10)
+    else : 
+        return str(ss-ss%10) + ' to ' + str(ss-ss%10+ 10) 
 
 def rate_range(rr):
     if rr<=5:
@@ -201,7 +205,12 @@ def situation_prob(attributes,sit_key):
     # [SR,rr_range,over,wickets,chase]
     if sit_key[4] == 0:
         for j in range(len(attributes)):
-            if attributes[j]['score'] == sit_key[0] and attributes[j]['rr'] == sit_key[1] and attributes[j]['over'] == sit_key[2] and attributes[j]['wickets'] == sit_key[3]:
+            # print(str(attributes[j]['score']) + ' = ' + str(sit_key[0]) + ' ?')
+            # print(str(attributes[j]['rr']) + ' = ' + str(sit_key[1]) + ' ?')
+            # print(str(attributes[j]['over']) + ' = ' + str(sit_key[2]) + ' ?')
+            # print(str(attributes[j]['wickets']) + ' = ' + str(sit_key[3]) + ' ?')
+            if attributes[j]['score'] == sit_key[0] and attributes[j]['rr'] == sit_key[1] and attributes[j]['over'] == int(sit_key[2]) and attributes[j]['wickets'] == int(sit_key[3]):
+                
                 found=1
                 l2 = [attributes[j]['total'],attributes[j]['dot_prob'],attributes[j]['sing_prob'],attributes[j]['doub_prob'],attributes[j]['trip_prob'],attributes[j]['four_prob'],attributes[j]['six_prob'],attributes[j]['wkt_prob']]
                 break

@@ -46,7 +46,7 @@ def initialise(g1,g2):
     for row in f2:
         if non_header2:
 
-            if float(row[9])>300 and (float(row[9])*float(row[16]))>17:
+            if float(row[9])>200 and (float(row[9])*float(row[16]))>10:
                 attributes['bowlers'].append({})
                 attributes['bowlers'][bowler_number2]['name']=row[0].strip(' ')
                 attributes['bowlers'][bowler_number2]['career_balls']=int(row[9])
