@@ -11,12 +11,17 @@ def correlate(a,b,c):
     else : 
         for i in range(0,7):
             final_prob[i] = math.sqrt(a[i]*b[i])
-    # print('0' + ' - ' + str(final_prob[0]))
-    # print('1' + ' - ' + str(final_prob[1]))
-    # print('2' + ' - ' + str(final_prob[2]))
-    # print('3' + ' - ' + str(final_prob[3]))
-    # print('4' + ' - ' + str(final_prob[4]))
-    # print('6' + ' - ' + str(final_prob[5]))
-    # print('wkt' + ' - ' + str(final_prob[6]))
+    
+    sum=0
+    for i in range(0,7):
+        sum+=final_prob[i]
+
+    print('0' + ' - ' + str(round(final_prob[0]/sum,2))
+    +str(' 1' + ' - ' + str(round(final_prob[1]/sum,2)))
+    +str(' 2' + ' - ' + str(round(final_prob[2]/sum,2)))
+    +str(' 3' + ' - ' + str(round(final_prob[3]/sum,2)))
+    +str(' 4' + ' - ' + str(round(final_prob[4]/sum,2)))
+    +str(' 6' + ' - ' + str(round(final_prob[5]/sum,2)))
+    +str(' wkt' + ' - ' + str(round(final_prob[6]/sum,2))))
 
     return final_prob 
