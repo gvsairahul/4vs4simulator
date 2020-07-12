@@ -36,10 +36,14 @@ def result_calculator(batsman,bowler,situation,sit1) :
 def situation_calculator(score,wickets,chase,balls,target):
     SR = score_range(score)
     ball = int(balls)
+
     if chase==1:
         rr  = float((target-score)*6.00/(121-ball))
     else : 
-        rr = float(score)*6.00/float(ball)
+        if ball != 1:
+            rr = float(score)*6.00/float(ball-1)
+        else : 
+            rr = 4.99
     rr_range = rate_range(rr)
     if ball%6 !=0:
         over = int(ball/6)  + 1

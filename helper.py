@@ -3,7 +3,7 @@ import pandas as pd
 import numpy as np
 from out_sim1 import out_calculator,boundary_calculator, runs_calculator, change_batsman, best_bowling,notout_cal,fifty_cal
 import xlsxwriter
-import sqlmlutils
+
 
 
 
@@ -46,7 +46,7 @@ def initialise(g1,g2):
     for row in f2:
         if non_header2:
 
-            if float(row[9])>100 and (float(row[9])*float(row[16]))>9.95:
+            if float(row[9])>100 and (float(row[9])*float(row[16]))>6.95:
                 attributes['bowlers'].append({})
                 attributes['bowlers'][bowler_number2]['name']=row[0].strip(' ')
                 attributes['bowlers'][bowler_number2]['career_balls']=int(row[9])
