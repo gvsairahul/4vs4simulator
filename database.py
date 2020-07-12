@@ -2,18 +2,15 @@ import pyodbc
 import pandas as pd
 import numpy as np
 
-connection = pyodbc.connect('DRIVER={ODBC Driver 17 for SQL Server};SERVER=KALYAN_BHARGAV;DATABASE=Cricket;Trusted_Connection=yes')
-cursor = connection.cursor()
-# df = pd.read_csv('C:\\Users\\KB131141191\\Desktop\\4vs4simulator\\Stats\\second_innings.csv')
-df = pd.read_sql_query('Select * from dbo.first_innings11 ',connection)
-df['dot_prob'] = df['dot'].astype(float)/df['total'].astype(float)
-df['sing_prob'] = df['sing'].astype(float)/df['total'].astype(float)
-df['doub_prob'] = df['doub'].astype(float)/df['total'].astype(float)
-df['trip_prob'] = df['triple'].astype(float)/df['total'].astype(float)
-df['four_prob'] = df['four'].astype(float)/df['total'].astype(float)
-df['six_prob'] = df['six'].astype(float)/df['total'].astype(float)
-df['wkt_prob'] = df['wicket'].astype(float)/df['total'].astype(float)
-# 
+d1 = pd.read_csv('C:\\Users\\KB131141191\\Desktop\\4vs4simulator\\Teams\\Master_data_sheet.csv')
+d2 = pd.read_csv('C:\\Users\\KB131141191\\Desktop\\4vs4simulator\\Teams\\grand_master_sheet.csv')
 
-df.to_csv('C:\\Users\\KB131141191\\Desktop\\4vs4simulator\\Stats\\first_innings.csv')
-# sql_query2.to_csv('C:\\Users\\KB131141191\\Desktop\\4vs4simulator\\Stats\\bowling_stats.csv')
+col_list = ['PLAYERS','Minidraft3']
+d1=d1[col_list]
+d = pd.merge(d2,d1,how = 'left' , left_on = 'player',right_on = 'PLAYERS')
+
+d['Present_league'] = np.where(d['Minidraft3']>0,d['Minidraft3'],d['Present_league'])
+
+d=d.drop(columns=['PLAYERS','Minidraft3'],axis=1)
+
+d.to_csv('C:\\Users\\KB131141191\\Desktop\\4vs4simulator\\Teams\\grand_master_sheet.csv',index=False)
