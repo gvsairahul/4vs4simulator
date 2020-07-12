@@ -1,5 +1,6 @@
 from random import choices
 import math
+from corelation import correlate
 
 
 
@@ -196,18 +197,19 @@ def runs_calculator():
 
 def situation_prob(attributes,sit_key):
     found=0
+    l2 = [0,0,0,0,0,0,0,0]
     # [SR,rr_range,over,wickets,chase]
     if sit_key[4] == 0:
-        for j in range(len(attributes['first'])):
-            if attributes['first'][j]['score'] == sit_key[0] and attributes['first'][j]['rr'] == sit_key[1] and attributes['first'][j]['over'] == sit_key[2] and attributes['first'][j]['wickets'] == sit_key[3]:
+        for j in range(len(attributes)):
+            if attributes[j]['score'] == sit_key[0] and attributes[j]['rr'] == sit_key[1] and attributes[j]['over'] == sit_key[2] and attributes[j]['wickets'] == sit_key[3]:
                 found=1
-                l2 = [attributes['first'][j]['total'],attributes['first'][j]['dot_prob'],attributes['first'][j]['sing_prob'],attributes['first'][j]['doub_prob'],attributes['first'][j]['trip_prob'],attributes['first'][j]['four_prob'],attributes['first'][j]['six_prob'],attributes['first'][j]['wkt_prob']]
+                l2 = [attributes[j]['total'],attributes[j]['dot_prob'],attributes[j]['sing_prob'],attributes[j]['doub_prob'],attributes[j]['trip_prob'],attributes[j]['four_prob'],attributes[j]['six_prob'],attributes[j]['wkt_prob']]
                 break
     elif sit_key[4] == 1:
-        for j in range(len(attributes['second'])):
-            if attributes['second'][j]['score'] == sit_key[0] and attributes['second'][j]['rr'] == sit_key[1] and attributes['second'][j]['over'] == sit_key[2] and attributes['second'][j]['wickets'] == sit_key[3]:
+        for j in range(len(attributes)):
+            if attributes[j]['score'] == sit_key[0] and attributes[j]['rr'] == sit_key[1] and attributes[j]['over'] == sit_key[2] and attributes[j]['wickets'] == sit_key[3]:
                 found=1
-                l2 = [attributes['second'][j]['total'],attributes['second'][j]['dot_prob'],attributes['second'][j]['sing_prob'],attributes['second'][j]['doub_prob'],attributes['second'][j]['trip_prob'],attributes['second'][j]['four_prob'],attributes['second'][j]['six_prob'],attributes['second'][j]['wkt_prob']]
+                l2 = [attributes[j]['total'],attributes[j]['dot_prob'],attributes[j]['sing_prob'],attributes[j]['doub_prob'],attributes[j]['trip_prob'],attributes[j]['four_prob'],attributes[j]['six_prob'],attributes[j]['wkt_prob']]
                 break
 
     return [found,l2]
@@ -217,13 +219,4 @@ def batsman_prob(batsman):
 
 def bowler_prob(bowler):
      return [bowler['dot_prob'],bowler['sing_prob'],bowler['doub_prob'],bowler['trip_prob'],bowler['four_prob'],bowler['six_prob'],bowler['wkt_prob'],bowler['career_balls']]        
-def correlate(a,b,c):
-    final_prob = [0,0,0,0,0,0,0]
-    if c[0]>0:
-        for i in range(0,7):
-            final_prob[i] = a[i]+b[i]+c[i+1]
-    else : 
-        for i in range(0,7):
-            final_prob[i] = a[i]+b[i]
-            
-    return final_prob   
+  

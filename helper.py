@@ -73,44 +73,44 @@ def situation_cal(a,b):
     attributes={}
     attributes['first']=[]
     attributes['second']=[]
-    first=0
-    second=0
+    first1=0
+    second2=0
     #crr_ran,over,wickets_fell,total_Score_range,dot,sing,doub,triple,four,six,wicket,total,dot_prob,sing_prob,doub_prob,trip_prob,four_prob,six_prob,wkt_prob
 
     for row in f1:
         if non_header:
             attributes['first'].append({})
-            attributes['first'][first]['rr']=row[0].strip(' ')
-            attributes['first'][first]['over']=int(row[1])
-            attributes['first'][first]['wickets']=int(row[2])
-            attributes['first'][first]['score']=row[3].strip(' ')
-            attributes['first'][first]['total']=int(row[11])
-            attributes['first'][first]['dot_prob']=float(row[12])
-            attributes['first'][first]['sing_prob']=float(row[13])
-            attributes['first'][first]['doub_prob']=float(row[14])
-            attributes['first'][first]['trip_prob']=float(row[15])
-            attributes['first'][first]['four_prob']=float(row[16])
-            attributes['first'][first]['six_prob']=float(row[17])
-            attributes['first'][first]['wkt_prob']=float(row[18])
-            first+=1
+            attributes['first'][first1]['rr']=row[0].strip(' ')
+            attributes['first'][first1]['over']=int(row[1])
+            attributes['first'][first1]['wickets']=int(row[2])
+            attributes['first'][first1]['score']=row[3].strip(' ')
+            attributes['first'][first1]['total']=int(row[11])
+            attributes['first'][first1]['dot_prob']=float(row[12])
+            attributes['first'][first1]['sing_prob']=float(row[13])
+            attributes['first'][first1]['doub_prob']=float(row[14])
+            attributes['first'][first1]['trip_prob']=float(row[15])
+            attributes['first'][first1]['four_prob']=float(row[16])
+            attributes['first'][first1]['six_prob']=float(row[17])
+            attributes['first'][first1]['wkt_prob']=float(row[18])
+            first1 = first1 + 1
         non_header = True
         
     for row in f2:
         if non_header2:
             attributes['second'].append({})
-            attributes['second'][second]['rr']=row[0].strip(' ')
-            attributes['second'][second]['over']=int(row[2])
-            attributes['second'][second]['wickets']=int(row[3])
-            attributes['second'][second]['score']=row[1].strip(' ')
-            attributes['second'][second]['total']=int(row[11])
-            attributes['second'][second]['dot_prob']=float(row[12])
-            attributes['second'][second]['sing_prob']=float(row[13])
-            attributes['second'][second]['doub_prob']=float(row[14])
-            attributes['second'][second]['trip_prob']=float(row[15])
-            attributes['second'][second]['four_prob']=float(row[16])
-            attributes['second'][second]['six_prob']=float(row[17])
-            attributes['second'][second]['wkt_prob']=float(row[18])
-            second+=1
+            attributes['second'][second2]['rr']=row[0].strip(' ')
+            attributes['second'][second2]['over']=int(row[2])
+            attributes['second'][second2]['wickets']=int(row[3])
+            attributes['second'][second2]['score']=row[1].strip(' ')
+            attributes['second'][second2]['total']=int(row[11])
+            attributes['second'][second2]['dot_prob']=float(row[12])
+            attributes['second'][second2]['sing_prob']=float(row[13])
+            attributes['second'][second2]['doub_prob']=float(row[14])
+            attributes['second'][second2]['trip_prob']=float(row[15])
+            attributes['second'][second2]['four_prob']=float(row[16])
+            attributes['second'][second2]['six_prob']=float(row[17])
+            attributes['second'][second2]['wkt_prob']=float(row[18])
+            second2 = second2 + 1
         non_header2 = True
 
     
