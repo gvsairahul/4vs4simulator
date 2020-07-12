@@ -78,7 +78,7 @@ def Super_over(attributes1,attributes2,first,second):
     elif B[1] > A[1]:
         return 1
     else : 
-        return Super_over(attributes2,attributes1)
+        return Super_over(attributes2,attributes1,first,second)
 
 def Innings_run_chase(attributes,second,target,a,b,team_wick):
     fall_of_wickets = []
