@@ -13,7 +13,7 @@ BOWLING_COLS = ["Player","Owner","Innings","Balls","Dots","Runs conceeded","Purp
 
 data =  pd.read_csv(master,usecols=['player' , 'Present_league'])
 data1 = pd.read_csv(mapping)
-data = data[data['Present_league'] > 1]
+data = data[data['Present_league'] >= 1]
 data2 = pd.merge(data,data1,how = 'left',left_on = 'Present_league',right_on = 'Player_id')
 print(data2)
 imp = ['player' , 'Name']
