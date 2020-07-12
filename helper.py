@@ -46,7 +46,7 @@ def initialise(g1,g2):
     for row in f2:
         if non_header2:
 
-            if float(row[9])>100 :
+            if float(row[9])>300 and (float(row[9])*float(row[16]))>17:
                 attributes['bowlers'].append({})
                 attributes['bowlers'][bowler_number2]['name']=row[0].strip(' ')
                 attributes['bowlers'][bowler_number2]['career_balls']=int(row[9])
@@ -99,9 +99,9 @@ def situation_cal(a,b):
         if non_header2:
             attributes['second'].append({})
             attributes['second'][second]['rr']=row[0].strip(' ')
-            attributes['second'][second]['over']=int(row[1])
-            attributes['second'][second]['wickets']=int(row[2])
-            attributes['second'][second]['score']=row[3].strip(' ')
+            attributes['second'][second]['over']=int(row[2])
+            attributes['second'][second]['wickets']=int(row[3])
+            attributes['second'][second]['score']=row[1].strip(' ')
             attributes['second'][second]['total']=int(row[11])
             attributes['second'][second]['dot_prob']=float(row[12])
             attributes['second'][second]['sing_prob']=float(row[13])

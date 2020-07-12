@@ -3,20 +3,28 @@ import math
 
 
 
-def result_calculator(batsman,bowler,situation) :
+def result_calculator(batsman,bowler,situation,sit1) :
     # sit_prob = situation_prob(situation)
     bat_prob = batsman_prob(batsman)
     bowl_prob = bowler_prob(bowler)
+    sit_prob = situation_prob(situation,sit1)
+    default_sit = [0,0.3,0.4,0.05,0.002,0.12,0.07,0.058]
+    
 
     ll = ['0','1','2','3','4','6','out']
-    aa = [0.1,0.1,0.1,0.1,0.1,0.1,0.1]
-    for i in range(0,7):
-        aa[i] = bat_prob[i]*bat_prob[7]+bowl_prob[i]*bowl_prob[7]
-    s=0
-    for i in range(0,7):
-        s+=aa[i]
-    for i in range(0,7):
-        aa[i]/=s
+    if sit_prob[0] == 1:
+
+        aa = correlate(bat_prob,bowl_prob,sit_prob[1])
+    else : 
+        aa = correlate(bat_prob,bowl_prob,default_sit)
+    # aa = [0.1,0.1,0.1,0.1,0.1,0.1,0.1]
+    # for i in range(0,7):
+    #     aa[i] = bat_prob[i]*bat_prob[7]+bowl_prob[i]*bowl_prob[7]
+    # s=0
+    # for i in range(0,7):
+    #     s+=aa[i]
+    # for i in range(0,7):
+    #     aa[i]/=s
     # for i in range(0,7):
     #     print(str(ll[i])+ ' - ' + str(aa[i]))
     return choices(ll,weights=aa)[0]
@@ -34,7 +42,7 @@ def situation_calculator(score,wickets,chase,ball,target):
         over = ball/6  + 1
     else:
         over = ball/6
-    return [SR,rr_range,over,wickets]
+    return [SR,rr_range,over,wickets,chase]
 
 
 def score_range(score) : 
@@ -186,12 +194,36 @@ def boundary_calculator():
 def runs_calculator():
     return 3
 
-def situation_prob(situation):
-    return 12
+def situation_prob(attributes,sit_key):
+    found=0
+    # [SR,rr_range,over,wickets,chase]
+    if sit_key[4] == 0:
+        for j in range(len(attributes['first'])):
+            if attributes['first'][j]['score'] == sit_key[0] and attributes['first'][j]['rr'] == sit_key[1] and attributes['first'][j]['over'] == sit_key[2] and attributes['first'][j]['wickets'] == sit_key[3]:
+                found=1
+                l2 = [attributes['first'][j]['total'],attributes['first'][j]['dot_prob'],attributes['first'][j]['sing_prob'],attributes['first'][j]['doub_prob'],attributes['first'][j]['trip_prob'],attributes['first'][j]['four_prob'],attributes['first'][j]['six_prob'],attributes['first'][j]['wkt_prob']]
+                break
+    elif sit_key[4] == 1:
+        for j in range(len(attributes['second'])):
+            if attributes['second'][j]['score'] == sit_key[0] and attributes['second'][j]['rr'] == sit_key[1] and attributes['second'][j]['over'] == sit_key[2] and attributes['second'][j]['wickets'] == sit_key[3]:
+                found=1
+                l2 = [attributes['second'][j]['total'],attributes['second'][j]['dot_prob'],attributes['second'][j]['sing_prob'],attributes['second'][j]['doub_prob'],attributes['second'][j]['trip_prob'],attributes['second'][j]['four_prob'],attributes['second'][j]['six_prob'],attributes['second'][j]['wkt_prob']]
+                break
+
+    return [found,l2]
+
 def batsman_prob(batsman):
     return [batsman['dot_prob'],batsman['sing_prob'],batsman['doub_prob'],batsman['trip_prob'],batsman['four_prob'],batsman['six_prob'],batsman['wkt_prob'],batsman['career_balls']]
 
 def bowler_prob(bowler):
      return [bowler['dot_prob'],bowler['sing_prob'],bowler['doub_prob'],bowler['trip_prob'],bowler['four_prob'],bowler['six_prob'],bowler['wkt_prob'],bowler['career_balls']]        
 def correlate(a,b,c):
-    return a+b+c
+    final_prob = [0,0,0,0,0,0,0]
+    if c[0]>0:
+        for i in range(0,7):
+            final_prob[i] = a[i]+b[i]+c[i+1]
+    else : 
+        for i in range(0,7):
+            final_prob[i] = a[i]+b[i]
+            
+    return final_prob   

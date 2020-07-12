@@ -1,11 +1,16 @@
 import csv, os, time
 import pandas as pd
 import numpy as np
-from out_sim1 import result_calculator,out_calculator,boundary_calculator, runs_calculator, change_batsman, best_bowling,notout_cal,fifty_cal
+from out_sim1 import situation_calculator,result_calculator,out_calculator,boundary_calculator, runs_calculator, change_batsman, best_bowling,notout_cal,fifty_cal
 import xlsxwriter
 
 def ball_result(balls,sit,batsman,bowler,target,team_wickets,team_score):
-    result = result_calculator(batsman,bowler,sit)
+    if target == 1800:
+        chase = 0
+    else:
+        chase = 1
+    sit1 = situation_calculator(team_score,team_wickets,chase,balls,target)
+    result = result_calculator(batsman,bowler,sit,sit1)
     return result
 def update_result(result,balls,team_score,team_wickets,batsman,bowler):
     batsman['balls_faced']+=1

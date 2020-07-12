@@ -44,7 +44,7 @@ def Innings_run(attributes,first,target,a,b,team_wick):
                 print("Team is all out at "+str(team_score))
             #kb = kb + "Team is all out at "+str(team_score) + '\n'
                 break
-            elif team_wickets != 10 and i != b-1:
+            elif team_wickets != team_wick and i != b-1:
                 current_batsmen.remove(current_batsmen_id)
                 current_batsmen_id = Batsman_Select(attributes,current_batsmen_id,current_batsmen,3)
                 current_batsmen.append(current_batsmen_id)
@@ -80,7 +80,7 @@ def Super_over(attributes1,attributes2):
     else : 
         return Super_over(attributes2,attributes1)
 
-def Innings_run_chase(attributes,target,a,b,team_wick):
+def Innings_run_chase(attributes,second,target,a,b,team_wick):
     fall_of_wickets = []
     current_batsmen=[]
     current_batsmen_id = 12
@@ -98,7 +98,7 @@ def Innings_run_chase(attributes,target,a,b,team_wick):
 
     for i in range(a,b):
     
-        result = ball_result(i,attributes['batsmen'][current_batsmen_id],attributes['bowlers'][current_bowler_id],target,team_wickets,team_score)
+        result = ball_result(i,second,attributes['batsmen'][current_batsmen_id],attributes['bowlers'][current_bowler_id],target,team_wickets,team_score)
     
         update_result(result,i,team_score,team_wickets,attributes['batsmen'][current_batsmen_id],attributes['bowlers'][current_bowler_id])
     
