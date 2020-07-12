@@ -68,10 +68,10 @@ def Innings_run(attributes,first,target,a,b,team_wick):
     return [attributes,team_score,team_wickets]
 
 
-def Super_over(attributes1,attributes2):
-    A = Innings_run(attributes2,1800,121,127,2)
+def Super_over(attributes1,attributes2,first,second):
+    A = Innings_run(attributes2,first,1800,121,127,2)
 
-    B = Innings_run_chase(attributes1,A[1] + 1,121,127,2)
+    B = Innings_run_chase(attributes1,second,A[1] + 1,121,127,2)
 
     if A[1] > B[1]:
         return 2

@@ -95,7 +95,7 @@ elif score_final >= target:
     print(Player2_Name + " Won by " + str(10-Chase2[2]) + " Wickets\n")
 else : 
     print("Its a Tie!!!\n")
-    result = Super_over(attributes11,attributes22)
+    result = Super_over(attributes11,attributes22,first,second)
     if result == 1 :
         print("\n" + Player1_Name + " Won the Super Over\n")
     elif result == 2:
