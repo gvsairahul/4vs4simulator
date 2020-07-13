@@ -14,7 +14,7 @@ BATTING_COLS = ["Player","Owner","Innings", "Not Outs","Orange Cap","Balls Faced
 BOWLING_COLS = ["Player","Owner","Innings","Balls","Dots","Runs conceeded","Purple Cap","Best Figures","4fer","5fer"]
 
 Master_list = Prematch_stuff
-bat_stat_rem ,bowl_stat_rem ,Player1_Name ,Player2_Name,bat_stat,bowl_stat,Player1,Player2,Batting_stats,Bowling_stats,first,second = [Master_list[i] for i in range(0,12)]
+bat_stat_rem ,bowl_stat_rem ,Player1_Name ,Player2_Name,bat_stat,bowl_stat,Player1,Player2,Batting_stats,Bowling_stats,first,second,first_rate,first_wkt,second_rate,second_wkt = [Master_list[i] for i in range(0,16)]
 
 toss_result=toss(Player1_Name,Player2_Name)
 choosing=input(toss_result + '!! You won the toss, Will u Bat or Bowl:')
@@ -50,18 +50,23 @@ attributes2 = B[0]
 attributes11 = C[0]
 attributes22 = D[0]
 
-F1 = situation_cal(first,second)
+F1 = situation_cal(first,second,first_rate,first_wkt,second_rate,second_wkt)
 
 First = F1[0]['first']
 Second = F1[0]['second']
+First_rate = F1[0]['first_rate']
+First_wkt = F1[0]['first_wkt']
+Second_rate = F1[0]['second_rate']
+Second_wkt = F1[0]['second_wkt']
 
-Chase = Innings_run(attributes,First,1800,1,121,10)
+
+Chase = Innings_run(attributes,First,First_rate,First_wkt,1800,1,121,10)
 
 target = Chase[1] + 1
 
 print("\nTarget is " + str(target) + "\n")
 
-Chase2 = Innings_run_chase(attributes2,Second,target,1,121,10)
+Chase2 = Innings_run_chase(attributes2,Second,Second_rate,Second_wkt,target,1,121,10)
 
 score_final = Chase2[1]
 

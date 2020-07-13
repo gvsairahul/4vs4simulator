@@ -65,9 +65,9 @@ def initialise(g1,g2):
         non_header2=True
 
     return [attributes]
-def situation_cal(a,b):
+def situation_cal(a,b,c,d,e,f):
     f1=csv.reader(open(a))
-    f2=csv.reader(open(b))
+    f2=csv.reader(open(b))      
     non_header=False
     non_header2=False
     attributes={}
@@ -75,6 +75,7 @@ def situation_cal(a,b):
     attributes['second']=[]
     first1=0
     second2=0
+    
     #crr_ran,over,wickets_fell,total_Score_range,dot,sing,doub,triple,four,six,wicket,total,dot_prob,sing_prob,doub_prob,trip_prob,four_prob,six_prob,wkt_prob
 
     for row in f1:
@@ -113,7 +114,92 @@ def situation_cal(a,b):
             second2 = second2 + 1
         non_header2 = True
 
-    
+    f3=csv.reader(open(c))
+    f4=csv.reader(open(d))      
+    non_header=False
+    non_header2=False
+    # attributes={}
+    attributes['first_rate']=[]
+    attributes['first_wkt']=[]
+    first1=0
+    second2=0  
+    for row in f4:
+        if non_header:
+            attributes['first_wkt'].append({})
+            
+            attributes['first_wkt'][first1]['over']=int(row[0])
+            attributes['first_wkt'][first1]['wickets']=int(row[1])
+            
+            attributes['first_wkt'][first1]['total']=int(row[2])
+            attributes['first_wkt'][first1]['dot_prob']=float(row[10])
+            attributes['first_wkt'][first1]['sing_prob']=float(row[11])
+            attributes['first_wkt'][first1]['doub_prob']=float(row[12])
+            attributes['first_wkt'][first1]['trip_prob']=float(row[13])
+            attributes['first_wkt'][first1]['four_prob']=float(row[14])
+            attributes['first_wkt'][first1]['six_prob']=float(row[15])
+            attributes['first_wkt'][first1]['wkt_prob']=float(row[16])
+            first1 = first1 + 1
+        non_header = True
+        
+    for row in f3:
+        if non_header2:
+            attributes['first_rate'].append({})
+            attributes['first_rate'][second2]['rr']=row[0].strip(' ')
+            attributes['first_rate'][second2]['score']=row[1].strip(' ')
+            attributes['first_rate'][second2]['total']=int(row[2])
+            attributes['first_rate'][second2]['dot_prob']=float(row[10])
+            attributes['first_rate'][second2]['sing_prob']=float(row[11])
+            attributes['first_rate'][second2]['doub_prob']=float(row[12])
+            attributes['first_rate'][second2]['trip_prob']=float(row[13])
+            attributes['first_rate'][second2]['four_prob']=float(row[14])
+            attributes['first_rate'][second2]['six_prob']=float(row[15])
+            attributes['first_rate'][second2]['wkt_prob']=float(row[16])
+            second2 = second2 + 1
+        non_header2 = True
+
+    f5=csv.reader(open(e))
+    f6=csv.reader(open(f))      
+    non_header=False
+    non_header2=False
+    # attributes={}
+    attributes['second_rate']=[]
+    attributes['second_wkt']=[]
+    first1=0
+    second2=0  
+    for row in f6:
+        if non_header:
+            attributes['second_wkt'].append({})
+            
+            attributes['second_wkt'][first1]['over']=int(row[0])
+            attributes['second_wkt'][first1]['wickets']=int(row[1])
+            
+            attributes['second_wkt'][first1]['total']=int(row[2])
+            attributes['second_wkt'][first1]['dot_prob']=float(row[10])
+            attributes['second_wkt'][first1]['sing_prob']=float(row[11])
+            attributes['second_wkt'][first1]['doub_prob']=float(row[12])
+            attributes['second_wkt'][first1]['trip_prob']=float(row[13])
+            attributes['second_wkt'][first1]['four_prob']=float(row[14])
+            attributes['second_wkt'][first1]['six_prob']=float(row[15])
+            attributes['second_wkt'][first1]['wkt_prob']=float(row[16])
+            first1 = first1 + 1
+        non_header = True
+        
+    for row in f5:
+        if non_header2:
+            attributes['second_rate'].append({})
+            attributes['second_rate'][second2]['rr']=row[0].strip(' ')
+            attributes['second_rate'][second2]['score']=row[1].strip(' ')
+            attributes['second_rate'][second2]['total']=int(row[2])
+            attributes['second_rate'][second2]['dot_prob']=float(row[10])
+            attributes['second_rate'][second2]['sing_prob']=float(row[11])
+            attributes['second_rate'][second2]['doub_prob']=float(row[12])
+            attributes['second_rate'][second2]['trip_prob']=float(row[13])
+            attributes['second_rate'][second2]['four_prob']=float(row[14])
+            attributes['second_rate'][second2]['six_prob']=float(row[15])
+            attributes['second_rate'][second2]['wkt_prob']=float(row[16])
+            second2 = second2 + 1
+        non_header2 = True
+            
     return [attributes]
 
 

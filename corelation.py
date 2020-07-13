@@ -1,7 +1,7 @@
 from random import choices
 import math
 
-def correlate(a,b,c):
+def correlate(a,b,c,d,e):
     final_prob = [0,0,0,0,0,0,0]
     if c[0]>0:
         print('Situation Occured ' + str(c[0]) + ' times')

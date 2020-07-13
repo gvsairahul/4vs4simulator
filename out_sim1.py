@@ -4,21 +4,32 @@ from corelation import correlate
 
 
 
-def result_calculator(batsman,bowler,situation,sit1) :
+def result_calculator(batsman,bowler,situation,situation_rate,situation_wkt,sit1) :
     # sit_prob = situation_prob(situation)
     bat_prob = batsman_prob(batsman)
     bowl_prob = bowler_prob(bowler)
-    sit_prob = situation_prob(situation,sit1)
+    sit_prob = situation_prob(situation,situation_rate,situation_wkt,sit1)
     default_sit = [0,0.3,0.4,0.05,0.002,0.12,0.07,0.058]
     
 
     ll = ['0','1','2','3','4','6','out']
-    if sit_prob[0] == 1:
+    if sit_prob[0][0] == 1:
+        a1 = sit_prob[0][1]
+    else:
+         a1 = default_sit
+    if sit_prob[1][0] == 1:
+        a2 = sit_prob[1][1]
+    else:
+         a2 = default_sit
+    if sit_prob[2][0] == 1:
+        a3 = sit_prob[2][1]
+    else:
+         a3 = default_sit
 
-        aa = correlate(bat_prob,bowl_prob,sit_prob[1])
-    else : 
-        print('New Situation')
-        aa = correlate(bat_prob,bowl_prob,default_sit)
+    
+    aa = correlate(bat_prob,bowl_prob,a1,a2,a3)
+       
+
     # aa = [0.1,0.1,0.1,0.1,0.1,0.1,0.1]
     # for i in range(0,7):
     #     aa[i] = bat_prob[i]*bat_prob[7]+bowl_prob[i]*bowl_prob[7]
@@ -65,10 +76,8 @@ def score_range(score) :
 def rate_range(rr):
     if rr<=5:
         return '0 to 5'
-    elif rr >15:
-        return '>15'
-    elif rr >13 and rr<=15:
-        return '13 to 15'
+    elif rr >13:
+        return '>13'
     elif rr >12 and rr<=13:
         return '12 to 13'
     elif rr >11 and rr<=12:
@@ -203,7 +212,7 @@ def boundary_calculator():
 def runs_calculator():
     return 3
 
-def situation_prob(attributes,sit_key):
+def situation_prob(attributes,A1,A2,sit_key):
     found=0
     l2 = [0,0,0,0,0,0,0,0]
     # [SR,rr_range,over,wickets,chase]
@@ -225,7 +234,55 @@ def situation_prob(attributes,sit_key):
                 l2 = [attributes[j]['total'],attributes[j]['dot_prob'],attributes[j]['sing_prob'],attributes[j]['doub_prob'],attributes[j]['trip_prob'],attributes[j]['four_prob'],attributes[j]['six_prob'],attributes[j]['wkt_prob']]
                 break
 
-    return [found,l2]
+    L1 = [found,l2]
+
+    found=0
+    l2 = [0,0,0,0,0,0,0,0]
+    # [SR,rr_range,over,wickets,chase]
+    if sit_key[4] == 0:
+        for j in range(len(A1)):
+            # print(str(A1[j]['score']) + ' = ' + str(sit_key[0]) + ' ?')
+            # print(str(A1[j]['rr']) + ' = ' + str(sit_key[1]) + ' ?')
+            # print(str(A1[j]['over']) + ' = ' + str(sit_key[2]) + ' ?')
+            # print(str(A1[j]['wickets']) + ' = ' + str(sit_key[3]) + ' ?')
+            if A1[j]['score'] == sit_key[0] and A1[j]['rr'] == sit_key[1] :
+                
+                found=1
+                l2 = [A1[j]['total'],A1[j]['dot_prob'],A1[j]['sing_prob'],A1[j]['doub_prob'],A1[j]['trip_prob'],A1[j]['four_prob'],A1[j]['six_prob'],A1[j]['wkt_prob']]
+                break
+    elif sit_key[4] == 1:
+        for j in range(len(A1)):
+            if A1[j]['score'] == sit_key[0] and A1[j]['rr'] == sit_key[1] :
+                found=1
+                l2 = [A1[j]['total'],A1[j]['dot_prob'],A1[j]['sing_prob'],A1[j]['doub_prob'],A1[j]['trip_prob'],A1[j]['four_prob'],A1[j]['six_prob'],A1[j]['wkt_prob']]
+                break
+
+    L2 = [found,l2]
+
+    found=0
+    l2 = [0,0,0,0,0,0,0,0]
+    # [SR,rr_range,over,wickets,chase]
+    if sit_key[4] == 0:
+        for j in range(len(A2)):
+            # print(str(A2[j]['score']) + ' = ' + str(sit_key[0]) + ' ?')
+            # print(str(A2[j]['rr']) + ' = ' + str(sit_key[1]) + ' ?')
+            # print(str(A2[j]['over']) + ' = ' + str(sit_key[2]) + ' ?')
+            # print(str(A2[j]['wickets']) + ' = ' + str(sit_key[3]) + ' ?')
+            if  A2[j]['over'] == int(sit_key[2]) and A2[j]['wickets'] == int(sit_key[3]):
+                
+                found=1
+                l2 = [A2[j]['total'],A2[j]['dot_prob'],A2[j]['sing_prob'],A2[j]['doub_prob'],A2[j]['trip_prob'],A2[j]['four_prob'],A2[j]['six_prob'],A2[j]['wkt_prob']]
+                break
+    elif sit_key[4] == 1:
+        for j in range(len(A2)):
+            if  A2[j]['over'] == sit_key[2] and A2[j]['wickets'] == sit_key[3]:
+                found=1
+                l2 = [A2[j]['total'],A2[j]['dot_prob'],A2[j]['sing_prob'],A2[j]['doub_prob'],A2[j]['trip_prob'],A2[j]['four_prob'],A2[j]['six_prob'],A2[j]['wkt_prob']]
+                break
+
+    L3 = [found,l2]
+
+    return [L1,L2,L3]
 
 def batsman_prob(batsman):
     return [batsman['dot_prob'],batsman['sing_prob'],batsman['doub_prob'],batsman['trip_prob'],batsman['four_prob'],batsman['six_prob'],batsman['wkt_prob'],batsman['career_balls']]

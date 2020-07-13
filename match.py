@@ -8,7 +8,7 @@ from bowl_a_ball import ball_result,update_result,print_summary
 
 
 
-def Innings_run(attributes,first,target,a,b,team_wick):
+def Innings_run(attributes,first,first_rate,first_wkt,target,a,b,team_wick):
     fall_of_wickets = []
     current_batsmen=[]
     current_batsmen_id = 12
@@ -26,7 +26,7 @@ def Innings_run(attributes,first,target,a,b,team_wick):
 
     for i in range(a,b):
     
-        result = ball_result(i,first,attributes['batsmen'][current_batsmen_id],attributes['bowlers'][current_bowler_id],target,team_wickets,team_score)
+        result = ball_result(i,first,first_rate,first_wkt,attributes['batsmen'][current_batsmen_id],attributes['bowlers'][current_bowler_id],target,team_wickets,team_score)
     
         update_result(result,i,team_score,team_wickets,attributes['batsmen'][current_batsmen_id],attributes['bowlers'][current_bowler_id])
     
@@ -68,19 +68,19 @@ def Innings_run(attributes,first,target,a,b,team_wick):
     return [attributes,team_score,team_wickets]
 
 
-def Super_over(attributes1,attributes2,first,second):
-    A = Innings_run(attributes2,first,1800,121,127,2)
+def Super_over(attributes1,attributes2,first,second,first_rate,first_wkt,second_rate,second_wkt):
+    A = Innings_run(attributes2,first,first_rate,first_wkt,1800,121,127,2)
 
-    B = Innings_run_chase(attributes1,second,A[1] + 1,121,127,2)
+    B = Innings_run_chase(attributes1,second,second_rate,second_wkt,A[1] + 1,121,127,2)
 
     if A[1] > B[1]:
         return 2
     elif B[1] > A[1]:
         return 1
     else : 
-        return Super_over(attributes2,attributes1,first,second)
+        return Super_over(attributes2,attributes1,first,second,first_rate,first_wkt,second_rate,second_wkt)
 
-def Innings_run_chase(attributes,second,target,a,b,team_wick):
+def Innings_run_chase(attributes,second,second_rate,second_wkt,target,a,b,team_wick):
     fall_of_wickets = []
     current_batsmen=[]
     current_batsmen_id = 12
@@ -98,7 +98,7 @@ def Innings_run_chase(attributes,second,target,a,b,team_wick):
 
     for i in range(a,b):
     
-        result = ball_result(i,second,attributes['batsmen'][current_batsmen_id],attributes['bowlers'][current_bowler_id],target,team_wickets,team_score)
+        result = ball_result(i,second,second_rate,second_wkt,attributes['batsmen'][current_batsmen_id],attributes['bowlers'][current_bowler_id],target,team_wickets,team_score)
     
         update_result(result,i,team_score,team_wickets,attributes['batsmen'][current_batsmen_id],attributes['bowlers'][current_bowler_id])
     
