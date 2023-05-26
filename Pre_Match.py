@@ -10,7 +10,7 @@ def pre_match():
     BOWLING_COLS = ["Player","Owner","Innings","Balls","Dots","Runs conceeded","Purple Cap","Best Figures","4fer","5fer"]
 
     user_name = input("Host id:")
-    source_dict = {'1':'C:\\Users\\rahul\\Desktop\\4vs4simulator\\'
+    source_dict = {'1':'C:\\Users\\vzg00\\OneDrive\\Desktop\\simulator\\4vs4simulator\\'
                 ,'2':'C:\\Users\\KB131141191\\Desktop\\4vs4simulator\\'
                 ,'3':'C:\\Users\\Ganesh\\Desktop\\4vs4simulator\\'
                 ,'4':'C:\\Users\\biddu\\Desktop\\4vs4simulator\\'
@@ -35,7 +35,7 @@ def pre_match():
         Batting_stats = '/Users/dineshkotnani/Downloads/4vs4simulator-master/Stats/Bat_in_code.csv'
         Bowling_stats = '/Users/dineshkotnani/Downloads/4vs4simulator-master/Stats/Bowl_in_code.csv'
 
-   
+
     rrr=pd.read_csv(path,dtype = str)
 # rrr1=rrr
 

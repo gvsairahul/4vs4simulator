@@ -2,7 +2,7 @@ import csv, os, time
 import pandas as pd
 import numpy as np
 from out_sim1 import out_calculator,boundary_calculator, runs_calculator, change_batsman, best_bowling,notout_cal,fifty_cal
-import xlsxwriter
+# import xlsxwriter
 from helper import initialise,write_to_stats,Bowler_Select,print_scorecard,Batsman_Select
 from bowl_a_ball import ball_result,update_result,print_summary
 from match import Innings_run,Innings_run_chase,Super_over
@@ -30,7 +30,7 @@ if (choosing == 'Bat' and toss_result == Player1_Name) or (choosing == 'Bowl' an
     bos2 = bowl_stat[bowl_stat['Owner'] == Player2_Name]
 
 elif (choosing == 'Bat' and toss_result == Player2_Name) or (choosing == 'Bowl' and toss_result == Player1_Name):
-    
+
     B = initialise(Player1,Player2)
     A = initialise(Player2,Player1)
     D = initialise(Player1,Player2)
@@ -43,7 +43,7 @@ elif (choosing == 'Bat' and toss_result == Player2_Name) or (choosing == 'Bowl' 
     x = Player1_Name
     Player1_Name = Player2_Name
     Player2_Name = x
-    
+
 
 attributes = A[0]
 attributes2 = B[0]
@@ -88,7 +88,7 @@ if score_final < target-1:
     print(Player1_Name + " Won by " + str(target-score_final -1) + " runs\n" )
 elif score_final >= target:
     print(Player2_Name + " Won by " + str(10-Chase2[2]) + " Wickets\n")
-else : 
+else :
     print("Its a Tie!!!\n")
     result = Super_over(attributes11,attributes22)
     if result == 1 :

@@ -2,7 +2,7 @@ import csv, os, time
 import pandas as pd
 import numpy as np
 from out_sim1 import out_calculator,boundary_calculator, runs_calculator, change_batsman, best_bowling,notout_cal,fifty_cal
-import xlsxwriter
+# import xlsxwriter
 from helper import initialise,write_to_stats,Bowler_Select,print_scorecard,Batsman_Select
 from bowl_a_ball import ball_result,update_result,print_summary
 
@@ -25,17 +25,17 @@ def Innings_run(attributes,target,a,b,team_wick):
     alll=120
 
     for i in range(a,b):
-    
+
         result = ball_result(i,attributes['batsmen'][current_batsmen_id],attributes['bowlers'][current_bowler_id],target,team_wickets,team_score)
-    
+
         update_result(result,i,team_score,team_wickets,attributes['batsmen'][current_batsmen_id],attributes['bowlers'][current_bowler_id])
-    
+
         if result != 'out':
             team_score += int(result)
-    
+
         if str(result) == '1' or str(result) == '3':
             current_batsmen_id=change_batsman(current_batsmen,current_batsmen_id)
-    
+
         elif str(result) == 'out':
             team_wickets+=1
             fall_of_wickets.append(team_score)
@@ -54,9 +54,9 @@ def Innings_run(attributes,target,a,b,team_wick):
         if i%6==0 :
             #time.sleep(4)
             #os.system('cls')
-            
+
             print_summary(team_score,team_wickets,attributes,current_batsmen,current_batsmen_id,target,i)
-        
+
             if i!=b-1:
                 current_batsmen_id=change_batsman(current_batsmen,current_batsmen_id)
 
@@ -77,7 +77,7 @@ def Super_over(attributes1,attributes2):
         return 2
     elif B[1] > A[1]:
         return 1
-    else : 
+    else :
         return Super_over(attributes2,attributes1)
 
 def Innings_run_chase(attributes,target,a,b,team_wick):
@@ -97,17 +97,17 @@ def Innings_run_chase(attributes,target,a,b,team_wick):
     alll=120
 
     for i in range(a,b):
-    
+
         result = ball_result(i,attributes['batsmen'][current_batsmen_id],attributes['bowlers'][current_bowler_id],target,team_wickets,team_score)
-    
+
         update_result(result,i,team_score,team_wickets,attributes['batsmen'][current_batsmen_id],attributes['bowlers'][current_bowler_id])
-    
+
         if result != 'out':
             team_score += int(result)
-    
+
         if str(result) == '1' or str(result) == '3':
             current_batsmen_id=change_batsman(current_batsmen,current_batsmen_id)
-    
+
         elif str(result) == 'out':
             team_wickets+=1
             fall_of_wickets.append(team_score)
@@ -127,9 +127,9 @@ def Innings_run_chase(attributes,target,a,b,team_wick):
         if i%6==0 :
             #time.sleep(4)
             #os.system('cls')
-            
+
             print_summary(team_score,team_wickets,attributes,current_batsmen,current_batsmen_id,target,i)
-        
+
             if i!=b-1:
                 current_batsmen_id=change_batsman(current_batsmen,current_batsmen_id)
 

@@ -2,8 +2,8 @@ import csv, os, time
 import pandas as pd
 import numpy as np
 from out_sim1 import out_calculator,boundary_calculator, runs_calculator, change_batsman, best_bowling,notout_cal,fifty_cal
-import xlsxwriter
-import sqlmlutils
+# import xlsxwriter
+# import sqlmlutils
 
 
 
@@ -34,7 +34,7 @@ def initialise(g1,g2):
             attributes['batsmen'][batsman_number]['batting_order'] = 12
             batsman_number+=1
         non_header = True
-        
+
     for row in f2:
         if non_header2:
 
@@ -56,7 +56,7 @@ def initialise(g1,g2):
 
 
 def write_to_stats(BAT,BOWL,BATTING_COLS,BOWLING_COLS,Bat_rem,Bowl_rem,Bat_stats,Bowl_stats):
-    
+
     BAT['Orange Cap'] = BAT['Orange Cap'] + BAT['runs_scored']
 
     BAT['Balls Faced'] = BAT['Balls Faced'] + BAT['balls_faced']
@@ -118,14 +118,14 @@ def Bowler_Select(attributes,current_bowler_id) :
             print(str(j)+' '+attributes['bowlers'][j]['name']+" "+overs+'-'+str(attributes['bowlers'][j]['dots'])
             +'-'+str(attributes['bowlers'][j]['runs_conceded'])+'-'+str(attributes['bowlers'][j]['wickets_taken']))
             lll.append(str(j))
-    answer = '0' 
+    answer = '0'
     while answer != '1':
         choser=input("Choose the valid id of bowler from above:")
         if str(choser) not in lll or choser == '':
             answer = '2'
         else:
-            answer = input("If the bowler chosen is " + attributes['bowlers'][int(choser)]['name'] + " Press 1: ")    
-         
+            answer = input("If the bowler chosen is " + attributes['bowlers'][int(choser)]['name'] + " Press 1: ")
+
 
     return int(choser)
 
@@ -135,8 +135,8 @@ def Batsman_Select(attributes,current_batsman_id,current_batsmen,order):
         if attributes['batsmen'][j]['balls_faced']==0 and (j not in current_batsmen):
             print(str(j)+'  '+attributes['batsmen'][j]['name'])
             ll.append(str(j))
-    answer = '0' 
-     
+    answer = '0'
+
     while answer != '1':
         if order == 3:
             choser=input("Choose the next batsman : ")
@@ -147,7 +147,7 @@ def Batsman_Select(attributes,current_batsman_id,current_batsmen,order):
         if choser not in ll or choser == '':
             answer='2'
         else:
-            answer = input("If the batsman is " + attributes['batsmen'][int(choser)]['name'] + " Press 1: ")    
+            answer = input("If the batsman is " + attributes['batsmen'][int(choser)]['name'] + " Press 1: ")
     return int(choser)
 
 
@@ -183,11 +183,11 @@ def print_scorecard(attributes,team_score,balls,team_wickets,fall_of_wickets):
                     for i in range(1,10-l3):
                         str7 = str7+ " "
                     print(str1+str4+str2+str5+str3+str7+str6)
-                
+
                 elif str(attributes['batsmen'][i]['out_to']) == 'Not Out' and attributes['batsmen'][i]['batting_order'] ==k:
                     str1 = attributes['batsmen'][i]['name']
                     str2 = str(attributes['batsmen'][i]['out_to'])
-                    str3 = str(attributes['batsmen'][i]['runs_scored'])+"("+str(attributes['batsmen'][i]['balls_faced'])+") " 
+                    str3 = str(attributes['batsmen'][i]['runs_scored'])+"("+str(attributes['batsmen'][i]['balls_faced'])+") "
                     str6 = "4s:"+str(attributes['batsmen'][i]['fours'])+" 6s:"+str(attributes['batsmen'][i]['sixes'])
                     l1 = len(str1)
                     l2 = len(str2)
@@ -206,7 +206,7 @@ def print_scorecard(attributes,team_score,balls,team_wickets,fall_of_wickets):
         print('\nScore after ' + str(balls/6) + ' Overs : ' + str(team_score) + '/' + str(team_wickets))
     else:
         print('\nScore after ' + str(int(balls/6)) +'.' +str(int(balls%6)) + ' Overs : ' + str(team_score) + '/' + str(team_wickets))
-    
+
     print('\nFall Of Wickets\n')
     for i in range(len(fall_of_wickets)):
         print(str(fall_of_wickets[i])+'- '+str(i+1))
@@ -226,4 +226,3 @@ def print_scorecard(attributes,team_score,balls,team_wickets,fall_of_wickets):
             for i in range(1,25 -len(str1)):
                 str3 = str3 + " "
             print(str1+str3+str2)
-    

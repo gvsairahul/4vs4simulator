@@ -1,12 +1,12 @@
 ,PLAYERS,Batsman_avg,Batsman_strikerate,Bowler_economy,Bowler_average,4s ratio,6s ratio,Balls per innings,Bowler Style
-5,Lasith Malinga,5.5,88.89,7.14,19.79,0.06,0.05,23.17,Pace
-12,Kane Richardson,12,92.31,8.38,24.61,0.05,0.03,22.64,Pace
-36,Shakib Al Hasan,21.31,126.66,7.46,28,0.12,0.03,21.42,Spin
-51,Vinay Kumar,11.07,113.14,8.39,28.25,0.08,0.03,20.39,Pace
-83,Fabian Allen,18,145,7.21,27.03,0.12,0.09,17.34,Spin
-89,Krishnappa Gowtham,12,173.49,7.97,39.83,0.12,0.12,16.36,Spin
-129,Kane Williamson,38.29,135.06,0,0,0.11,0.05,0,
-140,Parthiv Patel,22.6,120.78,0,0,0.15,0.02,0,
-169,Manan Vohra,23.53,131.77,0,0,0.13,0.05,0,
-173,Lendl Simmons,39.96,126.64,0,0,0.13,0.06,0,
-177,Saurabh Tiwary,28.36,119.59,0,0,0.09,0.04,0,
+4,Trent Boult,6,85.71,8.78,29.47,0.00,0.07,23.18,Pace
+13,Mujeeb Ur Rahman,5,90.91,7.96,28.24,0.18,0.00,22.63,Spin
+32,Lockie Ferguson,1,60,8.16,26.21,0.00,0.00,21.53,Pace
+40,Amit Mishra,11.68,93.06,7.34,24.17,0.07,0.01,21.1,Spin
+41,Mohammad Shami,6,101.89,8.99,38.67,0.09,0.04,21.06,Pace
+81,Ravindra Jadeja,24.09,122.66,7.58,29.19,0.09,0.04,17.57,Spin
+105,Rohit Sharma,31.6,130.82,7.95,29.33,0.12,0.05,11.07,Spin
+114,Quinton de Kock,30.33,131.29,0,0,0.14,0.05,0,
+119,Steve Smith,37.44,128.95,0,0,0.11,0.03,0,
+122,Eoin Morgan,21.35,121.13,0,0,0.10,0.05,0,
+155,Gurkeerat Singh,18.33,128.65,0,0,0.14,0.03,0,
