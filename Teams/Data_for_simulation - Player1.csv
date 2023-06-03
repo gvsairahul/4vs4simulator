@@ -1,12 +1,12 @@
-,PLAYERS,Batsman_avg,Batsman_strikerate,Bowler_economy,Bowler_average,4s ratio,6s ratio,Balls per innings,Bowler Style
-47,Chris Woakes,10.5,95.45,9.24,23.04,0.08,0.03,20.78,Pace
-53,Mohit Sharma,8.13,104.27,8.41,26.65,0.07,0.03,20.35,Pace
-61,Dwayne Bravo,23.17,128.29,8.4,24.61,0.10,0.05,19.73,Pace
-67,Ben Stokes,22.68,132.02,8.26,31.08,0.09,0.05,19.57,Pace
-80,Mayank Markhande,9,93.1,8.54,26.69,0.10,0.00,17.65,Spin
-87,Rahul Tewatia,18.5,124.72,7.18,25.29,0.12,0.03,16.44,Spin
-95,Hardik Pandya,28.86,154.78,9.07,31.26,0.10,0.10,14.48,Pace
-106,Glenn Maxwell,22.9,161.13,8.73,38.19,0.13,0.10,9.77,Spin
-124,Aaron Finch,25.93,130.7,0,0,0.13,0.05,0,
-127,Ambati Rayudu,28.7,125.95,0,0,0.11,0.05,0,
-139,Sam Curran,19.04,130.93,8.65,30.28,0.12,0.05,19.46,Pace
+,PLAYERS,Batsman_avg,Batsman_strikerate,Bowler_economy,Bowler_average,4s ratio,6s ratio,Balls per innnings,Bowling Style
+27,Evin Lewis,27.25,137.11,0,0,0.13,0.08,0,
+35,Ishan Kishan,29.42,134.26,0,0,0.13,0.06,0,
+40,Manan Vohra,22.1,133.64,0,0,0.13,0.05,0,
+57,Shreyas Iyer,31.55,125.38,0,0,0.11,0.04,0,
+73,Shivam Dube,28.36,141.79,9.4,41.5,0.07,0.09,8.15,Pace
+80,Shubman Gill,37.7,134.07,0,0,0.13,0.04,0,
+127,Mohammaed Siraj,12.12,87.39,8.54,29.82,0.09,0.02,20.68,Pace
+142,Anrich Nortje,11.25,109.76,8.33,24.15,0.00,0.00,23.05,Pace
+179,Carlos Brathwaite,13.92,163.06,8.95,29.15,0.09,0.14,15.88,Pace
+194,Kane Richardson,4.25,100,8.33,23.3,0.00,0.00,21.09,pace
+197,Maheesh Theekshana,7,100,7.77,28.39,0.00,0.14,22.91,spin
