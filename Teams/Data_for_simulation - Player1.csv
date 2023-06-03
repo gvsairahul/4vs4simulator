@@ -1,12 +1,12 @@
 ,PLAYERS,Batsman_avg,Batsman_strikerate,Bowler_economy,Bowler_average,4s ratio,6s ratio,Balls per innings,Bowler Style
-5,Lasith Malinga,5.5,88.89,7.14,19.79,0.06,0.05,23.17,Pace
-12,Kane Richardson,12,92.31,8.38,24.61,0.05,0.03,22.64,Pace
-36,Shakib Al Hasan,21.31,126.66,7.46,28,0.12,0.03,21.42,Spin
-51,Vinay Kumar,11.07,113.14,8.39,28.25,0.08,0.03,20.39,Pace
-83,Fabian Allen,18,145,7.21,27.03,0.12,0.09,17.34,Spin
-89,Krishnappa Gowtham,12,173.49,7.97,39.83,0.12,0.12,16.36,Spin
-129,Kane Williamson,38.29,135.06,0,0,0.11,0.05,0,
-140,Parthiv Patel,22.6,120.78,0,0,0.15,0.02,0,
-169,Manan Vohra,23.53,131.77,0,0,0.13,0.05,0,
-173,Lendl Simmons,39.96,126.64,0,0,0.13,0.06,0,
-177,Saurabh Tiwary,28.36,119.59,0,0,0.09,0.04,0,
+47,Chris Woakes,10.5,95.45,9.24,23.04,0.08,0.03,20.78,Pace
+53,Mohit Sharma,8.13,104.27,8.41,26.65,0.07,0.03,20.35,Pace
+61,Dwayne Bravo,23.17,128.29,8.4,24.61,0.10,0.05,19.73,Pace
+67,Ben Stokes,22.68,132.02,8.26,31.08,0.09,0.05,19.57,Pace
+80,Mayank Markhande,9,93.1,8.54,26.69,0.10,0.00,17.65,Spin
+87,Rahul Tewatia,18.5,124.72,7.18,25.29,0.12,0.03,16.44,Spin
+95,Hardik Pandya,28.86,154.78,9.07,31.26,0.10,0.10,14.48,Pace
+106,Glenn Maxwell,22.9,161.13,8.73,38.19,0.13,0.10,9.77,Spin
+124,Aaron Finch,25.93,130.7,0,0,0.13,0.05,0,
+127,Ambati Rayudu,28.7,125.95,0,0,0.11,0.05,0,
+139,Sam Curran,19.04,130.93,8.65,30.28,0.12,0.05,19.46,Pace

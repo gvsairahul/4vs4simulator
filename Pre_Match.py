@@ -67,8 +67,8 @@ def pre_match():
     print('Player 2: ' + Player2_Name)
 
 
-    result1 = rrr[rrr['Draft3_Player_id'] == id_1]
-    result2 = rrr[rrr['Draft3_Player_id'] == id_2]
+    result1 = rrr[rrr['Player_id'] == id_1]
+    result2 = rrr[rrr['Player_id'] == id_2]
 
 
     bowl_stat_rem = bowl_stat[(bowl_stat['Owner'] != Player2_Name) & (bowl_stat['Owner'] != Player1_Name)]
